@@ -1,65 +1,148 @@
-import Image from "next/image";
+import Link from "next/link";
+import type { Metadata } from "next";
+import { NAV, SITE } from "@/lib/site";
+import { Hand } from "@/components/PlayingCard";
+import { JsonLd } from "@/components/ui";
+
+export const metadata: Metadata = {
+  title: "Poker Hub — Apprendre le poker, jouer gratuitement & devenir croupier",
+  description:
+    "Le centre de ressources poker francophone : regles, classement des mains, " +
+    "strategie debutant a avance, glossaire geant, calculateurs et la seule academie " +
+    "gratuite pour devenir croupier poker. Par Jerome Ibiza, croupier professionnel.",
+  alternates: { canonical: "/" },
+};
+
+const HIGHLIGHTS = [
+  {
+    href: "/apprendre/regles-du-poker",
+    emoji: "♠",
+    title: "Debuter en 15 minutes",
+    desc: "Les regles du Texas Hold'em expliquees simplement, de la donne au showdown.",
+  },
+  {
+    href: "/apprendre/classement-des-mains",
+    emoji: "🃏",
+    title: "Classement des mains",
+    desc: "Les 10 mains, leurs probabilites et des exemples visuels avec de vraies cartes.",
+  },
+  {
+    href: "/academie-croupier",
+    emoji: "🎓",
+    title: "Devenir croupier — gratuit",
+    desc: "10 modules pour apprendre le metier de dealer poker, par un croupier pro.",
+  },
+  {
+    href: "/calculateurs/cotes",
+    emoji: "🧮",
+    title: "Calculateur de cotes",
+    desc: "Pot odds, outs et cotes du tirage : sais-tu si tu dois suivre ce tapis ?",
+  },
+];
 
 export default function Home() {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: SITE.name,
+    url: SITE.url,
+    description: SITE.description,
+    inLanguage: "fr-FR",
+    author: { "@type": "Person", name: SITE.author },
+  };
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
+    <>
+      <JsonLd data={jsonLd} />
+
+      {/* HERO */}
+      <section className="wrap" style={{ paddingBlock: "56px 24px" }}>
+        <div>
+          <div className="label" style={{ color: "var(--gold)", fontSize: 13, marginBottom: 16 }}>
+            Le centre de ressources poker francophone
+          </div>
+          <h1 style={{ fontSize: "clamp(38px, 8vw, 76px)", margin: 0 }}>
+            <span style={{ display: "block" }}>Apprends.</span>
+            <span style={{ display: "block", color: "var(--gold)" }}>Joue.</span>
+            <span style={{ display: "block" }}>Deviens croupier.</span>
           </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+          <p style={{ color: "var(--muted)", fontSize: 19, marginTop: 22, maxWidth: 620, lineHeight: 1.6 }}>
+            Tout le poker au meme endroit : des regles pour grands debutants jusqu&apos;au GTO,
+            un glossaire geant, des calculateurs, et la seule{" "}
+            <strong style={{ color: "var(--fg)" }}>academie gratuite de croupier</strong> du web
+            francophone — animee par Jerome Ibiza, croupier professionnel.
           </p>
+          <div style={{ display: "flex", flexWrap: "wrap", gap: 12, marginTop: 28 }}>
+            <Link href="/apprendre" className="btn btn-gold">Commencer a apprendre</Link>
+            <Link href="/academie-croupier" className="btn btn-ghost">🎓 Formation croupier</Link>
+          </div>
+          <div style={{ marginTop: 32 }}>
+            <Hand cards={["As", "Ks", "Qs", "Js", "Ts"]} size={1.05} />
+            <p className="label" style={{ color: "var(--faint)", fontSize: 11, marginTop: 10 }}>
+              Quinte flush royale · la main imbattable
+            </p>
+          </div>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+      </section>
+
+      {/* HIGHLIGHTS */}
+      <section className="wrap" style={{ marginTop: 24 }}>
+        <div className="grid-cards">
+          {HIGHLIGHTS.map((h) => (
+            <Link key={h.href} href={h.href} className="card card-hover">
+              <div style={{ fontSize: 26 }}>{h.emoji}</div>
+              <h3 style={{ fontSize: 18, marginTop: 12 }}>{h.title}</h3>
+              <p style={{ color: "var(--muted)", fontSize: 14, marginTop: 8 }}>{h.desc}</p>
+              <div className="label" style={{ color: "var(--gold)", fontSize: 12, marginTop: 14 }}>
+                Decouvrir →
+              </div>
+            </Link>
+          ))}
         </div>
-      </main>
-    </div>
+      </section>
+
+      {/* TOUTES LES SECTIONS */}
+      <section className="wrap" style={{ marginTop: 56 }}>
+        <div className="shead">
+          <span className="kicker">Explorer</span>
+          <h2>Tout le hub</h2>
+        </div>
+        <div className="grid-cards">
+          {NAV.map((s) => (
+            <Link key={s.href} href={s.href} className="card card-hover">
+              <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+                <span style={{ fontSize: 22 }}>{s.emoji}</span>
+                <span className="display" style={{ fontSize: 17 }}>{s.label}</span>
+              </div>
+              <p style={{ color: "var(--muted)", fontSize: 14, marginTop: 10 }}>{s.desc}</p>
+            </Link>
+          ))}
+        </div>
+      </section>
+
+      {/* BANDEAU CROUPIER */}
+      <section className="wrap" style={{ marginTop: 64 }}>
+        <div className="felt" style={{ padding: "40px 28px" }}>
+          <div style={{ maxWidth: 680 }}>
+            <div className="label" style={{ color: "#fbe8c2", fontSize: 12, marginBottom: 12 }}>
+              Academie Croupier Poker · 100% gratuite
+            </div>
+            <h2 style={{ fontSize: "clamp(26px, 5vw, 42px)", color: "#ffffff", margin: 0 }}>
+              Apprends le metier de dealer poker
+            </h2>
+            <p style={{ color: "rgba(255,255,255,0.85)", fontSize: 17, marginTop: 14 }}>
+              Manipulation des jetons et des cartes, gestion du pot, side pots, rake, annonces,
+              situations cash game et tournoi, gestion des litiges... 10 modules et un examen final
+              certifie. Le savoir d&apos;un vrai croupier, transmis gratuitement.
+            </p>
+            <Link href="/academie-croupier" className="btn btn-gold" style={{ marginTop: 22 }}>
+              Entrer dans l&apos;academie
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      <div style={{ height: 24 }} />
+    </>
   );
 }
