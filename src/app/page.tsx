@@ -1,8 +1,6 @@
 import Link from "next/link";
-import Image from "next/image";
 import type { Metadata } from "next";
 import { NAV, SITE } from "@/lib/site";
-import { Hand } from "@/components/PlayingCard";
 import { JsonLd } from "@/components/ui";
 
 export const metadata: Metadata = {
@@ -56,80 +54,108 @@ export default function Home() {
     <>
       <JsonLd data={jsonLd} />
 
-      {/* HERO */}
-      <section className="wrap" style={{ paddingBlock: "48px 24px" }}>
+      {/* HERO plein cadre (table Triton + marque sur le LED) */}
+      <section
+        aria-label="Poker Hub Jérôme Ibiza"
+        style={{
+          position: "relative",
+          minHeight: "clamp(480px, 80vh, 780px)",
+          display: "flex",
+          overflow: "hidden",
+          backgroundColor: "#05080a",
+          backgroundImage: "url('/hero-table.jpg')",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}
+      >
         <div
+          aria-hidden
           style={{
-            display: "grid",
-            gap: 24,
-            gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
+            position: "absolute",
+            inset: 0,
+            background:
+              "linear-gradient(180deg, rgba(5,8,10,0.6) 0%, rgba(5,8,10,0.12) 34%, rgba(5,8,10,0.28) 64%, rgba(5,8,10,0.95) 100%)",
+          }}
+        />
+        <div
+          className="wrap"
+          style={{
+            position: "relative",
+            width: "100%",
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "space-between",
             alignItems: "center",
+            textAlign: "center",
+            paddingBlock: "44px 40px",
           }}
         >
-          {/* Colonne texte */}
+          {/* Marque, sur le LED */}
           <div>
-            <div className="label" style={{ color: "var(--gold)", fontSize: 13, marginBottom: 16 }}>
+            <div
+              className="label"
+              style={{
+                color: "var(--gold-soft)",
+                fontSize: 13,
+                letterSpacing: 3.5,
+                marginBottom: 12,
+                textShadow: "0 2px 18px rgba(0,0,0,0.85)",
+              }}
+            >
               Le centre de ressources poker francophone
             </div>
-            <h1 style={{ fontSize: "clamp(36px, 6.5vw, 70px)", margin: 0 }}>
-              <span style={{ display: "block" }}>Apprends.</span>
-              <span style={{ display: "block", color: "var(--gold)" }}>Joue.</span>
-              <span style={{ display: "block" }}>Deviens croupier.</span>
+            <h1
+              className="display"
+              style={{
+                fontSize: "clamp(42px, 9.5vw, 110px)",
+                margin: 0,
+                lineHeight: 1,
+                letterSpacing: 2,
+                color: "#f3cd86",
+                textShadow: "0 2px 30px rgba(0,0,0,0.9), 0 0 70px rgba(232,176,75,0.28)",
+              }}
+            >
+              JÉRÔME IBIZA
             </h1>
-            <p style={{ color: "var(--muted)", fontSize: 18, marginTop: 22, maxWidth: 560, lineHeight: 1.6 }}>
-              Tout le poker au même endroit : des règles pour grands débutants jusqu&apos;au GTO, un
-              glossaire géant, des calculateurs, et la seule{" "}
-              <strong style={{ color: "var(--fg)" }}>académie gratuite de croupier</strong>{" "}
-              du web francophone, animée par{" "}
-              <Link href="/a-propos" className="link">Jérôme Ibiza</Link>, croupier professionnel.
-            </p>
-            <div style={{ display: "flex", flexWrap: "wrap", gap: 12, marginTop: 28 }}>
-              <Link href="/apprendre/parcours-debutant" className="btn btn-gold">Commencer le parcours débutant</Link>
-              <Link href="/academie-croupier" className="btn btn-ghost">🎓 Formation croupier</Link>
-            </div>
-            <div style={{ marginTop: 30 }}>
-              <Hand cards={["As", "Ks", "Qs", "Js", "Ts"]} size={1} />
-              <p className="label" style={{ color: "var(--faint)", fontSize: 11, marginTop: 10 }}>
-                Quinte flush royale · la main imbattable
-              </p>
+            <div
+              className="label"
+              style={{
+                color: "rgba(255,255,255,0.85)",
+                fontSize: 13,
+                letterSpacing: 4,
+                marginTop: 14,
+                textShadow: "0 2px 14px rgba(0,0,0,0.95)",
+              }}
+            >
+              Apprendre · Jouer · Devenir croupier
             </div>
           </div>
 
-          {/* Colonne photo (détourée), remplit le vide à droite */}
-          <div
-            style={{
-              position: "relative",
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "flex-end",
-              minHeight: 360,
-            }}
-          >
-            <div
-              aria-hidden
+          {/* Accroche + CTA */}
+          <div>
+            <p
               style={{
-                position: "absolute",
-                inset: 0,
-                background:
-                  "radial-gradient(50% 44% at 50% 72%, rgba(31,122,82,0.34), transparent 72%)",
-                filter: "blur(12px)",
+                color: "#fff",
+                fontSize: "clamp(16px, 2.1vw, 20px)",
+                maxWidth: 640,
+                margin: "0 auto",
+                lineHeight: 1.5,
+                textShadow: "0 2px 16px rgba(0,0,0,0.95)",
               }}
-            />
-            <Image
-              src="/jerome-cutout.png"
-              alt="Jérôme Ibiza, croupier professionnel, en gilet et nœud papillon"
-              width={1100}
-              height={787}
-              priority
-              sizes="(max-width: 760px) 86vw, 520px"
-              style={{
-                position: "relative",
-                width: "100%",
-                maxWidth: 540,
-                height: "auto",
-                filter: "drop-shadow(0 22px 34px rgba(0,0,0,0.55))",
-              }}
-            />
+            >
+              Apprends le poker de zéro, entraîne-toi gratuitement et découvre le métier de
+              croupier, par un croupier professionnel.
+            </p>
+            <div style={{ display: "flex", flexWrap: "wrap", gap: 12, justifyContent: "center", marginTop: 24 }}>
+              <Link href="/apprendre/parcours-debutant" className="btn btn-gold">Commencer le parcours</Link>
+              <Link
+                href="/academie-croupier"
+                className="btn btn-ghost"
+                style={{ color: "#fff", borderColor: "rgba(255,255,255,0.45)" }}
+              >
+                🎓 Formation croupier
+              </Link>
+            </div>
           </div>
         </div>
       </section>
