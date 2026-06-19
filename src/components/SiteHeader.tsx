@@ -115,6 +115,20 @@ export function SiteHeader() {
                 <p style={{ margin: "8px 0 0", color: "var(--muted)", fontSize: 14 }}>{s.desc}</p>
               </Link>
             ))}
+            <Link
+              href="/a-propos"
+              onClick={() => setOpen(false)}
+              className="card card-hover"
+              style={{ padding: 16 }}
+            >
+              <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+                <span style={{ fontSize: 20 }}>👤</span>
+                <span className="display" style={{ fontSize: 16 }}>À propos</span>
+              </div>
+              <p style={{ margin: "8px 0 0", color: "var(--muted)", fontSize: 14 }}>
+                Qui est Jérôme Ibiza, le croupier derrière le hub.
+              </p>
+            </Link>
           </div>
         </div>
       )}

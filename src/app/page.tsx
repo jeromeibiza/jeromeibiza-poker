@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import type { Metadata } from "next";
 import { NAV, SITE } from "@/lib/site";
 import { Hand } from "@/components/PlayingCard";
@@ -56,32 +57,79 @@ export default function Home() {
       <JsonLd data={jsonLd} />
 
       {/* HERO */}
-      <section className="wrap" style={{ paddingBlock: "56px 24px" }}>
-        <div>
-          <div className="label" style={{ color: "var(--gold)", fontSize: 13, marginBottom: 16 }}>
-            Le centre de ressources poker francophone
-          </div>
-          <h1 style={{ fontSize: "clamp(38px, 8vw, 76px)", margin: 0 }}>
-            <span style={{ display: "block" }}>Apprends.</span>
-            <span style={{ display: "block", color: "var(--gold)" }}>Joue.</span>
-            <span style={{ display: "block" }}>Deviens croupier.</span>
-          </h1>
-          <p style={{ color: "var(--muted)", fontSize: 19, marginTop: 22, maxWidth: 620, lineHeight: 1.6 }}>
-            Tout le poker au même endroit : des règles pour grands débutants jusqu&apos;au GTO, un
-            glossaire géant, des calculateurs, et la seule{" "}
-            <strong style={{ color: "var(--fg)" }}>académie gratuite de croupier</strong>{" "}
-            du web francophone — animée par{" "}
-            <Link href="/a-propos" className="link">Jérôme Ibiza</Link>, croupier professionnel.
-          </p>
-          <div style={{ display: "flex", flexWrap: "wrap", gap: 12, marginTop: 28 }}>
-            <Link href="/apprendre/parcours-debutant" className="btn btn-gold">Commencer le parcours débutant</Link>
-            <Link href="/academie-croupier" className="btn btn-ghost">🎓 Formation croupier</Link>
-          </div>
-          <div style={{ marginTop: 32 }}>
-            <Hand cards={["As", "Ks", "Qs", "Js", "Ts"]} size={1.05} />
-            <p className="label" style={{ color: "var(--faint)", fontSize: 11, marginTop: 10 }}>
-              Quinte flush royale · la main imbattable
+      <section className="wrap" style={{ paddingBlock: "48px 24px" }}>
+        <div
+          style={{
+            display: "grid",
+            gap: 24,
+            gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
+            alignItems: "center",
+          }}
+        >
+          {/* Colonne texte */}
+          <div>
+            <div className="label" style={{ color: "var(--gold)", fontSize: 13, marginBottom: 16 }}>
+              Le centre de ressources poker francophone
+            </div>
+            <h1 style={{ fontSize: "clamp(36px, 6.5vw, 70px)", margin: 0 }}>
+              <span style={{ display: "block" }}>Apprends.</span>
+              <span style={{ display: "block", color: "var(--gold)" }}>Joue.</span>
+              <span style={{ display: "block" }}>Deviens croupier.</span>
+            </h1>
+            <p style={{ color: "var(--muted)", fontSize: 18, marginTop: 22, maxWidth: 560, lineHeight: 1.6 }}>
+              Tout le poker au même endroit : des règles pour grands débutants jusqu&apos;au GTO, un
+              glossaire géant, des calculateurs, et la seule{" "}
+              <strong style={{ color: "var(--fg)" }}>académie gratuite de croupier</strong>{" "}
+              du web francophone — animée par{" "}
+              <Link href="/a-propos" className="link">Jérôme Ibiza</Link>, croupier professionnel.
             </p>
+            <div style={{ display: "flex", flexWrap: "wrap", gap: 12, marginTop: 28 }}>
+              <Link href="/apprendre/parcours-debutant" className="btn btn-gold">Commencer le parcours débutant</Link>
+              <Link href="/academie-croupier" className="btn btn-ghost">🎓 Formation croupier</Link>
+            </div>
+            <div style={{ marginTop: 30 }}>
+              <Hand cards={["As", "Ks", "Qs", "Js", "Ts"]} size={1} />
+              <p className="label" style={{ color: "var(--faint)", fontSize: 11, marginTop: 10 }}>
+                Quinte flush royale · la main imbattable
+              </p>
+            </div>
+          </div>
+
+          {/* Colonne photo (détourée) — remplit le vide à droite */}
+          <div
+            style={{
+              position: "relative",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "flex-end",
+              minHeight: 360,
+            }}
+          >
+            <div
+              aria-hidden
+              style={{
+                position: "absolute",
+                inset: "0 0 6% 0",
+                background:
+                  "radial-gradient(58% 56% at 50% 48%, rgba(31,122,82,0.5), rgba(232,176,75,0.12) 52%, transparent 74%)",
+                filter: "blur(6px)",
+              }}
+            />
+            <Image
+              src="/jerome-cutout.png"
+              alt="Jérôme Ibiza, croupier professionnel, en gilet et nœud papillon"
+              width={1100}
+              height={775}
+              priority
+              sizes="(max-width: 760px) 86vw, 520px"
+              style={{
+                position: "relative",
+                width: "100%",
+                maxWidth: 540,
+                height: "auto",
+                filter: "drop-shadow(0 22px 34px rgba(0,0,0,0.55))",
+              }}
+            />
           </div>
         </div>
       </section>
