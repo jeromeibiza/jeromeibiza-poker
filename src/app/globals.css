@@ -289,6 +289,27 @@ a {
   grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
 }
 
+/* ---------- Hero plein cadre ---------- */
+/* Hauteur en px (pas de vh) pour eviter que ca bouge au zoom / a l'apparition
+   de la barre d'adresse sur mobile. Image cadree pour centrer le LED bleu. */
+.hero {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  overflow: hidden;
+  min-height: 700px;
+  background-color: #05080a;
+  background-size: cover;
+  background-position: center 38%;
+  background-repeat: no-repeat;
+}
+@media (max-width: 760px) {
+  .hero {
+    min-height: 600px;
+    background-position: center 34%;
+  }
+}
+
 /* ---------- Focus accessibilite ---------- */
 :focus-visible {
   outline: 2px solid var(--gold);

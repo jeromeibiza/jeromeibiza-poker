@@ -54,19 +54,11 @@ export default function Home() {
     <>
       <JsonLd data={jsonLd} />
 
-      {/* HERO plein cadre (table Triton + marque sur le LED) */}
+      {/* HERO plein cadre (table Triton + marque centree sur le LED) */}
       <section
         aria-label="Poker Hub Jérôme Ibiza"
-        style={{
-          position: "relative",
-          minHeight: "clamp(480px, 80vh, 780px)",
-          display: "flex",
-          overflow: "hidden",
-          backgroundColor: "#05080a",
-          backgroundImage: "url('/hero-table.jpg')",
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-        }}
+        className="hero"
+        style={{ backgroundImage: "url('/hero-table.jpg')" }}
       >
         <div
           aria-hidden
@@ -74,7 +66,7 @@ export default function Home() {
             position: "absolute",
             inset: 0,
             background:
-              "linear-gradient(180deg, rgba(5,8,10,0.6) 0%, rgba(5,8,10,0.12) 34%, rgba(5,8,10,0.28) 64%, rgba(5,8,10,0.95) 100%)",
+              "radial-gradient(78% 62% at 50% 46%, rgba(5,8,10,0.62), rgba(5,8,10,0.12) 72%), linear-gradient(180deg, rgba(5,8,10,0.45), transparent 26%, transparent 72%, rgba(5,8,10,0.9))",
           }}
         />
         <div
@@ -82,24 +74,24 @@ export default function Home() {
           style={{
             position: "relative",
             width: "100%",
+            minWidth: 0,
             display: "flex",
             flexDirection: "column",
             justifyContent: "space-between",
             alignItems: "center",
             textAlign: "center",
-            paddingBlock: "clamp(56px, 9vh, 88px) clamp(40px, 7vh, 64px)",
-            gap: 24,
+            paddingBlock: "clamp(78px, 13vw, 130px) clamp(40px, 7vw, 60px)",
           }}
         >
-          {/* Marque, sur le LED */}
-          <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 22 }}>
+          {/* Marque, posee sur le LED */}
+          <div style={{ minWidth: 0 }}>
             <div
               className="label"
               style={{
                 color: "var(--gold-soft)",
                 fontSize: 13,
-                letterSpacing: 3.5,
-                textShadow: "0 2px 18px rgba(0,0,0,0.85)",
+                letterSpacing: 2.5,
+                textShadow: "0 2px 18px rgba(0,0,0,0.92)",
               }}
             >
               Le centre de ressources poker francophone
@@ -107,12 +99,12 @@ export default function Home() {
             <h1
               className="display"
               style={{
-                fontSize: "clamp(40px, 8vw, 94px)",
-                margin: 0,
+                fontSize: "clamp(40px, 8vw, 92px)",
+                margin: "18px 0 0",
                 lineHeight: 1.06,
                 letterSpacing: 3,
                 color: "#f3cd86",
-                textShadow: "0 2px 30px rgba(0,0,0,0.9), 0 0 70px rgba(232,176,75,0.28)",
+                textShadow: "0 2px 30px rgba(0,0,0,0.95), 0 0 70px rgba(232,176,75,0.3)",
               }}
             >
               JÉRÔME IBIZA
@@ -120,9 +112,10 @@ export default function Home() {
             <div
               className="label"
               style={{
-                color: "rgba(255,255,255,0.85)",
+                color: "rgba(255,255,255,0.88)",
                 fontSize: 13,
-                letterSpacing: 4,
+                letterSpacing: 2.5,
+                marginTop: 16,
                 textShadow: "0 2px 14px rgba(0,0,0,0.95)",
               }}
             >
@@ -130,22 +123,22 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Accroche + CTA */}
-          <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 24 }}>
+          {/* Accroche + CTA, en bas */}
+          <div style={{ minWidth: 0 }}>
             <p
               style={{
                 color: "#fff",
-                fontSize: "clamp(16px, 2.1vw, 20px)",
-                maxWidth: 640,
+                fontSize: "clamp(15px, 2vw, 19px)",
+                maxWidth: 600,
                 margin: "0 auto",
                 lineHeight: 1.5,
                 textShadow: "0 2px 16px rgba(0,0,0,0.95)",
               }}
             >
-              Apprends le poker de zéro, entraîne-toi gratuitement et découvre le métier de
-              croupier, par un croupier professionnel.
+              Apprends le poker de zéro, entraîne-toi gratuitement et découvre le métier de croupier,
+              par un croupier professionnel.
             </p>
-            <div style={{ display: "flex", flexWrap: "wrap", gap: 12, justifyContent: "center" }}>
+            <div style={{ display: "flex", flexWrap: "wrap", gap: 12, justifyContent: "center", marginTop: 24 }}>
               <Link href="/apprendre/parcours-debutant" className="btn btn-gold">Commencer le parcours</Link>
               <Link
                 href="/academie-croupier"
