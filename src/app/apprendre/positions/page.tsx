@@ -107,7 +107,7 @@ export default function PositionsPage() {
       <Section kicker="À retenir" title="En position vs hors de position">
         <div style={{ display: "grid", gap: 14, gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))" }}>
           <div className="card">
-            <div className="label" style={{ color: "#8fe3b6", fontSize: 12 }}>En position (IP)</div>
+            <div className="label" style={{ color: "#9cc4f5", fontSize: 12 }}>En position (IP)</div>
             <ul className="lb check" style={{ marginTop: 10 }}>
               <li>Vous parlez après l&apos;adversaire</li>
               <li>Plus d&apos;informations avant d&apos;agir</li>

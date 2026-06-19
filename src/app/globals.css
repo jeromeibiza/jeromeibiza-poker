@@ -9,23 +9,23 @@
 
 :root {
   /* Fond feutre poker, sombre et profond */
-  --bg: #0a0e0c;
-  --bg-2: #0e1411;
-  --surface: #131b17;
-  --surface-2: #182320;
-  --line: #243530;
+  --bg: #070b14;
+  --bg-2: #0a0f1c;
+  --surface: #0f1628;
+  --surface-2: #16203a;
+  --line: #243352;
 
   /* Texte */
   --fg: #f4f6f5;
-  --muted: #9fb0a9;
-  --faint: #6f817b;
+  --muted: #9fb0cf;
+  --faint: #6f7e9c;
 
-  /* Accents */
-  --felt: #1f7a52;       /* vert feutre */
+  /* Accents : palette Triton bleu / or / noir (aucun vert) */
+  --felt: #2f6fe6;       /* accent BLEU (ex-feutre), variable conservee pour compat */
   --gold: #e8b04b;       /* or (accent texte/halo, jamais bordure pleine) */
   --gold-soft: #f3cd86;
   --red: #e2483d;        /* coeur / carreau */
-  --blue: #4ea0e8;
+  --blue: #4ea0e8;       /* bleu clair secondaire */
 
   --radius: 16px;
   --radius-sm: 10px;
@@ -56,7 +56,7 @@ html {
 
 body {
   background:
-    radial-gradient(1200px 600px at 50% -10%, rgba(31, 122, 82, 0.18), transparent 60%),
+    radial-gradient(1200px 600px at 50% -10%, rgba(47, 111, 230, 0.18), transparent 60%),
     radial-gradient(900px 500px at 100% 0%, rgba(232, 176, 75, 0.06), transparent 55%),
     var(--bg);
   color: var(--fg);
@@ -208,8 +208,8 @@ a {
 }
 .btn-ghost:hover { border-color: rgba(232, 176, 75, 0.5); }
 .btn-felt {
-  background: linear-gradient(180deg, #2a9468, var(--felt));
-  color: #052016;
+  background: linear-gradient(180deg, #3f7ff0, var(--felt));
+  color: #08142e;
 }
 
 /* ---------- Pastilles / badges ---------- */
@@ -228,7 +228,7 @@ a {
   color: var(--muted);
   background: rgba(255, 255, 255, 0.02);
 }
-.pill-beginner { color: #8fe3b6; border-color: rgba(31, 122, 82, 0.5); }
+.pill-beginner { color: #9cc4f5; border-color: rgba(47, 111, 230, 0.5); }
 .pill-inter { color: var(--gold-soft); border-color: rgba(232, 176, 75, 0.4); }
 .pill-advanced { color: #f3a0a0; border-color: rgba(226, 72, 61, 0.4); }
 
@@ -256,7 +256,7 @@ a {
 /* ---------- Tapis feutre (panneau d'accent) ---------- */
 .felt {
   background:
-    radial-gradient(120% 120% at 50% 0%, #2a9468 0%, #167049 45%, #0c4730 100%);
+    radial-gradient(120% 120% at 50% 0%, #3f7ff0 0%, #1b4fb0 45%, #0a2150 100%);
   border-radius: var(--radius-lg);
   border: 1px solid rgba(232, 176, 75, 0.18);
   box-shadow: inset 0 0 60px rgba(0, 0, 0, 0.35);

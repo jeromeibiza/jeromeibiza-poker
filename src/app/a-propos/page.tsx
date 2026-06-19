@@ -79,7 +79,7 @@ export default function AProposPage() {
               position: "absolute",
               inset: 0,
               background:
-                "radial-gradient(50% 44% at 50% 72%, rgba(31,122,82,0.30), transparent 72%)",
+                "radial-gradient(50% 44% at 50% 72%, rgba(47,111,230,0.30), transparent 72%)",
               filter: "blur(12px)",
             }}
           />

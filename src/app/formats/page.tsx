@@ -53,7 +53,7 @@ export default function FormatsPage() {
                 <tr key={name}>
                   <td style={{ color: "var(--gold)", fontWeight: 700, whiteSpace: "nowrap" }}>{name}</td>
                   <td style={{ color: "var(--muted)" }}>{brief}</td>
-                  <td style={{ color: "#8fe3b6" }}>{pro}</td>
+                  <td style={{ color: "#9cc4f5" }}>{pro}</td>
                   <td style={{ color: "#f3a0a0" }}>{con}</td>
                 </tr>
               ))}

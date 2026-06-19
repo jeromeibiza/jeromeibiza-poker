@@ -61,7 +61,7 @@ export function HandQuiz() {
 
       {answered && (
         <div style={{ marginTop: 16, textAlign: "center" }}>
-          <p style={{ color: answered.correct ? "#8fe3b6" : "#f3a0a0", fontWeight: 600 }}>
+          <p style={{ color: answered.correct ? "#9cc4f5" : "#f3a0a0", fontWeight: 600 }}>
             {answered.correct ? "✅ Correct !" : "❌ Raté."} {pair[winner].name} bat {pair[1 - winner].name}.
           </p>
           <button onClick={next} className="btn btn-gold" style={{ marginTop: 12 }}>
@@ -86,7 +86,7 @@ function QuizCard({
 }) {
   const border = answered
     ? isWinner
-      ? "rgba(31,122,82,0.85)"
+      ? "rgba(47,111,230,0.85)"
       : "rgba(226,72,61,0.5)"
     : "var(--line)";
   return (
@@ -110,7 +110,7 @@ function QuizCard({
       {answered && (
         <span
           className="label"
-          style={{ display: "block", fontSize: 11, marginTop: 6, color: isWinner ? "#8fe3b6" : "var(--faint)" }}
+          style={{ display: "block", fontSize: 11, marginTop: 6, color: isWinner ? "#9cc4f5" : "var(--faint)" }}
         >
           {isWinner ? "Gagne" : "Perd"}
         </span>

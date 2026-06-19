@@ -202,7 +202,7 @@ function StepCard({
             minWidth: 38,
             height: 38,
             borderRadius: 10,
-            border: `1px solid ${isValidated ? "rgba(31,122,82,0.6)" : "var(--line)"}`,
+            border: `1px solid ${isValidated ? "rgba(47,111,230,0.6)" : "var(--line)"}`,
             color: badgeColor,
             fontSize: 17,
           }}
@@ -364,9 +364,9 @@ function QuizBlock({
         style={{
           borderRadius: 12,
           padding: "12px 16px",
-          border: "1px solid rgba(31,122,82,0.5)",
-          background: "rgba(31,122,82,0.12)",
-          color: "#8fe3b6",
+          border: "1px solid rgba(47,111,230,0.5)",
+          background: "rgba(47,111,230,0.12)",
+          color: "#9cc4f5",
           fontWeight: 600,
           fontSize: 14,
         }}
@@ -416,8 +416,8 @@ function QuizBlock({
               let color = "var(--fg)";
               if (checked) {
                 if (isAnswer) {
-                  border = "rgba(31,122,82,0.7)";
-                  bg = "rgba(31,122,82,0.14)";
+                  border = "rgba(47,111,230,0.7)";
+                  bg = "rgba(47,111,230,0.14)";
                   color = "#bdf0d2";
                 } else if (selected) {
                   border = "rgba(226,72,61,0.6)";
@@ -478,9 +478,9 @@ function QuizBlock({
           style={{
             borderRadius: 12,
             padding: "12px 16px",
-            border: "1px solid rgba(31,122,82,0.5)",
-            background: "rgba(31,122,82,0.12)",
-            color: "#8fe3b6",
+            border: "1px solid rgba(47,111,230,0.5)",
+            background: "rgba(47,111,230,0.12)",
+            color: "#9cc4f5",
             fontWeight: 600,
             fontSize: 14,
           }}

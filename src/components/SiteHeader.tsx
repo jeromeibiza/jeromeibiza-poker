@@ -14,7 +14,7 @@ export function SiteHeader() {
         top: 0,
         zIndex: 50,
         backdropFilter: "blur(10px)",
-        background: "rgba(10, 14, 12, 0.78)",
+        background: "rgba(7, 11, 20, 0.82)",
         borderBottom: "1px solid var(--line)",
       }}
     >
@@ -36,8 +36,8 @@ export function SiteHeader() {
               width: 34,
               height: 34,
               borderRadius: 10,
-              background: "linear-gradient(180deg,#2a9468,#167049)",
-              color: "#052016",
+              background: "linear-gradient(180deg,var(--gold-soft),var(--gold))",
+              color: "#1a1305",
               fontWeight: 800,
               fontSize: 18,
             }}

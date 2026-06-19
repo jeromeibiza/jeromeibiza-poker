@@ -89,11 +89,11 @@ export function OddsCalculator() {
           marginTop: 16,
           borderRadius: 14,
           padding: "16px 18px",
-          border: `1px solid ${profitable ? "rgba(31,122,82,0.6)" : "rgba(226,72,61,0.5)"}`,
-          background: profitable ? "rgba(31,122,82,0.12)" : "rgba(226,72,61,0.1)",
+          border: `1px solid ${profitable ? "rgba(47,111,230,0.6)" : "rgba(226,72,61,0.5)"}`,
+          background: profitable ? "rgba(47,111,230,0.12)" : "rgba(226,72,61,0.1)",
         }}
       >
-        <div className="display" style={{ fontSize: 18, color: profitable ? "#8fe3b6" : "#f3a0a0" }}>
+        <div className="display" style={{ fontSize: 18, color: profitable ? "#9cc4f5" : "#f3a0a0" }}>
           {profitable ? "✅ Suivre est rentable" : "❌ Suivre n'est pas rentable"}
         </div>
         <p style={{ color: "var(--muted)", fontSize: 14, marginTop: 8 }}>
