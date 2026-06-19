@@ -87,18 +87,18 @@ export default function Home() {
             justifyContent: "space-between",
             alignItems: "center",
             textAlign: "center",
-            paddingBlock: "44px 40px",
+            paddingBlock: "clamp(56px, 9vh, 88px) clamp(40px, 7vh, 64px)",
+            gap: 24,
           }}
         >
           {/* Marque, sur le LED */}
-          <div>
+          <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 22 }}>
             <div
               className="label"
               style={{
                 color: "var(--gold-soft)",
                 fontSize: 13,
                 letterSpacing: 3.5,
-                marginBottom: 12,
                 textShadow: "0 2px 18px rgba(0,0,0,0.85)",
               }}
             >
@@ -107,10 +107,10 @@ export default function Home() {
             <h1
               className="display"
               style={{
-                fontSize: "clamp(42px, 9.5vw, 110px)",
+                fontSize: "clamp(40px, 8vw, 94px)",
                 margin: 0,
-                lineHeight: 1,
-                letterSpacing: 2,
+                lineHeight: 1.06,
+                letterSpacing: 3,
                 color: "#f3cd86",
                 textShadow: "0 2px 30px rgba(0,0,0,0.9), 0 0 70px rgba(232,176,75,0.28)",
               }}
@@ -123,7 +123,6 @@ export default function Home() {
                 color: "rgba(255,255,255,0.85)",
                 fontSize: 13,
                 letterSpacing: 4,
-                marginTop: 14,
                 textShadow: "0 2px 14px rgba(0,0,0,0.95)",
               }}
             >
@@ -132,7 +131,7 @@ export default function Home() {
           </div>
 
           {/* Accroche + CTA */}
-          <div>
+          <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 24 }}>
             <p
               style={{
                 color: "#fff",
@@ -146,7 +145,7 @@ export default function Home() {
               Apprends le poker de zéro, entraîne-toi gratuitement et découvre le métier de
               croupier, par un croupier professionnel.
             </p>
-            <div style={{ display: "flex", flexWrap: "wrap", gap: 12, justifyContent: "center", marginTop: 24 }}>
+            <div style={{ display: "flex", flexWrap: "wrap", gap: 12, justifyContent: "center" }}>
               <Link href="/apprendre/parcours-debutant" className="btn btn-gold">Commencer le parcours</Link>
               <Link
                 href="/academie-croupier"
