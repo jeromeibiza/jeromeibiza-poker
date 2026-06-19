@@ -108,7 +108,7 @@ export function JsonLd({ data }: { data: Record<string, unknown> | Record<string
   );
 }
 
-/** Encart "note du croupier" — signature editoriale de Jerome. */
+/** Encart "note du croupier", signature editoriale de Jerome. */
 export function DealerNote({ children }: { children: ReactNode }) {
   return (
     <aside

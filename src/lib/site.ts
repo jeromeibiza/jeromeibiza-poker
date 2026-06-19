@@ -1,15 +1,15 @@
 /**
  * Configuration centrale du Poker Hub Jérôme Ibiza.
- * Projet SIDE — indépendant du site principal jeromeibiza.com (aucun lien
+ * Projet SIDE, indépendant du site principal jeromeibiza.com (aucun lien
  * croisé pour l'instant). Futur sous-domaine : poker.jeromeibiza.com.
  */
 
 export const SITE = {
-  name: "Poker Hub — Jérôme Ibiza",
+  name: "Poker Hub Jérôme Ibiza",
   shortName: "Poker Hub",
   // URL de prod à ajuster quand le domaine/sous-domaine sera branché.
   url: "https://poker.jeromeibiza.com",
-  tagline: "Apprendre, jouer et devenir croupier poker — gratuitement.",
+  tagline: "Apprendre, jouer et devenir croupier poker, gratuitement.",
   description:
     "Le centre de ressources poker francophone : règles, classement des mains, " +
     "stratégie débutant à avancé, glossaire géant, calculateurs et la seule " +
@@ -32,7 +32,7 @@ export type NavSection = {
   children?: NavItem[];
 };
 
-/** Arborescence globale du hub — sert à la nav, au footer et au sitemap. */
+/** Arborescence globale du hub, sert à la nav, au footer et au sitemap. */
 export const NAV: NavSection[] = [
   {
     label: "Apprendre",

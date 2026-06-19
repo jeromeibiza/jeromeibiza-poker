@@ -31,7 +31,7 @@ export default function DeroulementPage() {
         <div className="card" style={{ display: "flex", gap: 16, alignItems: "center", flexWrap: "wrap" }}>
           <Hand cards={["As", "Ks"]} size={1} />
           <p style={{ color: "var(--muted)", margin: 0, flex: "1 1 260px" }}>
-            A♠ K♠ — « Big Slick » assorti. Une excellente main de départ, jouable de presque toutes
+            A♠ K♠, « Big Slick » assorti. Une excellente main de départ, jouable de presque toutes
             les positions.
           </p>
         </div>
@@ -91,7 +91,7 @@ export default function DeroulementPage() {
           <p style={{ color: "#ffffff" }}>
             S&apos;il reste au moins deux joueurs après le dernier tour d&apos;enchères, on dévoile les
             cartes. Le joueur qui a misé le dernier (ou qui a relancé le dernier) montre en premier.
-            Votre quinte flush royale remporte le pot — personne ne peut la battre.
+            Votre quinte flush royale remporte le pot, personne ne peut la battre.
           </p>
         </div>
         <p style={{ color: "var(--muted)", marginTop: 12 }}>

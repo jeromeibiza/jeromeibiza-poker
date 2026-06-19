@@ -62,7 +62,7 @@ export function SiteFooter() {
             fontSize: 12,
           }}
         >
-          <span>© {SITE.author} — Poker Hub. Tous droits réservés.</span>
+          <span>© {SITE.author}, Poker Hub. Tous droits réservés.</span>
           <span>18+ · Le jeu peut être dangereux : jouez avec modération.</span>
         </div>
       </div>

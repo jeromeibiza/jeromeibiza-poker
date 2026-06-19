@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import { Crumbs, PageHero, Section, JsonLd } from "@/components/ui";
 
 export const metadata: Metadata = {
-  title: "Stratégie poker : du débutant au GTO — la bibliothèque de cours",
+  title: "Stratégie poker : du débutant au GTO, la bibliothèque de cours",
   description:
     "Toute la stratégie poker organisée par niveau : débutant (sélection des mains, bankroll), " +
     "intermédiaire (ranges, cbet, 3bet, cotes), avancé (GTO, blockers, MDF, équilibrage).",

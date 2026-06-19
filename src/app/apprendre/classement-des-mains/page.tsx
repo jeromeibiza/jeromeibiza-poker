@@ -115,7 +115,7 @@ export default function ClassementMainsPage() {
           <li>La couleur ne sert <strong>jamais</strong> à départager : pique, cœur, carreau et trèfle ont la même valeur.</li>
         </ul>
         <DealerNote>
-          Erreur de débutant classique : croire qu&apos;une couleur à l&apos;As bat un full. Non — le
+          Erreur de débutant classique : croire qu&apos;une couleur à l&apos;As bat un full. Non, le
           full est plus haut dans le classement. Apprends l&apos;ordre par cœur avant tout le reste,
           ça t&apos;évitera des tapis perdus bêtement.
         </DealerNote>

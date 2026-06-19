@@ -4,7 +4,7 @@ import { LESSONS } from "@/lib/poker/learn";
 import { Crumbs, PageHero, LevelPill, JsonLd } from "@/components/ui";
 
 export const metadata: Metadata = {
-  title: "Apprendre le poker — cursus débutant complet et gratuit",
+  title: "Apprendre le poker, cursus débutant complet et gratuit",
   description:
     "Le parcours pour apprendre le poker de zéro : règles, classement des mains, " +
     "positions, blindes et déroulement d'une main. Simple, visuel et gratuit.",
@@ -93,7 +93,7 @@ export default function ApprendrePage() {
         <p style={{ marginTop: 8, color: "var(--muted)" }}>
           Une fois ces bases acquises, direction la{" "}
           <Link href="/strategie" className="link">stratégie</Link> pour apprendre les ranges, les
-          cotes et le bluff — ou la{" "}
+          cotes et le bluff, ou la{" "}
           <Link href="/academie-croupier" className="link">formation croupier</Link> pour apprendre
           à distribuer comme un pro.
         </p>

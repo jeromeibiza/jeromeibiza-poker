@@ -19,7 +19,7 @@ export async function generateMetadata({
   const m = getModule(slug);
   if (!m) return { title: "Module introuvable" };
   return {
-    title: `Module ${m.n} — ${m.title} | Académie Croupier`,
+    title: `Module ${m.n}, ${m.title} | Académie Croupier`,
     description: m.summary,
     alternates: { canonical: `/academie-croupier/${m.slug}` },
   };

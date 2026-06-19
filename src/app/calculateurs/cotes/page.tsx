@@ -4,7 +4,7 @@ import { OddsCalculator } from "@/components/OddsCalculator";
 import { Crumbs, PageHero, Section, JsonLd } from "@/components/ui";
 
 export const metadata: Metadata = {
-  title: "Calculateur de cotes au poker (pot odds & outs) — gratuit",
+  title: "Calculateur de cotes au poker (pot odds & outs), gratuit",
   description:
     "Calcule en direct si suivre une mise est rentable : cote du pot, équité réelle selon tes outs, " +
     "et verdict immédiat. Avec la règle des 2 et 4 expliquée. Outil gratuit.",

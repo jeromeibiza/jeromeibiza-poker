@@ -6,7 +6,7 @@ import { Hand } from "@/components/PlayingCard";
 import { JsonLd } from "@/components/ui";
 
 export const metadata: Metadata = {
-  title: "Poker Hub — Apprendre le poker, jouer gratuitement & devenir croupier",
+  title: "Poker Hub : apprendre le poker, jouer gratuitement et devenir croupier",
   description:
     "Le centre de ressources poker francophone : règles, classement des mains, " +
     "stratégie débutant à avancé, glossaire géant, calculateurs et la seule académie " +
@@ -30,7 +30,7 @@ const HIGHLIGHTS = [
   {
     href: "/academie-croupier",
     emoji: "🎓",
-    title: "Devenir croupier — gratuit",
+    title: "Devenir croupier, gratuit",
     desc: "10 modules pour apprendre le métier de dealer poker, par un croupier pro.",
   },
   {
@@ -80,7 +80,7 @@ export default function Home() {
               Tout le poker au même endroit : des règles pour grands débutants jusqu&apos;au GTO, un
               glossaire géant, des calculateurs, et la seule{" "}
               <strong style={{ color: "var(--fg)" }}>académie gratuite de croupier</strong>{" "}
-              du web francophone — animée par{" "}
+              du web francophone, animée par{" "}
               <Link href="/a-propos" className="link">Jérôme Ibiza</Link>, croupier professionnel.
             </p>
             <div style={{ display: "flex", flexWrap: "wrap", gap: 12, marginTop: 28 }}>
@@ -95,7 +95,7 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Colonne photo (détourée) — remplit le vide à droite */}
+          {/* Colonne photo (détourée), remplit le vide à droite */}
           <div
             style={{
               position: "relative",

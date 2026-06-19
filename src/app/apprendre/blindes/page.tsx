@@ -69,7 +69,7 @@ export default function BlindesPage() {
             Le <strong>straddle</strong>{" "}est une relance volontaire et à l&apos;aveugle, posée
             généralement par le joueur à gauche de la big blind, avant la distribution. Elle vaut le
             double de la big blind et devient la nouvelle mise à suivre. C&apos;est un pari qui gonfle
-            les pots et dynamise une table de cash game — à manier avec prudence.
+            les pots et dynamise une table de cash game, à manier avec prudence.
           </p>
         </div>
         <DealerNote>

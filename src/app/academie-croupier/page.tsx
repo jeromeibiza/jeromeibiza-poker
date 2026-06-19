@@ -4,7 +4,7 @@ import { MODULES } from "@/lib/poker/academy";
 import { Crumbs, Section, JsonLd } from "@/components/ui";
 
 export const metadata: Metadata = {
-  title: "Académie Croupier Poker — formation gratuite pour devenir dealer",
+  title: "Académie Croupier Poker, formation gratuite pour devenir dealer",
   description:
     "La seule formation gratuite francophone pour apprendre le métier de croupier poker : " +
     "10 modules (jetons, cartes, gestion du pot, rake, annonces, litiges) + examen final certifié. " +

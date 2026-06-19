@@ -1,5 +1,5 @@
 /**
- * Glossaire poker — dictionnaire des termes, défini simplement avec exemples.
+ * Glossaire poker, dictionnaire des termes, défini simplement avec exemples.
  * Lot de départ (à étendre vers 300+ termes). Trié alphabétiquement à l'affichage.
  */
 

@@ -52,7 +52,7 @@ export default function PokerEnLignePage() {
 
       <DealerNote>
         Règle numéro un avant de déposer le moindre euro : fixe-toi un budget de loisir que tu peux
-        perdre, et n&apos;y touche jamais au-delà. Le poker doit rester un plaisir. 18+ — en cas de
+        perdre, et n&apos;y touche jamais au-delà. Le poker doit rester un plaisir. 18+, en cas de
         souci avec le jeu, parles-en et fais-toi aider.
       </DealerNote>
 

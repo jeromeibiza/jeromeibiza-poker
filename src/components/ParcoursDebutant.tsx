@@ -234,7 +234,7 @@ function StepCard({
 
           <div style={{ marginTop: 16 }}>
             <div className="label" style={{ color: "var(--gold)", fontSize: 12, marginBottom: 10 }}>
-              Quiz de validation — réponds juste pour débloquer la suite
+              Quiz de validation, réponds juste pour débloquer la suite
             </div>
             <QuizBlock
               questions={step.quiz}
@@ -284,14 +284,14 @@ function ExamCard({
       <div className="felt" style={{ padding: "32px 24px", textAlign: "center" }}>
         <div style={{ fontSize: 40 }}>🏅</div>
         <div className="label" style={{ color: "#fbe8c2", fontSize: 12, marginTop: 8 }}>
-          Certificat — Bases du poker
+          Certificat, Bases du poker
         </div>
         <div className="display" style={{ fontSize: 26, color: "#fff", marginTop: 6 }}>
           Félicitations{name ? `, ${name}` : ""} !
         </div>
         <p style={{ color: "rgba(255,255,255,0.9)", fontSize: 16, marginTop: 10, maxWidth: 460, marginInline: "auto" }}>
           Tu maîtrises les bases du poker {score !== null && `(${score}/${FINAL_QUIZ.length} à l'examen)`}.
-          Tu es prêt pour la stratégie — ou pour passer de l&apos;autre côté de la table.
+          Tu es prêt pour la stratégie, ou pour passer de l&apos;autre côté de la table.
         </p>
         <input
           value={name}
@@ -329,7 +329,7 @@ function ExamCard({
           threshold={FINAL_PASS}
           onSuccess={(c) => onResult(c, true)}
           onFail={(c) => onResult(c, false)}
-          successLabel="Examen réussi — certificat débloqué 🏅"
+          successLabel="Examen réussi, certificat débloqué 🏅"
         />
       </div>
     </div>
@@ -492,7 +492,7 @@ function QuizBlock({
       {checked && !passed && (
         <div style={{ display: "flex", gap: 12, alignItems: "center", flexWrap: "wrap" }}>
           <span style={{ color: "#f3a0a0", fontWeight: 600, fontSize: 14 }}>
-            ❌ {correct}/{questions.length} — pas encore. Relis le cours et réessaie.
+            ❌ {correct}/{questions.length}, pas encore. Relis le cours et réessaie.
           </span>
           <button onClick={retry} className="btn btn-ghost" style={{ fontSize: 12 }}>
             ↺ Réessayer

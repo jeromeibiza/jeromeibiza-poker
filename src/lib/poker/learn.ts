@@ -1,4 +1,4 @@
-/** Parcours "Apprendre le poker" — index des leçons fondamentales. */
+/** Parcours "Apprendre le poker", index des leçons fondamentales. */
 
 export type Lesson = {
   slug: string;

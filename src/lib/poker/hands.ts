@@ -29,7 +29,7 @@ export const HANDS: HandRank[] = [
     combos: 4,
     description:
       "La suite As-Roi-Dame-Valet-10, toutes de la même couleur. C'est la main la plus forte du poker : elle ne peut jamais être battue.",
-    example: "A♠ K♠ Q♠ J♠ 10♠ — du 10 à l'As, tout en pique.",
+    example: "A♠ K♠ Q♠ J♠ 10♠, du 10 à l'As, tout en pique.",
   },
   {
     rank: 2,
@@ -42,7 +42,7 @@ export const HANDS: HandRank[] = [
     combos: 36,
     description:
       "Cinq cartes qui se suivent, toutes de la même couleur. En cas d'égalité, c'est la carte la plus haute de la suite qui départage.",
-    example: "9♥ 8♥ 7♥ 6♥ 5♥ — quinte flush au 9.",
+    example: "9♥ 8♥ 7♥ 6♥ 5♥, quinte flush au 9.",
   },
   {
     rank: 3,
@@ -55,7 +55,7 @@ export const HANDS: HandRank[] = [
     combos: 624,
     description:
       "Les quatre cartes de la même valeur. La 5e carte (le kicker) sert à départager deux carrés identiques (rare).",
-    example: "Q♠ Q♥ Q♦ Q♣ + 7♠ — carré de dames.",
+    example: "Q♠ Q♥ Q♦ Q♣ + 7♠, carré de dames.",
   },
   {
     rank: 4,
@@ -68,7 +68,7 @@ export const HANDS: HandRank[] = [
     combos: 3744,
     description:
       "Un brelan + une paire. On compare d'abord le brelan, puis la paire en cas d'égalité. On annonce « full aux Rois par les 4 ».",
-    example: "K♠ K♥ K♦ + 4♠ 4♣ — full aux Rois par les 4.",
+    example: "K♠ K♥ K♦ + 4♠ 4♣, full aux Rois par les 4.",
   },
   {
     rank: 5,
@@ -81,7 +81,7 @@ export const HANDS: HandRank[] = [
     combos: 5108,
     description:
       "Cinq cartes de la même couleur, non consécutives. La plus haute carte départage, puis la suivante, etc.",
-    example: "A♦ J♦ 8♦ 5♦ 2♦ — couleur à l'As (de carreau).",
+    example: "A♦ J♦ 8♦ 5♦ 2♦, couleur à l'As (de carreau).",
   },
   {
     rank: 6,
@@ -94,7 +94,7 @@ export const HANDS: HandRank[] = [
     combos: 10200,
     description:
       "Cinq cartes consécutives de couleurs différentes. L'As peut servir de carte haute (A-K-Q-J-10) ou basse (A-2-3-4-5, la « roue »).",
-    example: "9♠ 8♥ 7♦ 6♣ 5♠ — suite au 9.",
+    example: "9♠ 8♥ 7♦ 6♣ 5♠, suite au 9.",
   },
   {
     rank: 7,
@@ -107,7 +107,7 @@ export const HANDS: HandRank[] = [
     combos: 54912,
     description:
       "Trois cartes de la même valeur. Les deux cartes restantes (kickers) départagent deux brelans identiques.",
-    example: "7♠ 7♥ 7♦ + K♠ 2♣ — brelan de 7.",
+    example: "7♠ 7♥ 7♦ + K♠ 2♣, brelan de 7.",
   },
   {
     rank: 8,
@@ -120,7 +120,7 @@ export const HANDS: HandRank[] = [
     combos: 123552,
     description:
       "Deux paires différentes. On compare la paire la plus haute, puis la seconde, puis le kicker.",
-    example: "A♠ A♥ + 9♠ 9♦ + 5♣ — deux paires, As et 9.",
+    example: "A♠ A♥ + 9♠ 9♦ + 5♣, deux paires, As et 9.",
   },
   {
     rank: 9,
@@ -133,7 +133,7 @@ export const HANDS: HandRank[] = [
     combos: 1098240,
     description:
       "Deux cartes de la même valeur. Les trois cartes restantes servent de kickers pour départager.",
-    example: "J♠ J♥ + A♠ 8♦ 3♣ — paire de Valets, kicker As.",
+    example: "J♠ J♥ + A♠ 8♦ 3♣, paire de Valets, kicker As.",
   },
   {
     rank: 10,
@@ -146,6 +146,6 @@ export const HANDS: HandRank[] = [
     combos: 1302540,
     description:
       "Aucune combinaison : c'est la carte la plus haute qui compte. On dit « hauteur As ». La main la plus faible du poker.",
-    example: "A♠ J♥ 8♦ 6♣ 3♠ — hauteur As.",
+    example: "A♠ J♥ 8♦ 6♣ 3♠, hauteur As.",
   },
 ];

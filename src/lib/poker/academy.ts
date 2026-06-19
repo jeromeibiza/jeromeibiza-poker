@@ -1,5 +1,5 @@
 /**
- * Académie Croupier Poker Jérôme Ibiza — programme de formation gratuite.
+ * Académie Croupier Poker Jérôme Ibiza, programme de formation gratuite.
  * 10 modules + examen final. Module 1 entièrement rédigé ; les modules 2 à 10
  * ont un plan détaillé (contenu pédagogique à développer progressivement).
  */
@@ -306,7 +306,7 @@ export const MODULES: AcademyModule[] = [
           "QCM de 100 questions couvrant les 9 modules.",
           "Exercices pratiques : mélange, distribution, calcul de side pots et de rake.",
           "Études de cas : litiges et situations délicates à résoudre.",
-          "Certification « Croupier Poker — Académie Jérôme Ibiza » à la clé.",
+          "Certification « Croupier Poker, Académie Jérôme Ibiza » à la clé.",
         ],
       },
     ],

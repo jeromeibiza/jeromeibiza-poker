@@ -16,7 +16,7 @@ export default function ParcoursDebutantPage() {
   const courseLd = {
     "@context": "https://schema.org",
     "@type": "Course",
-    name: "Apprendre le poker de zéro — parcours débutant",
+    name: "Apprendre le poker de zéro, parcours débutant",
     description:
       "Tutoriel interactif en 6 étapes avec quiz de validation et examen final certifié, pour " +
       "apprendre les bases du poker Texas Hold'em.",
@@ -60,7 +60,7 @@ export default function ParcoursDebutantPage() {
         <ul className="lb" style={{ marginBottom: 8 }}>
           {STEPS.map((s, i) => (
             <li key={s.id}>
-              <strong>Étape {i + 1} — {s.title}</strong> : {s.intro}
+              <strong>Étape {i + 1}, {s.title}</strong> : {s.intro}
             </li>
           ))}
           <li><strong>Examen final</strong> : 10 questions pour valider tout le parcours et obtenir le certificat.</li>

@@ -5,7 +5,7 @@ import { SITE } from "@/lib/site";
 import { Crumbs, Section, JsonLd } from "@/components/ui";
 
 export const metadata: Metadata = {
-  title: "À propos — Jérôme Ibiza, croupier professionnel",
+  title: "À propos : Jérôme Ibiza, croupier professionnel",
   description:
     "Qui est derrière le Poker Hub ? Jérôme Ibiza, croupier professionnel et passionné de poker, " +
     "qui transmet gratuitement le poker des deux côtés du tapis : pour jouer, et pour devenir croupier.",
@@ -52,9 +52,9 @@ export default function AProposPage() {
             feu de l&apos;action.
           </p>
           <p style={{ color: "var(--muted)", fontSize: 18, marginTop: 14, lineHeight: 1.7, maxWidth: 560 }}>
-            Le poker, je le connais des <strong style={{ color: "var(--fg)" }}>deux côtés du tapis</strong> :
+            Le poker, je le connais des <strong style={{ color: "var(--fg)" }}>deux côtés du tapis</strong>{" "}:
             celui qui distribue et celui qui joue. Mon objectif avec ce site, c&apos;est de transmettre
-            ce savoir simplement et gratuitement — que tu veuilles jouer ta première main ou passer un
+            ce savoir simplement et gratuitement, que tu veuilles jouer ta première main ou passer un
             jour de l&apos;autre côté de la table, comme croupier.
           </p>
           <div style={{ display: "flex", flexWrap: "wrap", gap: 12, marginTop: 26 }}>

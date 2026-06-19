@@ -29,9 +29,9 @@ export const STEPS: ParcoursStep[] = [
     minutes: 4,
     intro: "Avant les cartes, comprends ce que tu cherches à faire à une table de poker.",
     points: [
-      { h: "Tu joues contre les joueurs", text: "Au poker, tu affrontes les autres joueurs — jamais le casino ni le croupier. Le croupier ne fait qu'animer la partie." },
+      { h: "Tu joues contre les joueurs", text: "Au poker, tu affrontes les autres joueurs, jamais le casino ni le croupier. Le croupier ne fait qu'animer la partie." },
       { h: "Le but : remporter le pot", text: "Le pot, c'est l'ensemble des jetons misés au centre de la table. Celui qui le gagne empoche tout." },
-      { h: "Deux façons de gagner", text: "Soit avoir la meilleure main au moment de l'abattage (le showdown), soit faire coucher tous tes adversaires avant — et là, tu gagnes sans même montrer tes cartes." },
+      { h: "Deux façons de gagner", text: "Soit avoir la meilleure main au moment de l'abattage (le showdown), soit faire coucher tous tes adversaires avant, et là, tu gagnes sans même montrer tes cartes." },
       { h: "La variante reine", text: "On apprend le Texas Hold'em No-Limit, de loin la variante la plus jouée au monde." },
     ],
     quiz: [

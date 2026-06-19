@@ -56,7 +56,7 @@ export default function ReglesPage() {
       <Section kicker="L'essentiel en une phrase" title="L'objectif du jeu">
         <div className="card">
           <p style={{ color: "var(--fg)", fontSize: 17 }}>
-            Le but est simple : <strong>gagner des jetons</strong>. Deux façons d&apos;y arriver —
+            Le but est simple : <strong>gagner des jetons</strong>. Deux façons d&apos;y arriver :
             avoir la <strong>meilleure main</strong>{" "}au moment de l&apos;abattage (le showdown),
             ou faire <strong>coucher</strong>{" "}tous vos adversaires grâce à vos mises avant
             d&apos;en arriver là.
@@ -105,7 +105,7 @@ export default function ReglesPage() {
           <p style={{ color: "var(--muted)" }}>
             Tu composes ta meilleure main de <strong>5 cartes</strong> parmi les 7 disponibles
             (tes 2 cartes + les 5 communes). Exemple : avec A♠ K♠ en main et un tableau
-            Q♠ J♠ 10♠, tu réunis A♠ K♠ Q♠ J♠ 10♠ — la quinte flush royale, la main imbattable.
+            Q♠ J♠ 10♠, tu réunis A♠ K♠ Q♠ J♠ 10♠, la quinte flush royale, la main imbattable.
           </p>
           <div style={{ marginTop: 14 }}>
             <Hand cards={["As", "Ks", "Qs", "Js", "Ts"]} size={0.85} />

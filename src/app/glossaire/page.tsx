@@ -15,7 +15,7 @@ export default function GlossairePage() {
   const defLd = {
     "@context": "https://schema.org",
     "@type": "DefinedTermSet",
-    name: "Glossaire poker — Jérôme Ibiza",
+    name: "Glossaire poker, Jérôme Ibiza",
     hasDefinedTerm: GLOSSARY.map((t) => ({
       "@type": "DefinedTerm",
       name: t.term,
