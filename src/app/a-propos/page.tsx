@@ -63,27 +63,41 @@ export default function AProposPage() {
           </div>
         </div>
 
-        {/* Photo détourée sur fond feutre */}
+        {/* Photo détourée sur fond sombre (halo discret, pas de panneau vert) */}
         <div
-          className="felt"
           style={{
             position: "relative",
             display: "flex",
             alignItems: "flex-end",
             justifyContent: "center",
-            minHeight: 320,
-            padding: "24px 16px 0",
-            overflow: "hidden",
+            minHeight: 360,
           }}
         >
+          <div
+            aria-hidden
+            style={{
+              position: "absolute",
+              inset: 0,
+              background:
+                "radial-gradient(50% 44% at 50% 72%, rgba(31,122,82,0.30), transparent 72%)",
+              filter: "blur(12px)",
+            }}
+          />
           <Image
             src="/jerome-cutout.png"
             alt="Jérôme Ibiza, croupier professionnel, en gilet et nœud papillon"
             width={1100}
-            height={775}
+            height={787}
             priority
             sizes="(max-width: 700px) 90vw, 520px"
-            style={{ width: "100%", maxWidth: 520, height: "auto", display: "block", filter: "drop-shadow(0 18px 30px rgba(0,0,0,0.45))" }}
+            style={{
+              position: "relative",
+              width: "100%",
+              maxWidth: 520,
+              height: "auto",
+              display: "block",
+              filter: "drop-shadow(0 22px 34px rgba(0,0,0,0.55))",
+            }}
           />
         </div>
       </section>

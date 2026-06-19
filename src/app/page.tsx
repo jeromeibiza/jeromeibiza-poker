@@ -119,7 +119,7 @@ export default function Home() {
               src="/jerome-cutout.png"
               alt="Jérôme Ibiza, croupier professionnel, en gilet et nœud papillon"
               width={1100}
-              height={775}
+              height={787}
               priority
               sizes="(max-width: 760px) 86vw, 520px"
               style={{
