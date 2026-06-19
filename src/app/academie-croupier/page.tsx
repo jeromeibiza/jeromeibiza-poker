@@ -31,21 +31,62 @@ export default function AcademiePage() {
       <JsonLd data={courseLd} />
       <Crumbs items={[{ label: "Accueil", href: "/" }, { label: "Académie Croupier" }]} />
 
-      <div className="felt" style={{ padding: "40px 28px", marginTop: 8 }}>
-        <div className="label" style={{ color: "#fbe8c2", fontSize: 12, marginBottom: 12 }}>
-          Formation 100% gratuite · 10 modules + examen
+      <div
+        style={{
+          position: "relative",
+          overflow: "hidden",
+          borderRadius: "var(--radius-lg)",
+          marginTop: 8,
+          backgroundColor: "#05080a",
+          backgroundImage: "url('/academie-banner.jpg')",
+          backgroundSize: "cover",
+          backgroundPosition: "center 42%",
+        }}
+      >
+        <div
+          aria-hidden
+          style={{
+            position: "absolute",
+            inset: 0,
+            background:
+              "linear-gradient(180deg, rgba(5,8,10,0.5), rgba(5,8,10,0.35) 45%, rgba(5,8,10,0.88) 100%)",
+          }}
+        />
+        <div style={{ position: "relative", padding: "clamp(44px, 8vw, 84px) 28px" }}>
+          <div
+            className="label"
+            style={{ color: "#fbe8c2", fontSize: 12, marginBottom: 12, textShadow: "0 2px 12px rgba(0,0,0,0.9)" }}
+          >
+            Formation 100% gratuite · 10 modules + examen
+          </div>
+          <h1
+            style={{
+              fontSize: "clamp(30px, 6vw, 54px)",
+              color: "#fff",
+              margin: 0,
+              maxWidth: 760,
+              textShadow: "0 2px 20px rgba(0,0,0,0.95)",
+            }}
+          >
+            Académie Croupier Poker Jérôme Ibiza
+          </h1>
+          <p
+            style={{
+              color: "rgba(255,255,255,0.92)",
+              fontSize: 18,
+              marginTop: 16,
+              maxWidth: 640,
+              textShadow: "0 2px 14px rgba(0,0,0,0.95)",
+            }}
+          >
+            Apprends le métier de dealer poker comme on l&apos;apprend en casino, transmis par un
+            croupier professionnel. De la manipulation des jetons à la gestion des litiges, jusqu&apos;à
+            la certification finale. Gratuit, pour de vrai.
+          </p>
+          <Link href="/academie-croupier/introduction-au-metier" className="btn btn-gold" style={{ marginTop: 24 }}>
+            Commencer le Module 1
+          </Link>
         </div>
-        <h1 style={{ fontSize: "clamp(30px, 6vw, 54px)", color: "#fff", margin: 0, maxWidth: 760 }}>
-          Académie Croupier Poker Jérôme Ibiza
-        </h1>
-        <p style={{ color: "rgba(255,255,255,0.88)", fontSize: 18, marginTop: 16, maxWidth: 640 }}>
-          Apprends le métier de dealer poker comme on l&apos;apprend en casino, transmis par un
-          croupier professionnel. De la manipulation des jetons à la gestion des litiges, jusqu&apos;à
-          la certification finale. Gratuit, pour de vrai.
-        </p>
-        <Link href="/academie-croupier/introduction-au-metier" className="btn btn-gold" style={{ marginTop: 24 }}>
-          Commencer le Module 1
-        </Link>
       </div>
 
       <Section kicker="Le programme" title="Les 10 modules">
