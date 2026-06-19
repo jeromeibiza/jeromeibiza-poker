@@ -124,22 +124,9 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Accroche + CTA, en bas */}
+          {/* CTA */}
           <div style={{ minWidth: 0 }}>
-            <p
-              style={{
-                color: "#fff",
-                fontSize: "clamp(15px, 2vw, 19px)",
-                maxWidth: 600,
-                margin: "0 auto",
-                lineHeight: 1.5,
-                textShadow: "0 2px 16px rgba(0,0,0,0.95)",
-              }}
-            >
-              Apprends le poker de zéro, entraîne-toi gratuitement et découvre le métier de croupier,
-              par un croupier professionnel.
-            </p>
-            <div style={{ display: "flex", flexWrap: "wrap", gap: 12, justifyContent: "center", marginTop: 24 }}>
+            <div style={{ display: "flex", flexWrap: "wrap", gap: 12, justifyContent: "center" }}>
               <Link href="/apprendre/parcours-debutant" className="btn btn-gold">Commencer le parcours</Link>
               <Link
                 href="/academie-croupier"
