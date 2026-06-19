@@ -7,30 +7,30 @@ import { JsonLd } from "@/components/ui";
 export const metadata: Metadata = {
   title: "Poker Hub — Apprendre le poker, jouer gratuitement & devenir croupier",
   description:
-    "Le centre de ressources poker francophone : regles, classement des mains, " +
-    "strategie debutant a avance, glossaire geant, calculateurs et la seule academie " +
-    "gratuite pour devenir croupier poker. Par Jerome Ibiza, croupier professionnel.",
+    "Le centre de ressources poker francophone : règles, classement des mains, " +
+    "stratégie débutant à avancé, glossaire géant, calculateurs et la seule académie " +
+    "gratuite pour devenir croupier poker. Par Jérôme Ibiza, croupier professionnel.",
   alternates: { canonical: "/" },
 };
 
 const HIGHLIGHTS = [
   {
-    href: "/apprendre/regles-du-poker",
-    emoji: "♠",
-    title: "Debuter en 15 minutes",
-    desc: "Les regles du Texas Hold'em expliquees simplement, de la donne au showdown.",
+    href: "/apprendre/parcours-debutant",
+    emoji: "🎯",
+    title: "Parcours débutant",
+    desc: "Le tutoriel pas à pas avec quiz de validation et certificat à la clé.",
   },
   {
     href: "/apprendre/classement-des-mains",
     emoji: "🃏",
     title: "Classement des mains",
-    desc: "Les 10 mains, leurs probabilites et des exemples visuels avec de vraies cartes.",
+    desc: "Les 10 mains, leurs probabilités et des exemples visuels avec de vraies cartes.",
   },
   {
     href: "/academie-croupier",
     emoji: "🎓",
     title: "Devenir croupier — gratuit",
-    desc: "10 modules pour apprendre le metier de dealer poker, par un croupier pro.",
+    desc: "10 modules pour apprendre le métier de dealer poker, par un croupier pro.",
   },
   {
     href: "/calculateurs/cotes",
@@ -67,13 +67,13 @@ export default function Home() {
             <span style={{ display: "block" }}>Deviens croupier.</span>
           </h1>
           <p style={{ color: "var(--muted)", fontSize: 19, marginTop: 22, maxWidth: 620, lineHeight: 1.6 }}>
-            Tout le poker au meme endroit : des regles pour grands debutants jusqu&apos;au GTO,
-            un glossaire geant, des calculateurs, et la seule{" "}
-            <strong style={{ color: "var(--fg)" }}>academie gratuite de croupier</strong> du web
-            francophone — animee par Jerome Ibiza, croupier professionnel.
+            Tout le poker au même endroit : des règles pour grands débutants jusqu&apos;au GTO, un
+            glossaire géant, des calculateurs, et la seule{" "}
+            <strong style={{ color: "var(--fg)" }}>académie gratuite de croupier</strong>{" "}
+            du web francophone — animée par Jérôme Ibiza, croupier professionnel.
           </p>
           <div style={{ display: "flex", flexWrap: "wrap", gap: 12, marginTop: 28 }}>
-            <Link href="/apprendre" className="btn btn-gold">Commencer a apprendre</Link>
+            <Link href="/apprendre/parcours-debutant" className="btn btn-gold">Commencer le parcours débutant</Link>
             <Link href="/academie-croupier" className="btn btn-ghost">🎓 Formation croupier</Link>
           </div>
           <div style={{ marginTop: 32 }}>
@@ -94,7 +94,7 @@ export default function Home() {
               <h3 style={{ fontSize: 18, marginTop: 12 }}>{h.title}</h3>
               <p style={{ color: "var(--muted)", fontSize: 14, marginTop: 8 }}>{h.desc}</p>
               <div className="label" style={{ color: "var(--gold)", fontSize: 12, marginTop: 14 }}>
-                Decouvrir →
+                Découvrir →
               </div>
             </Link>
           ))}
@@ -125,18 +125,18 @@ export default function Home() {
         <div className="felt" style={{ padding: "40px 28px" }}>
           <div style={{ maxWidth: 680 }}>
             <div className="label" style={{ color: "#fbe8c2", fontSize: 12, marginBottom: 12 }}>
-              Academie Croupier Poker · 100% gratuite
+              Académie Croupier Poker · 100% gratuite
             </div>
             <h2 style={{ fontSize: "clamp(26px, 5vw, 42px)", color: "#ffffff", margin: 0 }}>
-              Apprends le metier de dealer poker
+              Apprends le métier de dealer poker
             </h2>
             <p style={{ color: "rgba(255,255,255,0.85)", fontSize: 17, marginTop: 14 }}>
               Manipulation des jetons et des cartes, gestion du pot, side pots, rake, annonces,
               situations cash game et tournoi, gestion des litiges... 10 modules et un examen final
-              certifie. Le savoir d&apos;un vrai croupier, transmis gratuitement.
+              certifié. Le savoir d&apos;un vrai croupier, transmis gratuitement.
             </p>
             <Link href="/academie-croupier" className="btn btn-gold" style={{ marginTop: 22 }}>
-              Entrer dans l&apos;academie
+              Entrer dans l&apos;académie
             </Link>
           </div>
         </div>

@@ -4,10 +4,10 @@ import { LESSONS } from "@/lib/poker/learn";
 import { Crumbs, PageHero, LevelPill, JsonLd } from "@/components/ui";
 
 export const metadata: Metadata = {
-  title: "Apprendre le poker — cursus debutant complet et gratuit",
+  title: "Apprendre le poker — cursus débutant complet et gratuit",
   description:
-    "Le parcours pour apprendre le poker de zero : regles, classement des mains, " +
-    "positions, blindes et deroulement d'une main. Simple, visuel et gratuit.",
+    "Le parcours pour apprendre le poker de zéro : règles, classement des mains, " +
+    "positions, blindes et déroulement d'une main. Simple, visuel et gratuit.",
   alternates: { canonical: "/apprendre" },
 };
 
@@ -29,12 +29,31 @@ export default function ApprendrePage() {
       <JsonLd data={itemList} />
       <Crumbs items={[{ label: "Accueil", href: "/" }, { label: "Apprendre" }]} />
       <PageHero
-        kicker="Cursus debutant"
-        title="Apprendre le poker, de zero"
-        intro="Cinq lecons fondamentales, dans l'ordre, pour passer de grand debutant a joueur capable de tenir une table. Pas de jargon inutile : des regles claires, des exemples et de vraies cartes."
+        kicker="Cursus débutant"
+        title="Apprendre le poker, de zéro"
+        intro="Cinq leçons fondamentales, dans l'ordre, pour passer de grand débutant à joueur capable de tenir une table. Pas de jargon inutile : des règles claires, des exemples et de vraies cartes."
       />
 
-      <ol style={{ listStyle: "none", padding: 0, margin: "32px 0 0", display: "grid", gap: 14 }}>
+      {/* CTA parcours interactif */}
+      <Link
+        href="/apprendre/parcours-debutant"
+        className="felt card-hover"
+        style={{ display: "block", padding: "26px 24px", marginTop: 28 }}
+      >
+        <div className="label" style={{ color: "#fbe8c2", fontSize: 12, marginBottom: 10 }}>
+          🎯 Nouveau · Tutoriel interactif
+        </div>
+        <div className="display" style={{ fontSize: 24, color: "#fff" }}>
+          Le parcours débutant à valider
+        </div>
+        <p style={{ color: "rgba(255,255,255,0.85)", fontSize: 15, marginTop: 8, maxWidth: 560 }}>
+          Apprends en cochant chaque étape, valide ta compréhension par un quiz à chaque palier,
+          et décroche ton certificat débutant avec l&apos;examen final.
+        </p>
+        <span className="btn btn-gold" style={{ marginTop: 16 }}>Démarrer le parcours →</span>
+      </Link>
+
+      <ol style={{ listStyle: "none", padding: 0, margin: "28px 0 0", display: "grid", gap: 14 }}>
         {LESSONS.map((l) => (
           <li key={l.slug}>
             <Link
@@ -70,13 +89,13 @@ export default function ApprendrePage() {
       </ol>
 
       <div className="card" style={{ marginTop: 32, borderColor: "rgba(232,176,75,0.3)" }}>
-        <div className="label" style={{ color: "var(--gold)", fontSize: 12 }}>Prochaine etape</div>
+        <div className="label" style={{ color: "var(--gold)", fontSize: 12 }}>Prochaine étape</div>
         <p style={{ marginTop: 8, color: "var(--muted)" }}>
           Une fois ces bases acquises, direction la{" "}
-          <Link href="/strategie" className="link">strategie</Link> pour apprendre les ranges,
-          les cotes et le bluff — ou la{" "}
-          <Link href="/academie-croupier" className="link">formation croupier</Link> pour
-          apprendre a distribuer comme un pro.
+          <Link href="/strategie" className="link">stratégie</Link> pour apprendre les ranges, les
+          cotes et le bluff — ou la{" "}
+          <Link href="/academie-croupier" className="link">formation croupier</Link> pour apprendre
+          à distribuer comme un pro.
         </p>
       </div>
     </div>

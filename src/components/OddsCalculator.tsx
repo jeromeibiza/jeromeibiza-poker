@@ -2,13 +2,13 @@
 
 import { useState } from "react";
 
-/** Equite exacte d'un tirage en fonction du nombre d'outs et des cartes a venir. */
+/** Équité exacte d'un tirage en fonction du nombre d'outs et des cartes à venir. */
 function equityFromOuts(outs: number, cardsToCome: 1 | 2): number {
   const unseen = cardsToCome === 2 ? 47 : 46; // flop vu (5 cartes connues) vs turn vu (6)
   if (cardsToCome === 1) {
     return outs / unseen;
   }
-  // 2 cartes a venir : 1 - P(rater les deux)
+  // 2 cartes à venir : 1 - P(rater les deux)
   const missFirst = (unseen - outs) / unseen;
   const missSecond = (unseen - 1 - outs) / (unseen - 1);
   return 1 - missFirst * missSecond;
@@ -28,7 +28,7 @@ export function OddsCalculator() {
   const safeCall = Math.max(0, toCall);
   const safeOuts = Math.min(21, Math.max(0, outs));
 
-  // Cote du pot : equite minimale requise pour que suivre soit rentable.
+  // Cote du pot : équité minimale requise pour que suivre soit rentable.
   const requiredEquity = safeCall > 0 ? safeCall / (safePot + safeCall) : 0;
   const equity = equityFromOuts(safeOuts, cardsToCome);
   const ruleApprox = (safeOuts * (cardsToCome === 2 ? 4 : 2)) / 100;
@@ -41,11 +41,11 @@ export function OddsCalculator() {
     <div className="card">
       <div style={{ display: "grid", gap: 16, gridTemplateColumns: "repeat(auto-fit, minmax(150px, 1fr))" }}>
         <Field label="Pot actuel" value={pot} onChange={setPot} suffix="jetons" />
-        <Field label="Mise a suivre" value={toCall} onChange={setToCall} suffix="jetons" />
+        <Field label="Mise à suivre" value={toCall} onChange={setToCall} suffix="jetons" />
         <Field label="Vos outs" value={outs} onChange={setOuts} suffix="cartes" max={21} />
         <div>
           <label className="label" style={{ fontSize: 11, color: "var(--muted)", display: "block", marginBottom: 6 }}>
-            Cartes a venir
+            Cartes à venir
           </label>
           <div style={{ display: "flex", gap: 8 }}>
             {([2, 1] as const).map((n) => (
@@ -71,7 +71,7 @@ export function OddsCalculator() {
         </div>
       </div>
 
-      {/* Resultats */}
+      {/* Résultats */}
       <div
         style={{
           marginTop: 22,
@@ -80,8 +80,8 @@ export function OddsCalculator() {
           gridTemplateColumns: "repeat(auto-fit, minmax(160px, 1fr))",
         }}
       >
-        <Stat label="Cote du pot (equite requise)" value={pct(requiredEquity)} sub={`soit ${oddsRatio.toFixed(1)} : 1`} />
-        <Stat label="Votre equite (exacte)" value={pct(equity)} sub={`approx. regle : ${pct(ruleApprox)}`} />
+        <Stat label="Cote du pot (équité requise)" value={pct(requiredEquity)} sub={`soit ${oddsRatio.toFixed(1)} : 1`} />
+        <Stat label="Votre équité (exacte)" value={pct(equity)} sub={`approx. règle : ${pct(ruleApprox)}`} />
       </div>
 
       <div
@@ -98,14 +98,14 @@ export function OddsCalculator() {
         </div>
         <p style={{ color: "var(--muted)", fontSize: 14, marginTop: 8 }}>
           {profitable
-            ? `Votre equite (${pct(equity)}) depasse l'equite requise par la cote du pot (${pct(requiredEquity)}). Sur le long terme, ce call est gagnant.`
-            : `Votre equite (${pct(equity)}) est inferieure a l'equite requise (${pct(requiredEquity)}). Sauf cotes implicites (gains futurs probables), il vaut mieux se coucher.`}
+            ? `Votre équité (${pct(equity)}) dépasse l'équité requise par la cote du pot (${pct(requiredEquity)}). Sur le long terme, ce call est gagnant.`
+            : `Votre équité (${pct(equity)}) est inférieure à l'équité requise (${pct(requiredEquity)}). Sauf cotes implicites (gains futurs probables), il vaut mieux se coucher.`}
         </p>
       </div>
 
       <p style={{ color: "var(--faint)", fontSize: 12, marginTop: 14 }}>
-        Rappel : la &quot;regle des 2 et 4&quot; multiplie vos outs par 4 (au flop, 2 cartes a venir) ou par
-        2 (au turn, 1 carte a venir) pour estimer votre equite de tete. Ce calculateur affiche aussi
+        Rappel : la « règle des 2 et 4 » multiplie vos outs par 4 (au flop, 2 cartes à venir) ou par
+        2 (au turn, 1 carte à venir) pour estimer votre équité de tête. Ce calculateur affiche aussi
         la valeur exacte.
       </p>
     </div>

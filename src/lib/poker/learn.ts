@@ -1,4 +1,4 @@
-/** Parcours "Apprendre le poker" — index des lecons fondamentales. */
+/** Parcours "Apprendre le poker" — index des leçons fondamentales. */
 
 export type Lesson = {
   slug: string;
@@ -12,8 +12,8 @@ export type Lesson = {
 export const LESSONS: Lesson[] = [
   {
     slug: "regles-du-poker",
-    title: "Les regles du poker",
-    desc: "Objectif du jeu, deroulement d'une main, vocabulaire essentiel et histoire du poker.",
+    title: "Les règles du poker",
+    desc: "Objectif du jeu, déroulement d'une main, vocabulaire essentiel et histoire du poker.",
     level: "debutant",
     minutes: 8,
     step: 1,
@@ -21,14 +21,14 @@ export const LESSONS: Lesson[] = [
   {
     slug: "classement-des-mains",
     title: "Le classement des mains",
-    desc: "Les 10 mains de la quinte flush royale a la carte haute, avec probabilites et exemples.",
+    desc: "Les 10 mains de la quinte flush royale à la carte haute, avec probabilités et exemples.",
     level: "debutant",
     minutes: 7,
     step: 2,
   },
   {
     slug: "positions",
-    title: "Les positions a la table",
+    title: "Les positions à la table",
     desc: "SB, BB, UTG, MP, HJ, CO, BTN : pourquoi la position vaut de l'argent.",
     level: "debutant",
     minutes: 6,
@@ -44,8 +44,8 @@ export const LESSONS: Lesson[] = [
   },
   {
     slug: "deroulement-dune-main",
-    title: "Le deroulement d'une main",
-    desc: "Preflop, flop, turn, river, showdown : chaque etape illustree pas a pas.",
+    title: "Le déroulement d'une main",
+    desc: "Préflop, flop, turn, river, showdown : chaque étape illustrée pas à pas.",
     level: "debutant",
     minutes: 7,
     step: 5,

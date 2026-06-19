@@ -1,7 +1,7 @@
 /**
- * Academie Croupier Poker Jerome Ibiza — programme de formation gratuite.
- * 10 modules + examen final. Module 1 entierement redige ; les modules 2 a 10
- * ont un plan detaille (contenu pedagogique a developper progressivement).
+ * Académie Croupier Poker Jérôme Ibiza — programme de formation gratuite.
+ * 10 modules + examen final. Module 1 entièrement rédigé ; les modules 2 à 10
+ * ont un plan détaillé (contenu pédagogique à développer progressivement).
  */
 
 export type ModuleSection = {
@@ -17,7 +17,7 @@ export type AcademyModule = {
   emoji: string;
   summary: string;
   minutes: number;
-  status: "complet" | "plan"; // complet = redige, plan = plan detaille
+  status: "complet" | "plan"; // complet = rédigé, plan = plan détaillé
   objectives: string[];
   sections: ModuleSection[];
 };
@@ -26,52 +26,52 @@ export const MODULES: AcademyModule[] = [
   {
     n: 1,
     slug: "introduction-au-metier",
-    title: "Introduction au metier de croupier poker",
+    title: "Introduction au métier de croupier poker",
     emoji: "🎩",
-    summary: "Le role du dealer, les qualites requises et les evolutions de carriere possibles.",
+    summary: "Le rôle du dealer, les qualités requises et les évolutions de carrière possibles.",
     minutes: 12,
     status: "complet",
     objectives: [
-      "Comprendre le role exact d'un croupier de poker",
-      "Identifier les qualites et savoir-etre attendus",
-      "Connaitre les differents postes et l'evolution de carriere",
+      "Comprendre le rôle exact d'un croupier de poker",
+      "Identifier les qualités et le savoir-être attendus",
+      "Connaître les différents postes et l'évolution de carrière",
     ],
     sections: [
       {
-        heading: "Le role du dealer",
+        heading: "Le rôle du dealer",
         body:
-          "Le croupier de poker est le chef d'orchestre de la table. Contrairement a la roulette ou au blackjack ou il joue contre les clients, au poker le dealer ne joue jamais : les joueurs s'affrontent entre eux. Son role est d'assurer le bon deroulement de la partie. Il melange et distribue les cartes, annonce l'action a voix haute, gere le pot, prelevent le rake, devoile les cartes communes, designe le gagnant et lui pousse le pot. Il est aussi le garant des regles et le premier rempart contre les erreurs et la triche. Un bon croupier rend la table fluide, agreable et equitable, sans jamais se faire remarquer.",
+          "Le croupier de poker est le chef d'orchestre de la table. Contrairement à la roulette ou au blackjack où il joue contre les clients, au poker le dealer ne joue jamais : les joueurs s'affrontent entre eux. Son rôle est d'assurer le bon déroulement de la partie. Il mélange et distribue les cartes, annonce l'action à voix haute, gère le pot, prélève le rake, dévoile les cartes communes, désigne le gagnant et lui pousse le pot. Il est aussi le garant des règles et le premier rempart contre les erreurs et la triche. Un bon croupier rend la table fluide, agréable et équitable, sans jamais se faire remarquer.",
       },
       {
-        heading: "Les qualites requises",
+        heading: "Les qualités requises",
         bullets: [
-          "Dexterite manuelle : melange, distribution et manipulation des jetons rapides et propres.",
+          "Dextérité manuelle : mélange, distribution et manipulation des jetons rapides et propres.",
           "Rigueur et concentration : aucune erreur sur le pot, les blindes ou l'ordre d'action.",
           "Calcul mental : annoncer les mises, faire la monnaie, calculer le rake et les side pots vite et juste.",
-          "Sang-froid : gerer les litiges et les joueurs en tilt avec calme et autorite.",
+          "Sang-froid : gérer les litiges et les joueurs en tilt avec calme et autorité.",
           "Sens du service et diplomatie : rester courtois, neutre et professionnel en toutes circonstances.",
           "Endurance : tenir la concentration sur de longues sessions, souvent de nuit.",
-          "Integrite : l'honnetete absolue est non negociable dans ce metier.",
+          "Intégrité : l'honnêteté absolue est non négociable dans ce métier.",
         ],
       },
       {
-        heading: "Les differents postes",
+        heading: "Les différents postes",
         body:
-          "La filiere poker en casino ou cardroom offre une vraie progression. On commence rarement au sommet : chaque poste se merite.",
+          "La filière poker en casino ou cardroom offre une vraie progression. On commence rarement au sommet : chaque poste se mérite.",
         bullets: [
-          "Dealer : distribue et gere les tables de cash game et de tournoi.",
-          "Senior Dealer : dealer experimente, affecte aux tables a fort enjeu et aux finales.",
+          "Dealer : distribue et gère les tables de cash game et de tournoi.",
+          "Senior Dealer : dealer expérimenté, affecté aux tables à fort enjeu et aux finales.",
           "Chip Runner : apporte les caves de jetons aux joueurs et fait le lien avec la caisse.",
-          "Assistant Floor : seconde le floor, gere les listes d'attente et les changements de table.",
-          "Floor (floorman) : superviseur de salle, tranche les litiges et fait appliquer les regles.",
-          "Tournament Director (TD) : responsable de l'organisation et des decisions d'un tournoi.",
-          "Poker Manager : dirige toute la salle de poker (planning, equipe, resultats).",
+          "Assistant Floor : seconde le floor, gère les listes d'attente et les changements de table.",
+          "Floor (floorman) : superviseur de salle, tranche les litiges et fait appliquer les règles.",
+          "Tournament Director (TD) : responsable de l'organisation et des décisions d'un tournoi.",
+          "Poker Manager : dirige toute la salle de poker (planning, équipe, résultats).",
         ],
       },
       {
-        heading: "L'evolution de carriere",
+        heading: "L'évolution de carrière",
         body:
-          "Un parcours typique demarre comme dealer, puis senior dealer apres avoir fait ses preuves, avant d'evoluer vers le floor puis la direction de salle ou la direction de tournois. Beaucoup de croupiers freelance enchainent les festivals internationaux (WSOP, EPT, WPT, Triton), une voie passionnante et bien remuneree pour qui aime voyager. La maitrise de l'anglais est alors un atout majeur.",
+          "Un parcours typique démarre comme dealer, puis senior dealer après avoir fait ses preuves, avant d'évoluer vers le floor puis la direction de salle ou la direction de tournois. Beaucoup de croupiers freelance enchaînent les festivals internationaux (WSOP, EPT, WPT, Triton), une voie passionnante et bien rémunérée pour qui aime voyager. La maîtrise de l'anglais est alors un atout majeur.",
       },
     ],
   },
@@ -80,23 +80,23 @@ export const MODULES: AcademyModule[] = [
     slug: "manipulation-des-jetons",
     title: "La manipulation des jetons",
     emoji: "🔵",
-    summary: "Couper, compter, faire de la monnaie et gerer une cave proprement.",
+    summary: "Couper, compter, faire de la monnaie et gérer une cave proprement.",
     minutes: 10,
     status: "plan",
     objectives: [
       "Couper et compter les jetons rapidement",
       "Faire de la monnaie sans erreur",
-      "Gerer une cave et un rack",
+      "Gérer une cave et un rack",
     ],
     sections: [
       {
         heading: "Au programme de ce module",
         bullets: [
-          "Le 'chip cutting' : couper des piles en quantites verifiables d'un coup d'oeil.",
+          "Le « chip cutting » : couper des piles en quantités vérifiables d'un coup d'œil.",
           "Compter par 5 et par 20 : les techniques de comptage visuel des croupiers.",
-          "Faire la monnaie : echanger une grosse valeur contre des plus petites instantanement.",
+          "Faire la monnaie : échanger une grosse valeur contre des plus petites instantanément.",
           "Le code couleur des jetons et les valeurs standards.",
-          "Gerer le rack (le plateau de jetons) et reconstituer une cave.",
+          "Gérer le rack (le plateau de jetons) et reconstituer une cave.",
           "Pousser le pot proprement vers le gagnant.",
         ],
       },
@@ -111,20 +111,20 @@ export const MODULES: AcademyModule[] = [
     minutes: 11,
     status: "plan",
     objectives: [
-      "Maitriser le melange complet (wash, riffle, strip, cut)",
-      "Distribuer proprement et regulierement",
-      "Proteger le jeu contre la triche",
+      "Maîtriser le mélange complet (wash, riffle, strip, cut)",
+      "Distribuer proprement et régulièrement",
+      "Protéger le jeu contre la triche",
     ],
     sections: [
       {
         heading: "Au programme de ce module",
         bullets: [
-          "Le wash : melange a plat initial qui randomise reellement le jeu.",
+          "Le wash : mélange à plat initial qui randomise réellement le jeu.",
           "Le riffle shuffle : l'effeuillage classique en deux paquets.",
-          "Le strip (effeuillage) : melange complementaire pour casser les sequences.",
-          "Le cut (la coupe) et l'usage de la 'cut card'.",
-          "La distribution : tenue du jeu, pitch des cartes, regularite et discretion.",
-          "Proteger le jeu : eviter les cartes exposees et les flashs.",
+          "Le strip (effeuillage) : mélange complémentaire pour casser les séquences.",
+          "Le cut (la coupe) et l'usage de la « cut card ».",
+          "La distribution : tenue du jeu, pitch des cartes, régularité et discrétion.",
+          "Protéger le jeu : éviter les cartes exposées et les flashs.",
         ],
       },
     ],
@@ -138,8 +138,8 @@ export const MODULES: AcademyModule[] = [
     minutes: 12,
     status: "plan",
     objectives: [
-      "Mener une main complete de A a Z",
-      "Gerer le pot principal et les side pots",
+      "Mener une main complète de A à Z",
+      "Gérer le pot principal et les side pots",
       "Conduire un showdown sans erreur",
     ],
     sections: [
@@ -147,11 +147,11 @@ export const MODULES: AcademyModule[] = [
         heading: "Au programme de ce module",
         bullets: [
           "Ouverture de la main : bouton, blindes, burn card et distribution.",
-          "Gerer les tours d'encheres et annoncer l'action.",
-          "Le burn & turn : bruler une carte avant le flop, le turn et la river.",
+          "Gérer les tours d'enchères et annoncer l'action.",
+          "Le burn & turn : brûler une carte avant le flop, le turn et la river.",
           "Constituer le pot et le garder lisible.",
-          "Calculer et separer les side pots quand un joueur est all-in.",
-          "Conduire le showdown : ordre de devoilement et lecture des mains.",
+          "Calculer et séparer les side pots quand un joueur est all-in.",
+          "Conduire le showdown : ordre de dévoilement et lecture des mains.",
         ],
       },
     ],
@@ -165,19 +165,19 @@ export const MODULES: AcademyModule[] = [
     minutes: 9,
     status: "plan",
     objectives: [
-      "Appliquer les regles propres au cash game",
-      "Gerer les entrees et sorties de joueurs",
-      "Traiter les blindes manquees correctement",
+      "Appliquer les règles propres au cash game",
+      "Gérer les entrées et sorties de joueurs",
+      "Traiter les blindes manquées correctement",
     ],
     sections: [
       {
         heading: "Au programme de ce module",
         bullets: [
           "Le joueur absent : que faire de ses blindes et de sa main.",
-          "La 'miss blind' : poster ou attendre le bouton, les regles.",
-          "Changement de place et nouveau joueur : ou et quand entrer.",
+          "La « miss blind » : poster ou attendre le bouton, les règles.",
+          "Changement de place et nouveau joueur : où et quand entrer.",
           "Le buy-in et la cave minimum / maximum.",
-          "Le 'rat-holing' (sortir des jetons de table) et pourquoi c'est interdit.",
+          "Le « rat-holing » (sortir des jetons de table) et pourquoi c'est interdit.",
         ],
       },
     ],
@@ -191,17 +191,17 @@ export const MODULES: AcademyModule[] = [
     minutes: 10,
     status: "plan",
     objectives: [
-      "Gerer la structure d'un tournoi",
-      "Equilibrer les tables (balancing)",
+      "Gérer la structure d'un tournoi",
+      "Équilibrer les tables (balancing)",
       "Conduire un chip race",
     ],
     sections: [
       {
         heading: "Au programme de ce module",
         bullets: [
-          "Le 'balancing' : equilibrer le nombre de joueurs entre les tables.",
-          "Le cassage de table et le redraw des sieges.",
-          "Le chip race : retirer les petites denominations en fin de niveau.",
+          "Le « balancing » : équilibrer le nombre de joueurs entre les tables.",
+          "Le cassage de table et le redraw des sièges.",
+          "Le chip race : retirer les petites dénominations en fin de niveau.",
           "Le changement de niveau et la hausse des blindes.",
           "La gestion du temps et des pauses.",
         ],
@@ -213,23 +213,23 @@ export const MODULES: AcademyModule[] = [
     slug: "gestion-des-erreurs",
     title: "La gestion des erreurs et litiges",
     emoji: "⚠️",
-    summary: "Misdeal, carte retournee, jeton conteste, litige entre joueurs.",
+    summary: "Misdeal, carte retournée, jeton contesté, litige entre joueurs.",
     minutes: 9,
     status: "plan",
     objectives: [
       "Identifier et corriger un misdeal",
-      "Reagir a une carte exposee",
-      "Desamorcer un litige et appeler le floor",
+      "Réagir à une carte exposée",
+      "Désamorcer un litige et appeler le floor",
     ],
     sections: [
       {
         heading: "Au programme de ce module",
         bullets: [
-          "Le misdeal : les cas qui l'imposent et la procedure.",
-          "La carte retournee ou exposee : comment la traiter selon le moment.",
-          "Le jeton ou la mise contestee : reconstituer la verite de la table.",
-          "Le litige entre joueurs : rester neutre et 'appeler le floor'.",
-          "L'action hors-tour et la mise irreguliere.",
+          "Le misdeal : les cas qui l'imposent et la procédure.",
+          "La carte retournée ou exposée : comment la traiter selon le moment.",
+          "Le jeton ou la mise contestée : reconstituer la vérité de la table.",
+          "Le litige entre joueurs : rester neutre et « appeler le floor ».",
+          "L'action hors-tour et la mise irrégulière.",
         ],
       },
     ],
@@ -237,25 +237,25 @@ export const MODULES: AcademyModule[] = [
   {
     n: 8,
     slug: "prelevement-du-rake",
-    title: "Le prelevement du rake",
+    title: "Le prélèvement du rake",
     emoji: "🧾",
     summary: "Calcul du rake, jackpot drop et impact des side pots.",
     minutes: 8,
     status: "plan",
     objectives: [
       "Calculer le rake correctement",
-      "Gerer le jackpot drop",
-      "Prelever sur un pot avec side pots",
+      "Gérer le jackpot drop",
+      "Prélever sur un pot avec side pots",
     ],
     sections: [
       {
         heading: "Au programme de ce module",
         bullets: [
-          "Qu'est-ce que le rake et a quoi il sert.",
+          "Qu'est-ce que le rake et à quoi il sert.",
           "Le calcul : pourcentage du pot avec un plafond (cap).",
-          "Le 'no flop, no drop' et les regles courantes.",
-          "Le jackpot drop : prelevement dedie aux jackpots et bad beat jackpots.",
-          "Prelever proprement quand il y a un ou plusieurs side pots.",
+          "Le « no flop, no drop » et les règles courantes.",
+          "Le jackpot drop : prélèvement dédié aux jackpots et bad beat jackpots.",
+          "Prélever proprement quand il y a un ou plusieurs side pots.",
         ],
       },
     ],
@@ -265,22 +265,22 @@ export const MODULES: AcademyModule[] = [
     slug: "annonces-du-dealer",
     title: "Les annonces du dealer",
     emoji: "📣",
-    summary: "Le vocabulaire a annoncer a voix haute, en francais et en anglais.",
+    summary: "Le vocabulaire à annoncer à voix haute, en français et en anglais.",
     minutes: 8,
     status: "plan",
     objectives: [
-      "Connaitre toutes les annonces standards",
+      "Connaître toutes les annonces standards",
       "Annoncer clairement et au bon moment",
-      "Maitriser les annonces en anglais (festivals)",
+      "Maîtriser les annonces en anglais (festivals)",
     ],
     sections: [
       {
         heading: "Au programme de ce module",
         bullets: [
-          "Annoncer l'action : 'action on player', raise, call, all-in.",
-          "'Seat open' et 'player in' : signaler une place et une arrivee au floor.",
+          "Annoncer l'action : « action on player », raise, call, all-in.",
+          "« Seat open » et « player in » : signaler une place et une arrivée au floor.",
           "Annoncer les montants de relance et le pot.",
-          "'Floor !' : quand et comment appeler le superviseur.",
+          "« Floor ! » : quand et comment appeler le superviseur.",
           "Le lexique bilingue FR/EN indispensable en festival international.",
         ],
       },
@@ -291,22 +291,22 @@ export const MODULES: AcademyModule[] = [
     slug: "examen-final",
     title: "Examen final & certification",
     emoji: "🎓",
-    summary: "QCM de 100 questions, exercices pratiques et certification Jerome Ibiza.",
+    summary: "QCM de 100 questions, exercices pratiques et certification Jérôme Ibiza.",
     minutes: 60,
     status: "plan",
     objectives: [
       "Valider l'ensemble des connaissances",
-      "Reussir les exercices pratiques",
-      "Obtenir la certification Academie Croupier Jerome Ibiza",
+      "Réussir les exercices pratiques",
+      "Obtenir la certification Académie Croupier Jérôme Ibiza",
     ],
     sections: [
       {
         heading: "Au programme de l'examen",
         bullets: [
           "QCM de 100 questions couvrant les 9 modules.",
-          "Exercices pratiques : melange, distribution, calcul de side pots et de rake.",
-          "Etudes de cas : litiges et situations delicates a resoudre.",
-          "Certification 'Croupier Poker — Academie Jerome Ibiza' a la cle.",
+          "Exercices pratiques : mélange, distribution, calcul de side pots et de rake.",
+          "Études de cas : litiges et situations délicates à résoudre.",
+          "Certification « Croupier Poker — Académie Jérôme Ibiza » à la clé.",
         ],
       },
     ],

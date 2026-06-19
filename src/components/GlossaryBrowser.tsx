@@ -41,7 +41,7 @@ export function GlossaryBrowser({ terms }: { terms: Term[] }) {
           type="search"
           value={q}
           onChange={(e) => setQ(e.target.value)}
-          placeholder="Rechercher un terme (ex. bluff, ICM, range...)"
+          placeholder="Rechercher un terme (ex. bluff, ICM, range…)"
           aria-label="Rechercher un terme"
           style={{
             flex: "1 1 280px",
@@ -74,7 +74,7 @@ export function GlossaryBrowser({ terms }: { terms: Term[] }) {
 
       {filtered.length === 0 ? (
         <p style={{ color: "var(--muted)", marginTop: 24 }}>
-          Aucun terme ne correspond. Essaie un autre mot-cle.
+          Aucun terme ne correspond. Essaie un autre mot-clé.
         </p>
       ) : (
         <dl style={{ display: "grid", gap: 12, marginTop: 22 }}>

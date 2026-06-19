@@ -1,12 +1,12 @@
 import Link from "next/link";
 import type { Metadata } from "next";
-import { Crumbs, PageHero, Section, DealerNote, JsonLd } from "@/components/ui";
+import { Crumbs, PageHero, Section, DealerNote } from "@/components/ui";
 
 export const metadata: Metadata = {
   title: "Les blindes au poker : small blind, big blind, ante et straddle",
   description:
-    "Comprendre les blindes au poker : a quoi servent la small blind et la big blind, ce qu'est " +
-    "une ante et un straddle, et comment elles structurent les mises. Explique simplement.",
+    "Comprendre les blindes au poker : à quoi servent la small blind et la big blind, ce qu'est " +
+    "une ante et un straddle, et comment elles structurent les mises. Expliqué simplement.",
   alternates: { canonical: "/apprendre/blindes" },
 };
 
@@ -21,9 +21,9 @@ export default function BlindesPage() {
         ]}
       />
       <PageHero
-        kicker="Apprendre · Lecon 4"
+        kicker="Apprendre · Leçon 4"
         title="Les blindes et les antes"
-        intro="Sans mise obligatoire, personne n'aurait interet a jouer une main : tout le monde attendrait l'As. Les blindes existent pour forcer l'action et creer un pot a chaque coup. Voici comment elles fonctionnent."
+        intro="Sans mise obligatoire, personne n'aurait intérêt à jouer une main : tout le monde attendrait l'As. Les blindes existent pour forcer l'action et créer un pot à chaque coup. Voici comment elles fonctionnent."
       />
 
       <Section kicker="Les deux blindes" title="Small blind & big blind">
@@ -31,34 +31,34 @@ export default function BlindesPage() {
           <div className="card">
             <div className="display" style={{ fontSize: 18 }}>Small blind (SB)</div>
             <p style={{ color: "var(--muted)", marginTop: 8 }}>
-              Mise obligatoire posee par le joueur a gauche du bouton, avant meme de voir ses cartes.
-              Elle vaut generalement la moitie de la big blind.
+              Mise obligatoire posée par le joueur à gauche du bouton, avant même de voir ses cartes.
+              Elle vaut généralement la moitié de la big blind.
             </p>
           </div>
           <div className="card">
             <div className="display" style={{ fontSize: 18 }}>Big blind (BB)</div>
             <p style={{ color: "var(--muted)", marginTop: 8 }}>
-              Mise obligatoire du joueur suivant, le double de la small blind. C&apos;est l&apos;unite de
-              reference du poker : on parle d&apos;un tapis &quot;de 100 BB&quot;, d&apos;une relance &quot;a 3 BB&quot;, etc.
+              Mise obligatoire du joueur suivant, le double de la small blind. C&apos;est l&apos;unité
+              de référence du poker : on parle d&apos;un tapis « de 100 BB », d&apos;une relance « à 3 BB », etc.
             </p>
           </div>
         </div>
         <div className="card felt" style={{ marginTop: 16, padding: 20 }}>
           <p style={{ color: "#ffffff" }}>
             Exemple en blindes <strong>1 € / 2 €</strong> : la small blind pose 1 €, la big blind
-            pose 2 €. Le premier joueur a parler (UTG) doit au minimum suivre 2 € pour rester,
+            pose 2 €. Le premier joueur à parler (UTG) doit au minimum suivre 2 € pour rester,
             relancer, ou se coucher.
           </p>
         </div>
       </Section>
 
-      <Section kicker="Pour accelerer le jeu" title="L'ante">
+      <Section kicker="Pour accélérer le jeu" title="L'ante">
         <div className="card">
           <p style={{ color: "var(--muted)" }}>
-            L&apos;<strong>ante</strong> est une petite mise obligatoire payee par <em>tous</em> les
-            joueurs (ou parfois par la seule big blind : le &quot;big blind ante&quot;). Elle gonfle le pot
-            des le depart et incite a jouer plus de mains. On la retrouve surtout en <strong>tournoi</strong>,
-            a partir des niveaux intermediaires, pour accelerer l&apos;elimination des joueurs.
+            L&apos;<strong>ante</strong> est une petite mise obligatoire payée par <em>tous</em> les
+            joueurs (ou parfois par la seule big blind : le « big blind ante »). Elle gonfle le pot
+            dès le départ et incite à jouer plus de mains. On la retrouve surtout en <strong>tournoi</strong>,
+            à partir des niveaux intermédiaires, pour accélérer l&apos;élimination des joueurs.
           </p>
         </div>
       </Section>
@@ -66,23 +66,23 @@ export default function BlindesPage() {
       <Section kicker="Optionnel et agressif" title="Le straddle">
         <div className="card">
           <p style={{ color: "var(--muted)" }}>
-            Le <strong>straddle</strong> est une relance volontaire et a l&apos;aveugle, posee
-            generalement par le joueur a gauche de la big blind, avant la distribution. Elle vaut le
-            double de la big blind et devient la nouvelle mise a suivre. C&apos;est un pari qui gonfle
-            les pots et dynamise une table de cash game — a manier avec prudence.
+            Le <strong>straddle</strong>{" "}est une relance volontaire et à l&apos;aveugle, posée
+            généralement par le joueur à gauche de la big blind, avant la distribution. Elle vaut le
+            double de la big blind et devient la nouvelle mise à suivre. C&apos;est un pari qui gonfle
+            les pots et dynamise une table de cash game — à manier avec prudence.
           </p>
         </div>
         <DealerNote>
-          Petit reflexe de table : les blindes &quot;tournent&quot;. A chaque main, le bouton avance d&apos;un
-          siege, donc les blindes aussi. Sur la duree, chacun paie les memes blindes : ce n&apos;est
-          pas une perte, c&apos;est le ticket d&apos;entree de chaque coup.
+          Petit réflexe de table : les blindes « tournent ». À chaque main, le bouton avance d&apos;un
+          siège, donc les blindes aussi. Sur la durée, chacun paie les mêmes blindes : ce n&apos;est
+          pas une perte, c&apos;est le ticket d&apos;entrée de chaque coup.
         </DealerNote>
       </Section>
 
       <div className="card" style={{ marginTop: 24, borderColor: "rgba(232,176,75,0.3)" }}>
         <p style={{ color: "var(--muted)" }}>
-          Lecon suivante :{" "}
-          <Link href="/apprendre/deroulement-dune-main" className="link">le deroulement complet d&apos;une main →</Link>
+          Leçon suivante :{" "}
+          <Link href="/apprendre/deroulement-dune-main" className="link">le déroulement complet d&apos;une main →</Link>
         </p>
       </div>
     </div>

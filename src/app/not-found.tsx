@@ -12,7 +12,7 @@ export default function NotFound() {
       </div>
       <h1 style={{ fontSize: "clamp(30px, 7vw, 56px)", marginTop: 10 }}>Page introuvable</h1>
       <p style={{ color: "var(--muted)", fontSize: 17, marginTop: 14, maxWidth: 460, marginInline: "auto" }}>
-        Cette page s&apos;est couchee avant le flop. Reviens a une valeur sure :
+        Cette page s&apos;est couchée avant le flop. Reviens à une valeur sûre :
       </p>
       <div style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap", marginTop: 24 }}>
         <Link href="/" className="btn btn-gold">Accueil</Link>

@@ -15,11 +15,11 @@ export function SiteFooter() {
           <div>
             <div className="display" style={{ fontSize: 20 }}>♠ Poker Hub</div>
             <p style={{ color: "var(--muted)", fontSize: 14, marginTop: 10, maxWidth: 320 }}>
-              {SITE.tagline} Par Jerome Ibiza, croupier professionnel et joueur de poker.
+              {SITE.tagline} Par Jérôme Ibiza, croupier professionnel et joueur de poker.
             </p>
             <p style={{ color: "var(--faint)", fontSize: 12, marginTop: 14 }}>
-              Contenu pedagogique et de divertissement. Jeu gratuit, sans argent reel,
-              sans possibilite de gain ni de retrait. Reserve aux personnes majeures (18+).
+              Contenu pédagogique et de divertissement. Jeu gratuit, sans argent réel,
+              sans possibilité de gain ni de retrait. Réservé aux personnes majeures (18+).
             </p>
           </div>
 
@@ -59,8 +59,8 @@ export function SiteFooter() {
             fontSize: 12,
           }}
         >
-          <span>© {SITE.author} — Poker Hub. Tous droits reserves.</span>
-          <span>18+ · Le jeu peut etre dangereux : jouez avec moderation.</span>
+          <span>© {SITE.author} — Poker Hub. Tous droits réservés.</span>
+          <span>18+ · Le jeu peut être dangereux : jouez avec modération.</span>
         </div>
       </div>
     </footer>

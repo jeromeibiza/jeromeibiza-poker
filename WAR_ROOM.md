@@ -4,9 +4,14 @@
 > Aucun lien croise pour l'instant. Repo dedie, futur Vercel dedie
 > (futur `poker.jeromeibiza.com`). On ne touche JAMAIS au site live.
 
-Derniere mise a jour : 2026-06-19 — fondation V1 livree.
+Derniere mise a jour : 2026-06-19 — V1 + parcours interactif + passe qualite FR.
 
 ---
+
+## ✅ Fait (V1.1 — ajouts du 2026-06-19 soir)
+
+- [x] **Parcours debutant interactif** `/apprendre/parcours-debutant` : 6 etapes a cocher, mini-quiz de validation par palier (il faut tout reussir pour debloquer la suite), examen final 10 questions + certificat. Progression sauvegardee en localStorage.
+- [x] **Passe qualite FR (retour de Kristofer)** : accents corrects sur TOUT le site + correction du bug JSX des espaces colles apres les `<strong>`/`<a>` (verifie page par page, 0 restant).
 
 ## ✅ Fait (V1 — fondation)
 

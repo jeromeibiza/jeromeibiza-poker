@@ -6,29 +6,29 @@ import { HandQuiz } from "@/components/HandQuiz";
 import { Crumbs, PageHero, Section, DealerNote, JsonLd } from "@/components/ui";
 
 export const metadata: Metadata = {
-  title: "Classement des mains au poker : ordre, probabilites et exemples",
+  title: "Classement des mains au poker : ordre, probabilités et exemples",
   description:
-    "Le classement complet des 10 mains au poker, de la quinte flush royale a la carte haute. " +
-    "Ordre exact, probabilites, combinaisons et exemples illustres avec de vraies cartes. Quiz inclus.",
+    "Le classement complet des 10 mains au poker, de la quinte flush royale à la carte haute. " +
+    "Ordre exact, probabilités, combinaisons et exemples illustrés avec de vraies cartes. Quiz inclus.",
   alternates: { canonical: "/apprendre/classement-des-mains" },
 };
 
 const FAQ = [
   {
     q: "Quelle est la main la plus forte au poker ?",
-    a: "La quinte flush royale (As-Roi-Dame-Valet-10 de la meme couleur). Elle ne peut jamais etre battue.",
+    a: "La quinte flush royale (As-Roi-Dame-Valet-10 de la même couleur). Elle ne peut jamais être battue.",
   },
   {
     q: "La couleur bat-elle la suite ?",
-    a: "Oui. La couleur (5 cartes de la meme couleur) est plus rare que la suite (5 cartes consecutives), elle la bat donc toujours.",
+    a: "Oui. La couleur (5 cartes de la même couleur) est plus rare que la suite (5 cartes consécutives), elle la bat donc toujours.",
   },
   {
     q: "Qui gagne entre deux paires identiques ?",
-    a: "On compare les kickers, c'est-a-dire les cartes restantes, de la plus haute a la plus basse. Si tout est egal, le pot est partage.",
+    a: "On compare les kickers, c'est-à-dire les cartes restantes, de la plus haute à la plus basse. Si tout est égal, le pot est partagé.",
   },
   {
     q: "L'As est-il la carte la plus haute ou la plus basse ?",
-    a: "Les deux. L'As est la carte la plus haute (A-K-Q-J-10) mais peut aussi servir de carte basse dans la suite A-2-3-4-5, appelee la roue.",
+    a: "Les deux. L'As est la carte la plus haute (A-K-Q-J-10) mais peut aussi servir de carte basse dans la suite A-2-3-4-5, appelée la roue.",
   },
 ];
 
@@ -54,13 +54,13 @@ export default function ClassementMainsPage() {
         ]}
       />
       <PageHero
-        kicker="Apprendre · Lecon 2"
+        kicker="Apprendre · Leçon 2"
         title="Le classement des mains au poker"
-        intro="Au poker, la main la plus forte remporte le pot. Voici les 10 mains officielles, de la plus forte a la plus faible, avec pour chacune sa probabilite, le nombre de combinaisons possibles et un exemple en cartes. Memorise cet ordre : c'est la base de tout."
+        intro="Au poker, la main la plus forte remporte le pot. Voici les 10 mains officielles, de la plus forte à la plus faible, avec pour chacune sa probabilité, le nombre de combinaisons possibles et un exemple en cartes. Mémorise cet ordre : c'est la base de tout."
       />
 
-      {/* Liste classee */}
-      <Section kicker="De la plus forte a la plus faible" title="Les 10 mains, dans l'ordre">
+      {/* Liste classée */}
+      <Section kicker="De la plus forte à la plus faible" title="Les 10 mains, dans l'ordre">
         <div style={{ display: "grid", gap: 14 }}>
           {HANDS.map((h) => (
             <article key={h.slug} className="card" style={{ display: "grid", gap: 14 }}>
@@ -96,7 +96,7 @@ export default function ClassementMainsPage() {
           ))}
         </div>
         <p style={{ color: "var(--faint)", fontSize: 13, marginTop: 14 }}>
-          Probabilites calculees pour 5 cartes tirees au hasard dans un jeu de 52 cartes. Au Texas
+          Probabilités calculées pour 5 cartes tirées au hasard dans un jeu de 52 cartes. Au Texas
           Hold&apos;em, tu composes ta meilleure main de 5 cartes parmi les 7 disponibles (2 en main + 5 communes).
         </p>
       </Section>
@@ -106,23 +106,23 @@ export default function ClassementMainsPage() {
         <HandQuiz />
       </Section>
 
-      <Section kicker="Bon a savoir" title="Comment on departage deux mains">
+      <Section kicker="Bon à savoir" title="Comment on départage deux mains">
         <ul className="lb">
           <li>On compare d&apos;abord le <strong>type</strong> de main (un brelan bat toujours deux paires).</li>
-          <li>A type egal, on compare la <strong>valeur</strong> (un full aux Rois bat un full aux Dames).</li>
-          <li>Si tout est identique, les <strong>kickers</strong> (cartes restantes) departagent.</li>
-          <li>Si meme les kickers sont egaux, le pot est <strong>partage</strong> (split pot).</li>
-          <li>La couleur ne sert <strong>jamais</strong> a departager : pique, coeur, carreau et trefle ont la meme valeur.</li>
+          <li>À type égal, on compare la <strong>valeur</strong> (un full aux Rois bat un full aux Dames).</li>
+          <li>Si tout est identique, les <strong>kickers</strong> (cartes restantes) départagent.</li>
+          <li>Si même les kickers sont égaux, le pot est <strong>partagé</strong> (split pot).</li>
+          <li>La couleur ne sert <strong>jamais</strong> à départager : pique, cœur, carreau et trèfle ont la même valeur.</li>
         </ul>
         <DealerNote>
-          Erreur de debutant classique : croire qu&apos;une couleur a l&apos;As bat un full. Non — le full
-          est plus haut dans le classement. Apprends l&apos;ordre par coeur avant tout le reste, ca
-          t&apos;evitera de tapis perdus betement.
+          Erreur de débutant classique : croire qu&apos;une couleur à l&apos;As bat un full. Non — le
+          full est plus haut dans le classement. Apprends l&apos;ordre par cœur avant tout le reste,
+          ça t&apos;évitera des tapis perdus bêtement.
         </DealerNote>
       </Section>
 
       {/* FAQ */}
-      <Section kicker="FAQ" title="Questions frequentes">
+      <Section kicker="FAQ" title="Questions fréquentes">
         <div style={{ display: "grid", gap: 12 }}>
           {FAQ.map((f) => (
             <details key={f.q} className="card">
@@ -135,8 +135,8 @@ export default function ClassementMainsPage() {
 
       <div className="card" style={{ marginTop: 32, borderColor: "rgba(232,176,75,0.3)" }}>
         <p style={{ color: "var(--muted)" }}>
-          Lecon suivante :{" "}
-          <Link href="/apprendre/positions" className="link">les positions a la table →</Link>
+          Leçon suivante :{" "}
+          <Link href="/apprendre/positions" className="link">les positions à la table →</Link>
         </p>
       </div>
     </div>

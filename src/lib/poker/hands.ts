@@ -1,7 +1,7 @@
 /**
- * Classement officiel des mains au poker (de la plus forte a la plus faible).
- * Probabilites = chance d'obtenir cette main avec 5 cartes tirees au hasard
- * dans un jeu de 52 cartes (reference pedagogique standard).
+ * Classement officiel des mains au poker (de la plus forte à la plus faible).
+ * Probabilités = chance d'obtenir cette main avec 5 cartes tirées au hasard
+ * dans un jeu de 52 cartes (référence pédagogique standard).
  */
 
 export type HandRank = {
@@ -28,8 +28,8 @@ export const HANDS: HandRank[] = [
     odds: "1 sur 649 740",
     combos: 4,
     description:
-      "La suite As-Roi-Dame-Valet-10, toutes de la meme couleur. C'est la main la plus forte du poker : elle ne peut jamais etre battue.",
-    example: "A♠ K♠ Q♠ J♠ 10♠ — du 10 a l'As, tout en pique.",
+      "La suite As-Roi-Dame-Valet-10, toutes de la même couleur. C'est la main la plus forte du poker : elle ne peut jamais être battue.",
+    example: "A♠ K♠ Q♠ J♠ 10♠ — du 10 à l'As, tout en pique.",
   },
   {
     rank: 2,
@@ -41,21 +41,21 @@ export const HANDS: HandRank[] = [
     odds: "1 sur 72 193",
     combos: 36,
     description:
-      "Cinq cartes qui se suivent, toutes de la meme couleur. En cas d'egalite, c'est la carte la plus haute de la suite qui departage.",
+      "Cinq cartes qui se suivent, toutes de la même couleur. En cas d'égalité, c'est la carte la plus haute de la suite qui départage.",
     example: "9♥ 8♥ 7♥ 6♥ 5♥ — quinte flush au 9.",
   },
   {
     rank: 3,
     slug: "carre",
-    name: "Carre",
+    name: "Carré",
     short: "Four of a kind",
     cards: ["Qs", "Qh", "Qd", "Qc", "7s"],
     probabilityPct: "0,0240 %",
     odds: "1 sur 4 165",
     combos: 624,
     description:
-      "Les quatre cartes de la meme valeur. La 5e carte (le kicker) sert a departager deux carres identiques (rare).",
-    example: "Q♠ Q♥ Q♦ Q♣ + 7♠ — carre de dames.",
+      "Les quatre cartes de la même valeur. La 5e carte (le kicker) sert à départager deux carrés identiques (rare).",
+    example: "Q♠ Q♥ Q♦ Q♣ + 7♠ — carré de dames.",
   },
   {
     rank: 4,
@@ -67,7 +67,7 @@ export const HANDS: HandRank[] = [
     odds: "1 sur 694",
     combos: 3744,
     description:
-      "Un brelan + une paire. On compare d'abord le brelan, puis la paire en cas d'egalite. On annonce \"full aux Rois par les 4\".",
+      "Un brelan + une paire. On compare d'abord le brelan, puis la paire en cas d'égalité. On annonce « full aux Rois par les 4 ».",
     example: "K♠ K♥ K♦ + 4♠ 4♣ — full aux Rois par les 4.",
   },
   {
@@ -80,8 +80,8 @@ export const HANDS: HandRank[] = [
     odds: "1 sur 509",
     combos: 5108,
     description:
-      "Cinq cartes de la meme couleur, non consecutives. La plus haute carte departage, puis la suivante, etc.",
-    example: "A♦ J♦ 8♦ 5♦ 2♦ — couleur a l'As (de carreau).",
+      "Cinq cartes de la même couleur, non consécutives. La plus haute carte départage, puis la suivante, etc.",
+    example: "A♦ J♦ 8♦ 5♦ 2♦ — couleur à l'As (de carreau).",
   },
   {
     rank: 6,
@@ -93,7 +93,7 @@ export const HANDS: HandRank[] = [
     odds: "1 sur 255",
     combos: 10200,
     description:
-      "Cinq cartes consecutives de couleurs differentes. L'As peut servir de carte haute (A-K-Q-J-10) ou basse (A-2-3-4-5, la \"roue\").",
+      "Cinq cartes consécutives de couleurs différentes. L'As peut servir de carte haute (A-K-Q-J-10) ou basse (A-2-3-4-5, la « roue »).",
     example: "9♠ 8♥ 7♦ 6♣ 5♠ — suite au 9.",
   },
   {
@@ -106,7 +106,7 @@ export const HANDS: HandRank[] = [
     odds: "1 sur 47",
     combos: 54912,
     description:
-      "Trois cartes de la meme valeur. Les deux cartes restantes (kickers) departagent deux brelans identiques.",
+      "Trois cartes de la même valeur. Les deux cartes restantes (kickers) départagent deux brelans identiques.",
     example: "7♠ 7♥ 7♦ + K♠ 2♣ — brelan de 7.",
   },
   {
@@ -119,7 +119,7 @@ export const HANDS: HandRank[] = [
     odds: "1 sur 21",
     combos: 123552,
     description:
-      "Deux paires differentes. On compare la paire la plus haute, puis la seconde, puis le kicker.",
+      "Deux paires différentes. On compare la paire la plus haute, puis la seconde, puis le kicker.",
     example: "A♠ A♥ + 9♠ 9♦ + 5♣ — deux paires, As et 9.",
   },
   {
@@ -132,7 +132,7 @@ export const HANDS: HandRank[] = [
     odds: "1 sur 2,37",
     combos: 1098240,
     description:
-      "Deux cartes de la meme valeur. Les trois cartes restantes servent de kickers pour departager.",
+      "Deux cartes de la même valeur. Les trois cartes restantes servent de kickers pour départager.",
     example: "J♠ J♥ + A♠ 8♦ 3♣ — paire de Valets, kicker As.",
   },
   {
@@ -145,7 +145,7 @@ export const HANDS: HandRank[] = [
     odds: "1 sur 2",
     combos: 1302540,
     description:
-      "Aucune combinaison : c'est la carte la plus haute qui compte. On dit \"hauteur As\". La main la plus faible du poker.",
+      "Aucune combinaison : c'est la carte la plus haute qui compte. On dit « hauteur As ». La main la plus faible du poker.",
     example: "A♠ J♥ 8♦ 6♣ 3♠ — hauteur As.",
   },
 ];

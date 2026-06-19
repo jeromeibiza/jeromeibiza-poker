@@ -35,7 +35,7 @@ export function HandQuiz() {
     <div className="card" style={{ borderColor: "rgba(232,176,75,0.3)" }}>
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 10 }}>
         <div className="label" style={{ color: "var(--gold)", fontSize: 13 }}>
-          Entrainement · Quelle main gagne ?
+          Entraînement · Quelle main gagne ?
         </div>
         <div className="pill">Score {score.good}/{score.total}</div>
       </div>
@@ -62,7 +62,7 @@ export function HandQuiz() {
       {answered && (
         <div style={{ marginTop: 16, textAlign: "center" }}>
           <p style={{ color: answered.correct ? "#8fe3b6" : "#f3a0a0", fontWeight: 600 }}>
-            {answered.correct ? "✅ Correct !" : "❌ Rate."} {pair[winner].name} bat {pair[1 - winner].name}.
+            {answered.correct ? "✅ Correct !" : "❌ Raté."} {pair[winner].name} bat {pair[1 - winner].name}.
           </p>
           <button onClick={next} className="btn btn-gold" style={{ marginTop: 12 }}>
             Main suivante →

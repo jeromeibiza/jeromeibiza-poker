@@ -19,7 +19,7 @@ export async function generateMetadata({
   const m = getModule(slug);
   if (!m) return { title: "Module introuvable" };
   return {
-    title: `Module ${m.n} — ${m.title} | Academie Croupier`,
+    title: `Module ${m.n} — ${m.title} | Académie Croupier`,
     description: m.summary,
     alternates: { canonical: `/academie-croupier/${m.slug}` },
   };
@@ -44,7 +44,7 @@ export default async function ModulePage({
     name: m.title,
     description: m.summary,
     educationalLevel: "Beginner",
-    isPartOf: { "@type": "Course", name: "Academie Croupier Poker Jerome Ibiza" },
+    isPartOf: { "@type": "Course", name: "Académie Croupier Poker Jérôme Ibiza" },
     inLanguage: "fr-FR",
     isAccessibleForFree: true,
   };
@@ -55,7 +55,7 @@ export default async function ModulePage({
       <Crumbs
         items={[
           { label: "Accueil", href: "/" },
-          { label: "Academie Croupier", href: "/academie-croupier" },
+          { label: "Académie Croupier", href: "/academie-croupier" },
           { label: `Module ${m.n}` },
         ]}
       />
@@ -63,7 +63,7 @@ export default async function ModulePage({
       <div style={{ paddingBlock: "20px 0" }}>
         <div className="label" style={{ color: "var(--gold)", fontSize: 12, marginBottom: 10 }}>
           Module {String(m.n).padStart(2, "0")} · {m.minutes} min
-          {m.status === "plan" && " · plan detaille"}
+          {m.status === "plan" && " · plan détaillé"}
         </div>
         <h1 style={{ fontSize: "clamp(28px, 5.5vw, 48px)", margin: 0 }}>
           <span style={{ marginRight: 12 }}>{m.emoji}</span>
@@ -95,23 +95,23 @@ export default async function ModulePage({
 
       {m.status === "plan" && (
         <div className="card" style={{ marginTop: 28, borderColor: "rgba(232,176,75,0.3)" }}>
-          <div className="label" style={{ color: "var(--gold)", fontSize: 12 }}>Module en cours de redaction</div>
+          <div className="label" style={{ color: "var(--gold)", fontSize: 12 }}>Module en cours de rédaction</div>
           <p style={{ marginTop: 8, color: "var(--muted)" }}>
-            Le plan complet de ce module est etabli ci-dessus. Le cours detaille (textes, schemas et
-            videos de demonstration) est en cours de production et sera publie progressivement.
+            Le plan complet de ce module est établi ci-dessus. Le cours détaillé (textes, schémas et
+            vidéos de démonstration) est en cours de production et sera publié progressivement.
           </p>
         </div>
       )}
 
       {m.n === 1 && (
         <DealerNote>
-          Le metier ne s&apos;apprend pas qu&apos;en lisant : entraine tes mains des aujourd&apos;hui avec un
-          vrai jeu de cartes et quelques jetons. Dix minutes de melange et de distribution par jour
-          valent plus que des heures de theorie.
+          Le métier ne s&apos;apprend pas qu&apos;en lisant : entraîne tes mains dès aujourd&apos;hui avec
+          un vrai jeu de cartes et quelques jetons. Dix minutes de mélange et de distribution par
+          jour valent plus que des heures de théorie.
         </DealerNote>
       )}
 
-      {/* Navigation module precedent / suivant */}
+      {/* Navigation module précédent / suivant */}
       <nav
         style={{
           marginTop: 36,

@@ -56,11 +56,11 @@ function suitName(suit: string) {
     case "s":
       return "pique";
     case "h":
-      return "coeur";
+      return "cœur";
     case "d":
       return "carreau";
     case "c":
-      return "trefle";
+      return "trèfle";
     default:
       return "inconnu";
   }

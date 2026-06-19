@@ -9,6 +9,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const staticPaths = [
     "/",
     ...NAV.map((n) => n.href),
+    "/apprendre/parcours-debutant",
     "/calculateurs/cotes",
   ];
 
