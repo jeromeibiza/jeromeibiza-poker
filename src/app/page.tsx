@@ -77,10 +77,11 @@ export default function Home() {
             minWidth: 0,
             display: "flex",
             flexDirection: "column",
-            justifyContent: "space-between",
+            justifyContent: "center",
             alignItems: "center",
             textAlign: "center",
-            paddingBlock: "clamp(78px, 13vw, 130px) clamp(40px, 7vw, 60px)",
+            gap: 30,
+            paddingBlock: 48,
           }}
         >
           {/* Marque, posee sur le LED */}
