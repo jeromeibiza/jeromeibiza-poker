@@ -11,6 +11,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...NAV.map((n) => n.href),
     "/apprendre/parcours-debutant",
     "/calculateurs/cotes",
+    "/a-propos",
   ];
 
   const lessonPaths = LESSONS.map((l) => `/apprendre/${l.slug}`);

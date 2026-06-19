@@ -70,7 +70,8 @@ export default function Home() {
             Tout le poker au même endroit : des règles pour grands débutants jusqu&apos;au GTO, un
             glossaire géant, des calculateurs, et la seule{" "}
             <strong style={{ color: "var(--fg)" }}>académie gratuite de croupier</strong>{" "}
-            du web francophone — animée par Jérôme Ibiza, croupier professionnel.
+            du web francophone — animée par{" "}
+            <Link href="/a-propos" className="link">Jérôme Ibiza</Link>, croupier professionnel.
           </p>
           <div style={{ display: "flex", flexWrap: "wrap", gap: 12, marginTop: 28 }}>
             <Link href="/apprendre/parcours-debutant" className="btn btn-gold">Commencer le parcours débutant</Link>

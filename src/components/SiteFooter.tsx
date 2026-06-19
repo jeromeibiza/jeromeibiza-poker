@@ -43,6 +43,9 @@ export function SiteFooter() {
                 {s.label}
               </Link>
             ))}
+            <Link href="/a-propos" style={{ color: "var(--muted)", fontSize: 14 }}>
+              À propos
+            </Link>
           </nav>
         </div>
 
