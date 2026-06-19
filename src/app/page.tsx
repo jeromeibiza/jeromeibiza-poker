@@ -109,10 +109,10 @@ export default function Home() {
               aria-hidden
               style={{
                 position: "absolute",
-                inset: "0 0 6% 0",
+                inset: 0,
                 background:
-                  "radial-gradient(58% 56% at 50% 48%, rgba(31,122,82,0.5), rgba(232,176,75,0.12) 52%, transparent 74%)",
-                filter: "blur(6px)",
+                  "radial-gradient(50% 44% at 50% 72%, rgba(31,122,82,0.34), transparent 72%)",
+                filter: "blur(12px)",
               }}
             />
             <Image
