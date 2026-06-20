@@ -8,7 +8,7 @@ import { Crumbs, PageHero, Section, DealerNote, JsonLd } from "@/components/ui";
 export const metadata: Metadata = {
   title: "Classement des mains au poker : ordre, probabilités et exemples",
   description:
-    "Le classement complet des 10 mains au poker, de la quinte flush royale à la carte haute. " +
+    "Le classement complet des 10 mains au poker, de la carte haute à la quinte flush royale. " +
     "Ordre exact, probabilités, combinaisons et exemples illustrés avec de vraies cartes. Quiz inclus.",
   alternates: { canonical: "/apprendre/classement-des-mains" },
 };
@@ -56,13 +56,13 @@ export default function ClassementMainsPage() {
       <PageHero
         kicker="Apprendre · Leçon 2"
         title="Le classement des mains au poker"
-        intro="Au poker, la main la plus forte remporte le pot. Voici les 10 mains officielles, de la plus forte à la plus faible, avec pour chacune sa probabilité, le nombre de combinaisons possibles et un exemple en cartes. Mémorise cet ordre : c'est la base de tout."
+        intro="Au poker, la main la plus forte remporte le pot. Voici les 10 mains officielles, de la plus faible à la plus forte, dans l'ordre où on les apprend, avec pour chacune sa probabilité, le nombre de combinaisons possibles et un exemple en cartes. Mémorise cet ordre : c'est la base de tout."
       />
 
       {/* Liste classée */}
-      <Section kicker="De la plus forte à la plus faible" title="Les 10 mains, dans l'ordre">
+      <Section kicker="De la plus faible à la plus forte" title="Les 10 mains, dans l'ordre">
         <div style={{ display: "grid", gap: 14 }}>
-          {HANDS.map((h) => (
+          {[...HANDS].reverse().map((h, i) => (
             <article key={h.slug} className="card" style={{ display: "grid", gap: 14 }}>
               <div style={{ display: "flex", gap: 16, alignItems: "flex-start", flexWrap: "wrap" }}>
                 <div
@@ -75,7 +75,7 @@ export default function ClassementMainsPage() {
                   }}
                   aria-hidden
                 >
-                  {h.rank}
+                  {i + 1}
                 </div>
                 <div style={{ flex: "1 1 240px" }}>
                   <h3 style={{ fontSize: 20, margin: 0 }}>{h.name}</h3>
