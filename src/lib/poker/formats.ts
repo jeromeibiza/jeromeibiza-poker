@@ -22,6 +22,8 @@ export type FormatGuide = {
   cons: string[];
   sections: FormatSection[];
   dealerNote?: string;
+  /** Formation partenaire (lien externe, futur lien d'affiliation). */
+  partner?: { name: string; url: string; blurb: string };
 };
 
 export const FORMATS: FormatGuide[] = [
@@ -63,6 +65,12 @@ export const FORMATS: FormatGuide[] = [
     ],
     dealerNote:
       "Le cash game, c'est l'école du poker. C'est là qu'on apprend vraiment à jouer profond, à lire les rues et à doser ses mises. Si tu veux devenir bon, passe du temps en cash.",
+    partner: {
+      name: "Poker Evolution",
+      url: "https://pokerevolution.eu/",
+      blurb:
+        "Une formation spécialisée cash game pour structurer ton jeu, combler tes fuites et passer au niveau supérieur.",
+    },
   },
   {
     slug: "tournoi-mtt",
@@ -178,6 +186,12 @@ export const FORMATS: FormatGuide[] = [
     ],
     dealerNote:
       "Le Spin, c'est le format casino du poker en ligne : fun, rapide, addictif. Amuse-toi, mais garde la tête froide sur la bankroll, la variance peut être brutale.",
+    partner: {
+      name: "Spin Family",
+      url: "https://www.spinfamily.fr/",
+      blurb:
+        "La communauté et la formation francophones dédiées au Spin & Go, pour progresser vite sur ce format si particulier.",
+    },
   },
   {
     slug: "heads-up",

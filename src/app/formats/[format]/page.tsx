@@ -117,6 +117,41 @@ export default async function FormatPage({
 
       {f.dealerNote && <div style={{ marginTop: 24 }}><DealerNote>{f.dealerNote}</DealerNote></div>}
 
+      {f.partner && (
+        <Section kicker="Aller plus loin" title="Formation spécialisée recommandée">
+          <div className="card" style={{ borderColor: "rgba(232,176,75,0.35)" }}>
+            <div
+              style={{
+                display: "flex",
+                gap: 16,
+                alignItems: "center",
+                flexWrap: "wrap",
+                justifyContent: "space-between",
+              }}
+            >
+              <div style={{ flex: "1 1 280px" }}>
+                <div className="display" style={{ fontSize: 18 }}>{f.partner.name}</div>
+                <p style={{ color: "var(--muted)", fontSize: 14, marginTop: 8, marginBottom: 0 }}>
+                  {f.partner.blurb}
+                </p>
+              </div>
+              <a
+                href={f.partner.url}
+                target="_blank"
+                rel="sponsored noopener noreferrer"
+                className="btn btn-gold"
+              >
+                Découvrir {f.partner.name} →
+              </a>
+            </div>
+            <p style={{ color: "var(--faint)", fontSize: 12, marginTop: 14, marginBottom: 0 }}>
+              Lien partenaire. Jérôme ne recommande que des formations qu&apos;il juge sérieuses. 18+,
+              jouez responsable.
+            </p>
+          </div>
+        </Section>
+      )}
+
       <nav
         style={{
           marginTop: 36,
