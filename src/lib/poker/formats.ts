@@ -22,8 +22,8 @@ export type FormatGuide = {
   cons: string[];
   sections: FormatSection[];
   dealerNote?: string;
-  /** Formation partenaire (lien externe, futur lien d'affiliation). */
-  partner?: { name: string; url: string; blurb: string };
+  /** Partenaire de confiance (lien externe, futur lien d'affiliation). */
+  partner?: { name: string; url: string; hook: string; kind: string; blurb: string };
 };
 
 export const FORMATS: FormatGuide[] = [
@@ -68,8 +68,10 @@ export const FORMATS: FormatGuide[] = [
     partner: {
       name: "Poker Evolution",
       url: "https://pokerevolution.eu/",
+      hook: "Tu veux t'améliorer en cash game ?",
+      kind: "Coaching et formations",
       blurb:
-        "Une formation spécialisée cash game pour structurer ton jeu, combler tes fuites et passer au niveau supérieur.",
+        "Poker Evolution fait partie de nos partenaires de confiance pour structurer ton jeu, combler tes fuites et progresser sérieusement.",
     },
   },
   {
@@ -189,8 +191,10 @@ export const FORMATS: FormatGuide[] = [
     partner: {
       name: "Spin Family",
       url: "https://www.spinfamily.fr/",
+      hook: "Tu veux te lancer en Spin ?",
+      kind: "CFP (coaching for profit)",
       blurb:
-        "La communauté et la formation francophones dédiées au Spin & Go, pour progresser vite sur ce format si particulier.",
+        "Spin Family fait partie de nos partenaires de confiance : du CFP (coaching for profit) et une communauté entièrement dédiée au Spin & Go.",
     },
   },
   {
