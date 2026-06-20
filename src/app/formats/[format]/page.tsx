@@ -2,11 +2,24 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { LessonLayout } from "@/components/LessonLayout";
-import { PokerTable, TABLE_6MAX } from "@/components/PokerTable";
+import { PokerTable, TABLE_6MAX, TABLE_FULL, TABLE_SPIN, TABLE_HEADSUP } from "@/components/PokerTable";
+import { SpinMultiplier } from "@/components/SpinMultiplier";
 import { FORMATS, getFormat } from "@/lib/poker/formats";
 import { Crumbs, Section, DealerNote, JsonLd } from "@/components/ui";
 
 type Params = { format: string };
+
+/** Nombre de joueurs adapté à chaque format. */
+const FORMAT_TABLE: Record<string, typeof TABLE_6MAX> = {
+  "cash-game": TABLE_6MAX,
+  "tournoi-mtt": TABLE_FULL,
+  "sit-and-go": TABLE_FULL,
+  "spin-and-go": TABLE_SPIN,
+  "heads-up": TABLE_HEADSUP,
+  "short-deck": TABLE_6MAX,
+  "pot-limit-omaha": TABLE_6MAX,
+  "mixed-games": TABLE_FULL,
+};
 
 export function generateStaticParams(): Params[] {
   return FORMATS.map((f) => ({ format: f.slug }));
@@ -73,7 +86,11 @@ export default async function FormatPage({
         </p>
       </div>
 
-      <PokerTable seats={TABLE_6MAX} center={f.name} caption={f.tagline} />
+      <PokerTable
+        seats={FORMAT_TABLE[f.slug] ?? TABLE_6MAX}
+        center={f.slug === "spin-and-go" ? <SpinMultiplier /> : f.name}
+        caption={f.tagline}
+      />
 
       <Section kicker="Pour qui" title="À qui ce format convient">
         <div className="card">

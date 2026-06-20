@@ -38,6 +38,32 @@ export const TABLE_DEALER: TableSeat[] = [
   { label: "J5" },
 ];
 
+/** Duel à 2 joueurs (heads-up). En heads-up, le bouton est aussi la small blind. */
+export const TABLE_HEADSUP: TableSeat[] = [
+  { label: "BTN", note: "Bouton + SB", tone: "gold", dealer: true },
+  { label: "BB", note: "Big blind", tone: "blue" },
+];
+
+/** Table à 3 joueurs (Spin & Go). */
+export const TABLE_SPIN: TableSeat[] = [
+  { label: "BTN", note: "Bouton", tone: "gold", dealer: true },
+  { label: "SB", note: "Small blind", tone: "blue" },
+  { label: "BB", note: "Big blind", tone: "blue" },
+];
+
+/** Table pleine à 9 joueurs (tournois, Sit & Go, mixed games). */
+export const TABLE_FULL: TableSeat[] = [
+  { label: "BTN", note: "Bouton", tone: "gold", dealer: true },
+  { label: "SB", note: "Small blind", tone: "blue" },
+  { label: "BB", note: "Big blind", tone: "blue" },
+  { label: "UTG" },
+  { label: "UTG+1" },
+  { label: "UTG+2" },
+  { label: "MP" },
+  { label: "HJ" },
+  { label: "CO" },
+];
+
 /**
  * Illustration schématique d'une table de poker vue de dessus, posée sur un
  * fond uni : feutre ovale, sièges des joueurs autour, et le jeton donneur "D"
