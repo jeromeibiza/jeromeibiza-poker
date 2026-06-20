@@ -1,30 +1,27 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import { Crumbs, PageHero, Section, DealerNote, JsonLd } from "@/components/ui";
+import { ARTICLES } from "@/lib/poker/online";
 
 export const metadata: Metadata = {
   title: "Guide du poker en ligne : rooms, bonus, sécurité, KYC, trackers",
   description:
-    "Le guide pour jouer au poker en ligne sereinement : choisir une room, déposer, bonus et " +
-    "rakeback, sécurité, vérification KYC et logiciels de tracking (HM3, PokerTracker, DriveHUD).",
+    "Le guide pour jouer au poker en ligne sereinement : choisir une room, déposer et retirer, bonus et " +
+    "rakeback, sécurité du compte, vérification KYC et logiciels de tracking. Pédagogique et neutre.",
   alternates: { canonical: "/poker-en-ligne" },
 };
-
-const TOPICS = [
-  ["Choisir une room", "Trafic, fiabilité, ergonomie, formats proposés : les critères qui comptent vraiment."],
-  ["Déposer de l'argent", "Méthodes de dépôt, délais, plafonds et bonnes pratiques."],
-  ["Les bonus", "Bonus de bienvenue, freerolls et tickets : comment les libérer réellement."],
-  ["Le rakeback", "Récupérer une partie du rake : comprendre les programmes de fidélité."],
-  ["La sécurité", "Mot de passe, double authentification, éviter les arnaques."],
-  ["La vérification KYC", "Pourquoi et comment vérifier son identité pour pouvoir retirer."],
-  ["Les trackers", "HM3, PokerTracker, DriveHUD : analyser ses mains et celles des adversaires."],
-];
 
 export default function PokerEnLignePage() {
   const ld = {
     "@context": "https://schema.org",
-    "@type": "CollectionPage",
+    "@type": "ItemList",
     name: "Guide du poker en ligne",
+    itemListElement: ARTICLES.map((a, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      name: a.title,
+      url: `/poker-en-ligne/${a.slug}`,
+    })),
   };
   return (
     <div className="wrap">
@@ -33,19 +30,19 @@ export default function PokerEnLignePage() {
       <PageHero
         kicker="Guide pratique"
         title="Jouer au poker en ligne"
-        intro="Tout ce qu'il faut savoir pour débuter en ligne sans se faire avoir : choisir une plateforme, déposer, comprendre les bonus, sécuriser son compte et analyser son jeu."
+        intro="Tout ce qu'il faut savoir pour débuter en ligne sans se faire avoir : choisir une plateforme, déposer, comprendre les bonus, sécuriser son compte et analyser son jeu. Neutre et pédagogique, sans pub déguisée."
       />
 
-      <Section kicker="Les sujets" title="Le guide, étape par étape">
+      <Section kicker="Le guide" title="Les articles, étape par étape">
         <div className="grid-cards">
-          {TOPICS.map(([t, d]) => (
-            <div key={t} className="card card-hover">
-              <div className="display" style={{ fontSize: 16 }}>{t}</div>
-              <p style={{ color: "var(--muted)", fontSize: 14, marginTop: 8 }}>{d}</p>
-              <div className="label" style={{ color: "var(--faint)", fontSize: 11, marginTop: 12 }}>
-                Article à venir
+          {ARTICLES.map((a) => (
+            <Link key={a.slug} href={`/poker-en-ligne/${a.slug}`} className="card card-hover">
+              <div className="display" style={{ fontSize: 16 }}>{a.short}</div>
+              <p style={{ color: "var(--muted)", fontSize: 14, marginTop: 8 }}>{a.summary.split(". ")[0]}.</p>
+              <div className="label" style={{ color: "var(--gold)", fontSize: 11, marginTop: 12 }}>
+                Lire · {a.minutes} min →
               </div>
-            </div>
+            </Link>
           ))}
         </div>
       </Section>
