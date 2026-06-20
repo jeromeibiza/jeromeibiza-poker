@@ -51,20 +51,20 @@ export const FORMATS: FormatGuide[] = [
       {
         heading: "Comment ça marche",
         body:
-          "Vous achetez des jetons (la cave) que vous pouvez reconstituer à tout moment. Les blindes restent fixes. L'objectif n'est pas d'éliminer les autres mais de gagner des jetons coup après coup. La profondeur des tapis, souvent 100 grosses blindes ou plus, rend chaque rue importante.",
+          "Vous achetez des jetons (la cave) que vous pouvez reconstituer à tout moment. Les blindes restent fixes. L'objectif n'est pas d'éliminer les autres mais de gagner des jetons coup après coup. La profondeur des tapis, souvent 100 grosses blindes ou plus, rend chaque street importante.",
       },
       {
         heading: "Les clés du cash game",
         bullets: [
           "Choisir sa table : asseyez-vous là où les joueurs faibles sont à votre droite.",
           "Jouer serré et agressif, surtout au début.",
-          "Maîtriser les cotes et la valeur, car les pots se construisent sur plusieurs rues.",
-          "Gérer sa bankroll : 20 à 30 caves de la limite jouée.",
+          "Maîtriser les cotes et la valeur, car les pots se construisent sur plusieurs streets.",
+          "Gérer sa bankroll : 100 caves de votre limite si vous voulez jouer du volume.",
         ],
       },
     ],
     dealerNote:
-      "Le cash game, c'est l'école du poker. C'est là qu'on apprend vraiment à jouer profond, à lire les rues et à doser ses mises. Si tu veux devenir bon, passe du temps en cash.",
+      "Le cash game, c'est l'école du poker. C'est là qu'on apprend vraiment à jouer profond, à lire les streets et à doser ses mises. Si tu veux devenir bon, passe du temps en cash.",
     partner: {
       name: "Poker Evolution",
       url: "https://pokerevolution.eu/",
@@ -302,7 +302,7 @@ export const FORMATS: FormatGuide[] = [
         heading: "Pourquoi les mises sont plafonnées",
         bullets: [
           "On ne peut jamais miser plus que la taille du pot.",
-          "Cela limite la casse mais laisse les pots gonfler vite, rue après rue.",
+          "Cela limite la casse mais laisse les pots gonfler vite, street après street.",
           "Les tirages valent souvent autant qu'une main faite : on part à tapis avec d'énormes équités.",
         ],
       },

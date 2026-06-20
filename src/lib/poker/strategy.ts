@@ -155,7 +155,8 @@ export const LESSONS: Lesson[] = [
       {
         heading: "Des repères simples",
         bullets: [
-          "Cash game : visez au moins 20 à 30 caves complètes de votre limite.",
+          "Cash game en jeu régulier et gros volume : visez 100 caves de votre limite, c'est ce qui vous garde dans le jeu malgré les downswings.",
+          "Session occasionnelle, un coup pour le plaisir : considérez votre cave comme de l'argent déjà perdu tant que vous n'avez pas quitté la table. Vous jouez plus détendu, et ce que vous remportez est un bonus.",
           "Tournois : visez 100 buy-ins ou plus, la variance y est énorme.",
           "Ne jouez jamais avec de l'argent dont vous avez besoin pour vivre.",
           "Descendez de limite sans honte quand la bankroll fond.",
@@ -169,7 +170,8 @@ export const LESSONS: Lesson[] = [
     ],
     takeaways: [
       "La bankroll absorbe la variance, c'est sa seule fonction.",
-      "20 à 30 caves en cash, 100 buy-ins ou plus en tournoi.",
+      "Pour jouer du volume : 100 caves en cash, 100 buy-ins ou plus en tournoi.",
+      "Pour un coup unique : considérez votre cave comme déjà perdue jusqu'à la sortie de table.",
       "Descendre de limite est une force, pas un échec.",
       "Ne jouez jamais l'argent du quotidien.",
     ],
