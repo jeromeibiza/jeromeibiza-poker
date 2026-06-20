@@ -119,6 +119,35 @@ export default async function FormatPage({
         </div>
       </Section>
 
+      {f.partner && (
+        <div className="partner-card">
+          <span className="partner-glow" aria-hidden />
+          <div style={{ position: "relative" }}>
+            <span className="partner-badge">★ Partenaire de confiance</span>
+            <h2 className="display partner-hook">{f.partner.hook}</h2>
+            <div className="label" style={{ color: "var(--gold-soft)", fontSize: 13, marginTop: 6 }}>
+              {f.partner.kind} · {f.partner.name}
+            </div>
+            <p style={{ color: "var(--fg)", fontSize: 15, marginTop: 12, maxWidth: 640 }}>
+              {f.partner.blurb}
+            </p>
+            <div style={{ marginTop: 18 }}>
+              <a
+                href={f.partner.url}
+                target="_blank"
+                rel="sponsored noopener noreferrer"
+                className="btn btn-gold partner-cta"
+              >
+                Va voir ce qui se passe chez {f.partner.name} →
+              </a>
+            </div>
+            <p style={{ color: "var(--faint)", fontSize: 12, marginTop: 14, marginBottom: 0 }}>
+              Recommandé par Jérôme. 18+, jouez responsable.
+            </p>
+          </div>
+        </div>
+      )}
+
       {f.sections.map((s) => (
         <Section key={s.heading} kicker="À savoir" title={s.heading}>
           {s.body && <p style={{ color: "var(--muted)", fontSize: 16, lineHeight: 1.7 }}>{s.body}</p>}
@@ -133,43 +162,6 @@ export default async function FormatPage({
       ))}
 
       {f.dealerNote && <div style={{ marginTop: 24 }}><DealerNote>{f.dealerNote}</DealerNote></div>}
-
-      {f.partner && (
-        <Section kicker="Nos partenaires de confiance" title={f.partner.hook}>
-          <div className="card" style={{ borderColor: "rgba(232,176,75,0.35)" }}>
-            <div
-              style={{
-                display: "flex",
-                gap: 16,
-                alignItems: "center",
-                flexWrap: "wrap",
-                justifyContent: "space-between",
-              }}
-            >
-              <div style={{ flex: "1 1 280px" }}>
-                <div className="label" style={{ color: "var(--gold)", fontSize: 12, marginBottom: 6 }}>
-                  {f.partner.kind}
-                </div>
-                <div className="display" style={{ fontSize: 18 }}>{f.partner.name}</div>
-                <p style={{ color: "var(--muted)", fontSize: 14, marginTop: 8, marginBottom: 0 }}>
-                  {f.partner.blurb}
-                </p>
-              </div>
-              <a
-                href={f.partner.url}
-                target="_blank"
-                rel="sponsored noopener noreferrer"
-                className="btn btn-gold"
-              >
-                Découvrir {f.partner.name} →
-              </a>
-            </div>
-            <p style={{ color: "var(--faint)", fontSize: 12, marginTop: 14, marginBottom: 0 }}>
-              Partenaire de confiance sélectionné par Jérôme. 18+, jouez responsable.
-            </p>
-          </div>
-        </Section>
-      )}
 
       <nav
         style={{
