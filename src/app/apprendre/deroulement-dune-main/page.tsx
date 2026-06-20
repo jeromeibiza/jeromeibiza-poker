@@ -1,4 +1,6 @@
 import Link from "next/link";
+import { LessonLayout } from "@/components/LessonLayout";
+import { APPRENDRE_NAV } from "@/lib/poker/learn";
 import type { Metadata } from "next";
 import { Hand } from "@/components/PlayingCard";
 import { Crumbs, PageHero, Section, DealerNote } from "@/components/ui";
@@ -13,7 +15,7 @@ export const metadata: Metadata = {
 
 export default function DeroulementPage() {
   return (
-    <div className="wrap">
+    <LessonLayout sidebarTitle="Apprendre" indexHref="/apprendre" items={APPRENDRE_NAV}>
       <Crumbs
         items={[
           { label: "Accueil", href: "/" },
@@ -113,6 +115,6 @@ export default function DeroulementPage() {
           distribuer avec l&apos;<Link href="/academie-croupier" className="link">académie croupier</Link>.
         </p>
       </div>
-    </div>
+    </LessonLayout>
   );
 }

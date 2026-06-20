@@ -1,4 +1,7 @@
 import Link from "next/link";
+import { LessonLayout } from "@/components/LessonLayout";
+import { APPRENDRE_NAV } from "@/lib/poker/learn";
+import { PokerTable } from "@/components/PokerTable";
 import type { Metadata } from "next";
 import { Crumbs, PageHero, Section, DealerNote, JsonLd } from "@/components/ui";
 
@@ -46,7 +49,7 @@ export default function PositionsPage() {
   };
 
   return (
-    <div className="wrap">
+    <LessonLayout sidebarTitle="Apprendre" indexHref="/apprendre" items={APPRENDRE_NAV}>
       <JsonLd data={faqLd} />
       <Crumbs
         items={[
@@ -73,6 +76,23 @@ export default function PositionsPage() {
         <p style={{ color: "var(--muted)", marginTop: 12 }}>
           Règle d&apos;or : <strong>plus vous êtes proche du bouton, plus vous pouvez jouer de mains</strong>.
         </p>
+      </Section>
+
+      <Section kicker="Vue de la table" title="Où s'assoit chaque position">
+        <PokerTable
+          center="L'action tourne"
+          caption="Le bouton (D) tourne d'un siège à chaque main. À sa gauche, la small blind puis la big blind. L'action préflop commence à gauche de la big blind, en UTG."
+          seats={[
+            { label: "BTN", note: "Bouton", tone: "gold", dealer: true },
+            { label: "SB", note: "Small blind", tone: "blue" },
+            { label: "BB", note: "Big blind", tone: "blue" },
+            { label: "UTG", note: "Under the gun" },
+            { label: "UTG+1", note: "Early" },
+            { label: "MP", note: "Milieu" },
+            { label: "HJ", note: "Hijack" },
+            { label: "CO", note: "Cutoff" },
+          ]}
+        />
       </Section>
 
       <Section kicker="Dans l'ordre du jeu" title="Les 8 positions">
@@ -139,6 +159,6 @@ export default function PositionsPage() {
           <Link href="/apprendre/blindes" className="link">les blindes et les antes →</Link>
         </p>
       </div>
-    </div>
+    </LessonLayout>
   );
 }

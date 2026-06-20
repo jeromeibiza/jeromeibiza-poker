@@ -1,4 +1,6 @@
 import Link from "next/link";
+import { LessonLayout } from "@/components/LessonLayout";
+import { APPRENDRE_NAV } from "@/lib/poker/learn";
 import type { Metadata } from "next";
 import { HANDS } from "@/lib/poker/hands";
 import { Hand } from "@/components/PlayingCard";
@@ -44,7 +46,7 @@ export default function ClassementMainsPage() {
   };
 
   return (
-    <div className="wrap">
+    <LessonLayout sidebarTitle="Apprendre" indexHref="/apprendre" items={APPRENDRE_NAV}>
       <JsonLd data={faqLd} />
       <Crumbs
         items={[
@@ -139,6 +141,6 @@ export default function ClassementMainsPage() {
           <Link href="/apprendre/positions" className="link">les positions à la table →</Link>
         </p>
       </div>
-    </div>
+    </LessonLayout>
   );
 }

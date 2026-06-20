@@ -1,4 +1,7 @@
 import Link from "next/link";
+import { LessonLayout } from "@/components/LessonLayout";
+import { APPRENDRE_NAV } from "@/lib/poker/learn";
+import { PokerTable } from "@/components/PokerTable";
 import type { Metadata } from "next";
 import { Hand } from "@/components/PlayingCard";
 import { Crumbs, PageHero, Section, DealerNote, JsonLd } from "@/components/ui";
@@ -38,7 +41,7 @@ export default function ReglesPage() {
   };
 
   return (
-    <div className="wrap">
+    <LessonLayout sidebarTitle="Apprendre" indexHref="/apprendre" items={APPRENDRE_NAV}>
       <JsonLd data={faqLd} />
       <Crumbs
         items={[
@@ -71,6 +74,18 @@ export default function ReglesPage() {
           <li>Un <strong>bouton</strong> (le « dealer button ») qui tourne dans le sens horaire à chaque main et détermine l&apos;ordre de jeu.</li>
           <li>Des <strong>jetons</strong> qui représentent la valeur misée.</li>
         </ul>
+        <PokerTable
+          center="Cartes communes"
+          caption="Une table de poker : de 2 à 10 joueurs autour du tapis, le bouton (D) qui tourne à chaque main, et les cartes communes au centre, partagées par tout le monde."
+          seats={[
+            { label: "Vous", note: "Votre siège", tone: "blue" },
+            { label: "J2" },
+            { label: "J3" },
+            { label: "J4", note: "Donneur", tone: "gold", dealer: true },
+            { label: "J5" },
+            { label: "J6" },
+          ]}
+        />
       </Section>
 
       <Section kicker="Pas à pas" title="Le déroulement d'une main">
@@ -174,6 +189,6 @@ export default function ReglesPage() {
           <Link href="/apprendre/classement-des-mains" className="link">le classement des mains →</Link>
         </p>
       </div>
-    </div>
+    </LessonLayout>
   );
 }

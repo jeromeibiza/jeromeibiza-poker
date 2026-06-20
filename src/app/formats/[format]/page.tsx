@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { LessonLayout } from "@/components/LessonLayout";
 import { FORMATS, getFormat } from "@/lib/poker/formats";
 import { Crumbs, Section, DealerNote, JsonLd } from "@/components/ui";
 
@@ -48,7 +49,7 @@ export default async function FormatPage({
   };
 
   return (
-    <div className="wrap">
+    <LessonLayout sidebarTitle="Formats" indexHref="/formats" items={FORMATS.map((x) => ({ label: x.name, href: `/formats/${x.slug}` }))}>
       <JsonLd data={ld} />
       <Crumbs
         items={[
@@ -137,6 +138,6 @@ export default async function FormatPage({
           <Link href="/formats" className="btn btn-gold">Retour aux formats →</Link>
         )}
       </nav>
-    </div>
+    </LessonLayout>
   );
 }

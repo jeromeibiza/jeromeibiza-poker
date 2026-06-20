@@ -1,4 +1,7 @@
 import Link from "next/link";
+import { LessonLayout } from "@/components/LessonLayout";
+import { APPRENDRE_NAV } from "@/lib/poker/learn";
+import { PokerTable } from "@/components/PokerTable";
 import type { Metadata } from "next";
 import { Crumbs, PageHero, Section, DealerNote } from "@/components/ui";
 
@@ -12,7 +15,7 @@ export const metadata: Metadata = {
 
 export default function BlindesPage() {
   return (
-    <div className="wrap">
+    <LessonLayout sidebarTitle="Apprendre" indexHref="/apprendre" items={APPRENDRE_NAV}>
       <Crumbs
         items={[
           { label: "Accueil", href: "/" },
@@ -50,6 +53,18 @@ export default function BlindesPage() {
             relancer, ou se coucher.
           </p>
         </div>
+        <PokerTable
+          center="Blindes 1 € / 2 €"
+          caption="Le bouton (D) donne. À sa gauche, la small blind pose 1 €, puis la big blind pose 2 €. Les autres doivent au moins suivre 2 € pour entrer dans le coup."
+          seats={[
+            { label: "BTN", note: "Bouton", tone: "gold", dealer: true },
+            { label: "SB", note: "Small blind · 1 €", tone: "blue" },
+            { label: "BB", note: "Big blind · 2 €", tone: "blue" },
+            { label: "UTG", note: "Parle en 1er" },
+            { label: "MP", note: "Milieu" },
+            { label: "CO", note: "Cutoff" },
+          ]}
+        />
       </Section>
 
       <Section kicker="Pour accélérer le jeu" title="L'ante">
@@ -85,6 +100,6 @@ export default function BlindesPage() {
           <Link href="/apprendre/deroulement-dune-main" className="link">le déroulement complet d&apos;une main →</Link>
         </p>
       </div>
-    </div>
+    </LessonLayout>
   );
 }

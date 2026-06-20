@@ -55,3 +55,9 @@ export const LESSONS: Lesson[] = [
 export function getLesson(slug: string) {
   return LESSONS.find((l) => l.slug === slug);
 }
+
+/** Liste pour la navigation laterale des lecons "Apprendre" (parcours + lecons). */
+export const APPRENDRE_NAV: { label: string; href: string }[] = [
+  { label: "Parcours débutant", href: "/apprendre/parcours-debutant" },
+  ...LESSONS.map((l) => ({ label: l.title, href: `/apprendre/${l.slug}` })),
+];

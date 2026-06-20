@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { LessonLayout } from "@/components/LessonLayout";
 import { MODULES, getModule } from "@/lib/poker/academy";
 import { Crumbs, Section, DealerNote, JsonLd } from "@/components/ui";
 
@@ -50,7 +51,7 @@ export default async function ModulePage({
   };
 
   return (
-    <div className="wrap">
+    <LessonLayout sidebarTitle="Académie Croupier" indexHref="/academie-croupier" items={MODULES.map((x) => ({ label: `${x.n}. ${x.title}`, href: `/academie-croupier/${x.slug}` }))}>
       <JsonLd data={learnLd} />
       <Crumbs
         items={[
@@ -136,6 +137,6 @@ export default async function ModulePage({
           <Link href="/academie-croupier" className="btn btn-gold">Retour au programme →</Link>
         )}
       </nav>
-    </div>
+    </LessonLayout>
   );
 }

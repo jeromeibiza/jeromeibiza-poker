@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { LessonLayout } from "@/components/LessonLayout";
 import { ARTICLES, getArticle } from "@/lib/poker/online";
 import { Crumbs, Section, DealerNote, JsonLd } from "@/components/ui";
 
@@ -48,7 +49,7 @@ export default async function ArticlePage({
   };
 
   return (
-    <div className="wrap">
+    <LessonLayout sidebarTitle="Poker en ligne" indexHref="/poker-en-ligne" items={ARTICLES.map((x) => ({ label: x.short, href: `/poker-en-ligne/${x.slug}` }))}>
       <JsonLd data={ld} />
       <Crumbs
         items={[
@@ -122,6 +123,6 @@ export default async function ArticlePage({
           <Link href="/poker-en-ligne" className="btn btn-gold">Retour au guide →</Link>
         )}
       </nav>
-    </div>
+    </LessonLayout>
   );
 }

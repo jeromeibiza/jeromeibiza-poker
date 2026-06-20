@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { LessonLayout } from "@/components/LessonLayout";
 import { LESSONS, getLesson, LEVEL_LABEL } from "@/lib/poker/strategy";
 import { Crumbs, Section, DealerNote, LevelPill, JsonLd } from "@/components/ui";
 
@@ -50,7 +51,7 @@ export default async function LessonPage({
   };
 
   return (
-    <div className="wrap">
+    <LessonLayout sidebarTitle="Stratégie" indexHref="/strategie" items={LESSONS.map((x) => ({ label: x.short, href: `/strategie/${x.slug}` }))}>
       <JsonLd data={learnLd} />
       <Crumbs
         items={[
@@ -117,6 +118,6 @@ export default async function LessonPage({
           <Link href="/strategie" className="btn btn-gold">Retour à la stratégie →</Link>
         )}
       </nav>
-    </div>
+    </LessonLayout>
   );
 }
