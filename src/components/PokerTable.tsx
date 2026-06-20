@@ -9,6 +9,10 @@ export type TableSeat = {
   tone?: "gold" | "blue" | "muted";
   /** Ce siège a le bouton donneur (le jeton "D" s'affiche sur le feutre devant lui). */
   dealer?: boolean;
+  /** Montant misé par ce siège, affiché en jeton devant lui (ex. "9 BB"). */
+  bet?: string;
+  /** Cartes du joueur (le héros), affichées devant son siège. */
+  cards?: [string, string];
 };
 
 /** Position d'un élément réparti autour de la table (en pourcentage). */
@@ -64,28 +68,64 @@ export const TABLE_FULL: TableSeat[] = [
   { label: "CO" },
 ];
 
+const SUIT: Record<string, string> = { s: "♠", h: "♥", d: "♦", c: "♣" };
+
+/** Mini carte à jouer (board ou main du héros). Code type "As", "Kh", "Td", "2c". */
+function MiniCard({ c }: { c: string }) {
+  const suit = c.slice(-1).toLowerCase();
+  const rank = c.slice(0, -1).replace(/^t$/i, "10");
+  const red = suit === "h" || suit === "d";
+  return (
+    <span className="ptable-card" style={{ color: red ? "#cc2f44" : "#15110b" }}>
+      <span className="ptable-card-r">{rank}</span>
+      <span className="ptable-card-s">{SUIT[suit] ?? ""}</span>
+    </span>
+  );
+}
+
 /**
  * Illustration schématique d'une table de poker vue de dessus, posée sur un
- * fond uni : feutre ovale, sièges des joueurs autour, et le jeton donneur "D"
- * directement sur le tapis devant le siège du bouton. Purement pédagogique.
+ * fond uni : feutre ovale, sièges des joueurs autour, jeton donneur "D" sur le
+ * tapis, et de quoi représenter une vraie situation (mises en jetons, pot,
+ * cartes communes, main du héros).
  */
 export function PokerTable({
   seats,
   center,
   caption,
+  pot,
+  board,
 }: {
   seats: TableSeat[];
   center?: ReactNode;
   caption?: string;
+  pot?: string;
+  board?: string[];
 }) {
   const n = seats.length;
   const dealerIdx = seats.findIndex((s) => s.dealer);
-  const btn = dealerIdx >= 0 ? seatPos(dealerIdx, n, 24, 23) : null;
+  const btn = dealerIdx >= 0 ? seatPos(dealerIdx, n, 21, 20) : null;
+  const hasScene = (board && board.length > 0) || !!pot;
 
   return (
     <figure className="ptable">
       <div className="ptable-area">
-        <div className="ptable-felt">{center && <div className="ptable-center">{center}</div>}</div>
+        <div className="ptable-felt">
+          {hasScene ? (
+            <div className="ptable-scene">
+              {board && board.length > 0 && (
+                <div className="ptable-board">
+                  {board.map((c, k) => (
+                    <MiniCard key={k} c={c} />
+                  ))}
+                </div>
+              )}
+              {pot && <div className="ptable-pot">Pot {pot}</div>}
+            </div>
+          ) : (
+            center && <div className="ptable-center">{center}</div>
+          )}
+        </div>
 
         {btn && (
           <span
@@ -97,6 +137,38 @@ export function PokerTable({
           </span>
         )}
 
+        {/* Mises (jetons devant les sièges) */}
+        {seats.map((s, i) => {
+          if (!s.bet) return null;
+          const p = seatPos(i, n, 29, 28);
+          return (
+            <span
+              key={`bet-${i}`}
+              className={`ptable-bet tone-${s.tone ?? "muted"}`}
+              style={{ left: `${p.left}%`, top: `${p.top}%` }}
+            >
+              {s.bet}
+            </span>
+          );
+        })}
+
+        {/* Cartes du héros */}
+        {seats.map((s, i) => {
+          if (!s.cards) return null;
+          const p = seatPos(i, n, 35, 34);
+          return (
+            <span
+              key={`cards-${i}`}
+              className="ptable-hero-cards"
+              style={{ left: `${p.left}%`, top: `${p.top}%` }}
+            >
+              <MiniCard c={s.cards[0]} />
+              <MiniCard c={s.cards[1]} />
+            </span>
+          );
+        })}
+
+        {/* Sièges */}
         {seats.map((s, i) => {
           const p = seatPos(i, n);
           return (

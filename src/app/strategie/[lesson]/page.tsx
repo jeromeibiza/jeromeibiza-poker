@@ -2,28 +2,145 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { LessonLayout } from "@/components/LessonLayout";
-import { PokerTable, TABLE_6MAX } from "@/components/PokerTable";
+import { PokerTable, type TableSeat } from "@/components/PokerTable";
 import { LESSONS, getLesson, LEVEL_LABEL } from "@/lib/poker/strategy";
 import { Crumbs, Section, DealerNote, LevelPill, JsonLd } from "@/components/ui";
 
 type Params = { lesson: string };
 
-const STRAT_CENTER: Record<string, string> = {
-  "mains-de-depart": "Mains de départ",
-  "les-erreurs-du-debutant": "Éviter les pièges",
-  "jouer-en-position": "La position",
-  "gestion-de-bankroll": "Bankroll",
-  "penser-en-ranges": "Ranges",
-  "le-c-bet": "C-bet",
-  "le-3-bet": "3-bet",
-  "le-squeeze": "Squeeze",
-  "cotes-et-pot-odds": "Cotes & pot odds",
-  "le-semi-bluff": "Semi-bluff",
-  "gto-explique": "GTO",
-  "jeu-exploitant": "Exploiter",
-  "les-blockers": "Blockers",
-  "la-mdf": "MDF",
-  "equilibrage-des-ranges": "Équilibre",
+type Scene = { seats: TableSeat[]; pot?: string; board?: string[]; caption?: string };
+
+/**
+ * Une scène de jeu illustrée par cours (mises, pot, board, main du héros).
+ * Les cours abstraits (ranges, GTO, exploitant, équilibrage, bankroll) n'ont
+ * pas de table : une situation chiffrée n'y apporterait rien.
+ */
+const SCENES: Record<string, Scene> = {
+  "mains-de-depart": {
+    seats: [
+      { label: "BTN", note: "Bouton", dealer: true },
+      { label: "SB", note: "Small blind", tone: "blue" },
+      { label: "BB", note: "Big blind", tone: "blue" },
+      { label: "UTG", note: "Vous", tone: "gold", cards: ["As", "Ks"], bet: "2,5 BB" },
+      { label: "MP" },
+      { label: "CO" },
+    ],
+    pot: "4 BB",
+    caption: "En première position avec A-K, on ouvre. Avec une main faible, on se couche : tout part de ce choix.",
+  },
+  "les-erreurs-du-debutant": {
+    seats: [
+      { label: "BTN", note: "Bouton", dealer: true },
+      { label: "SB", tone: "blue" },
+      { label: "BB", tone: "blue" },
+      { label: "UTG", note: "Limpe", bet: "1 BB" },
+      { label: "MP", note: "Vous", tone: "gold", bet: "1 BB" },
+      { label: "CO", note: "Limpe", bet: "1 BB" },
+    ],
+    pot: "4,5 BB",
+    caption: "Limper (juste suivre la grosse blinde) est la fuite numéro un : on entre sans initiative dans le coup.",
+  },
+  "jouer-en-position": {
+    seats: [
+      { label: "BTN", note: "Vous, en position", tone: "gold", dealer: true },
+      { label: "SB", tone: "blue" },
+      { label: "BB", tone: "blue" },
+      { label: "UTG", note: "Ouvre", bet: "2,5 BB" },
+      { label: "MP" },
+      { label: "CO" },
+    ],
+    pot: "5 BB",
+    caption: "Vous suivez au bouton : vous agirez en dernier à chaque tour, l'avantage le plus rentable du poker.",
+  },
+  "le-c-bet": {
+    seats: [
+      { label: "BTN", note: "Vous", tone: "gold", dealer: true, bet: "3 BB" },
+      { label: "SB", tone: "blue" },
+      { label: "BB", note: "A checké", tone: "blue" },
+      { label: "UTG" },
+      { label: "MP" },
+      { label: "CO" },
+    ],
+    board: ["Qs", "7d", "2c"],
+    pot: "6 BB",
+    caption: "Vous avez relancé préflop. Sur ce flop sec, vous continuez l'agression : c'est le continuation bet.",
+  },
+  "le-3-bet": {
+    seats: [
+      { label: "BTN", note: "Vous, 3-bet", tone: "gold", dealer: true, bet: "9 BB" },
+      { label: "SB", tone: "blue" },
+      { label: "BB", tone: "blue" },
+      { label: "UTG", note: "Ouvre", bet: "2,5 BB" },
+      { label: "MP" },
+      { label: "CO" },
+    ],
+    pot: "13 BB",
+    caption: "UTG ouvre à 2,5 BB, vous re-relancez à 9 BB au bouton : un 3-bet, pour prendre l'initiative.",
+  },
+  "le-squeeze": {
+    seats: [
+      { label: "BTN", note: "Suit", dealer: true, bet: "2,5 BB" },
+      { label: "SB", note: "Vous, squeeze", tone: "gold", bet: "12 BB" },
+      { label: "BB", tone: "blue" },
+      { label: "UTG", note: "Ouvre", bet: "2,5 BB" },
+      { label: "MP" },
+      { label: "CO" },
+    ],
+    pot: "18 BB",
+    caption: "UTG ouvre, le bouton suit. Depuis la small blind, vous relancez gros : c'est le squeeze.",
+  },
+  "cotes-et-pot-odds": {
+    seats: [
+      { label: "BTN", note: "Mise", dealer: true, bet: "5 BB" },
+      { label: "SB" },
+      { label: "BB", note: "Vous, tirage", tone: "gold", cards: ["Th", "9h"] },
+      { label: "UTG" },
+      { label: "MP" },
+      { label: "CO" },
+    ],
+    board: ["Ah", "Kh", "7s"],
+    pot: "10 BB",
+    caption: "Pot de 10 BB, vous devez payer 5 BB pour un tirage couleur. La cote du pot justifie-t-elle le call ?",
+  },
+  "le-semi-bluff": {
+    seats: [
+      { label: "BTN", note: "Vous", tone: "gold", dealer: true, bet: "7 BB", cards: ["Qs", "9s"] },
+      { label: "SB" },
+      { label: "BB", note: "A checké", tone: "blue" },
+      { label: "UTG" },
+      { label: "MP" },
+      { label: "CO" },
+    ],
+    board: ["Js", "Ts", "4d"],
+    pot: "9 BB",
+    caption: "Pas encore de main faite, mais un gros tirage. Vous misez : vous gagnez s'il se couche, ou si vous touchez.",
+  },
+  "les-blockers": {
+    seats: [
+      { label: "BTN", note: "Vous", tone: "gold", dealer: true, cards: ["As", "Qc"], bet: "12 BB" },
+      { label: "SB" },
+      { label: "BB", note: "A checké", tone: "blue" },
+      { label: "UTG" },
+      { label: "MP" },
+      { label: "CO" },
+    ],
+    board: ["Ah", "Qd", "5c", "2s"],
+    pot: "16 BB",
+    caption: "Vous tenez l'As : l'adversaire a beaucoup moins de mains fortes possibles, votre bluff devient crédible.",
+  },
+  "la-mdf": {
+    seats: [
+      { label: "BTN", note: "Mise le pot", dealer: true, bet: "10 BB" },
+      { label: "SB" },
+      { label: "BB", note: "Vous, défendre ?", tone: "gold" },
+      { label: "UTG" },
+      { label: "MP" },
+      { label: "CO" },
+    ],
+    board: ["Kd", "8s", "3c", "7h"],
+    pot: "10 BB",
+    caption: "Face à une mise de la taille du pot, défendez environ la moitié de vos mains pour ne pas vous faire bluffer.",
+  },
 };
 
 export function generateStaticParams(): Params[] {
@@ -90,11 +207,7 @@ export default async function LessonPage({
         </p>
       </div>
 
-      <PokerTable
-        seats={TABLE_6MAX}
-        center={STRAT_CENTER[l.slug] ?? "À la table"}
-        caption={l.summary.split(". ")[0] + "."}
-      />
+      {SCENES[l.slug] && <PokerTable {...SCENES[l.slug]} />}
 
       {l.sections.map((s) => (
         <Section key={s.heading} kicker="Cours" title={s.heading}>
