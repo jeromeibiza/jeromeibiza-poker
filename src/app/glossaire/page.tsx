@@ -6,7 +6,7 @@ import { Crumbs, PageHero, JsonLd } from "@/components/ui";
 export const metadata: Metadata = {
   title: "Glossaire poker complet : tous les termes de A à Z, expliqués",
   description:
-    "Le dictionnaire du poker : plus de 70 termes (et en croissance) définis simplement, " +
+    "Le dictionnaire du poker : plus de 170 termes définis simplement, " +
     "avec exemples. Bluff, range, ICM, pot odds, cbet, squeeze... cherchez, trouvez, comprenez.",
   alternates: { canonical: "/glossaire" },
 };
