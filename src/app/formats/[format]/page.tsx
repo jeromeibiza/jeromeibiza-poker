@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { LessonLayout } from "@/components/LessonLayout";
+import { PokerTable, TABLE_6MAX } from "@/components/PokerTable";
 import { FORMATS, getFormat } from "@/lib/poker/formats";
 import { Crumbs, Section, DealerNote, JsonLd } from "@/components/ui";
 
@@ -71,6 +72,8 @@ export default async function FormatPage({
           {f.summary}
         </p>
       </div>
+
+      <PokerTable seats={TABLE_6MAX} center={f.name} caption={f.tagline} />
 
       <Section kicker="Pour qui" title="À qui ce format convient">
         <div className="card">

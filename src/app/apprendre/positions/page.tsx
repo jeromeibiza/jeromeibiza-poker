@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { LessonLayout } from "@/components/LessonLayout";
 import { APPRENDRE_NAV } from "@/lib/poker/learn";
-import { PokerTable } from "@/components/PokerTable";
+import { PositionsExplorer } from "@/components/PositionsExplorer";
 import type { Metadata } from "next";
 import { Crumbs, PageHero, Section, DealerNote, JsonLd } from "@/components/ui";
 
@@ -79,20 +79,11 @@ export default function PositionsPage() {
       </Section>
 
       <Section kicker="Vue de la table" title="Où s'assoit chaque position">
-        <PokerTable
-          center="L'action tourne"
-          caption="Le bouton (D) tourne d'un siège à chaque main. À sa gauche, la small blind puis la big blind. L'action préflop commence à gauche de la big blind, en UTG."
-          seats={[
-            { label: "BTN", note: "Bouton", tone: "gold", dealer: true },
-            { label: "SB", note: "Small blind", tone: "blue" },
-            { label: "BB", note: "Big blind", tone: "blue" },
-            { label: "UTG", note: "Under the gun" },
-            { label: "UTG+1", note: "Early" },
-            { label: "MP", note: "Milieu" },
-            { label: "HJ", note: "Hijack" },
-            { label: "CO", note: "Cutoff" },
-          ]}
-        />
+        <p style={{ color: "var(--muted)", marginTop: -4, marginBottom: 14, maxWidth: 620 }}>
+          Clique sur n&apos;importe quelle position autour de la table pour voir son rôle. Le bouton
+          (D), posé sur le tapis, tourne d&apos;un siège à chaque main.
+        </p>
+        <PositionsExplorer positions={POSITIONS} />
       </Section>
 
       <Section kicker="Dans l'ordre du jeu" title="Les 8 positions">

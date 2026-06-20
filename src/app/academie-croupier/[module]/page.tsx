@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { LessonLayout } from "@/components/LessonLayout";
+import { PokerTable, TABLE_DEALER } from "@/components/PokerTable";
 import { MODULES, getModule } from "@/lib/poker/academy";
 import { Crumbs, Section, DealerNote, JsonLd } from "@/components/ui";
 
@@ -72,6 +73,8 @@ export default async function ModulePage({
         </h1>
         <p style={{ color: "var(--muted)", fontSize: 18, marginTop: 14, maxWidth: 700 }}>{m.summary}</p>
       </div>
+
+      <PokerTable seats={TABLE_DEALER} center={`Module ${m.n}`} caption={m.summary.split(". ")[0] + "."} />
 
       <Section kicker="Ce que tu vas savoir faire" title="Objectifs du module">
         <ul className="lb check">

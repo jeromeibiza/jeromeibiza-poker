@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { LessonLayout } from "@/components/LessonLayout";
+import { PokerTable, TABLE_6MAX } from "@/components/PokerTable";
 import { ARTICLES, getArticle } from "@/lib/poker/online";
 import { Crumbs, Section, DealerNote, JsonLd } from "@/components/ui";
 
@@ -68,6 +69,8 @@ export default async function ArticlePage({
           {a.summary}
         </p>
       </div>
+
+      <PokerTable seats={TABLE_6MAX} center={a.short} caption={a.summary.split(". ")[0] + "."} />
 
       {a.sections.map((s) => (
         <Section key={s.heading} kicker="Le guide" title={s.heading}>

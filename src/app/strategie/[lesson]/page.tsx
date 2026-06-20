@@ -2,10 +2,29 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { LessonLayout } from "@/components/LessonLayout";
+import { PokerTable, TABLE_6MAX } from "@/components/PokerTable";
 import { LESSONS, getLesson, LEVEL_LABEL } from "@/lib/poker/strategy";
 import { Crumbs, Section, DealerNote, LevelPill, JsonLd } from "@/components/ui";
 
 type Params = { lesson: string };
+
+const STRAT_CENTER: Record<string, string> = {
+  "mains-de-depart": "Mains de départ",
+  "les-erreurs-du-debutant": "Éviter les pièges",
+  "jouer-en-position": "La position",
+  "gestion-de-bankroll": "Bankroll",
+  "penser-en-ranges": "Ranges",
+  "le-c-bet": "C-bet",
+  "le-3-bet": "3-bet",
+  "le-squeeze": "Squeeze",
+  "cotes-et-pot-odds": "Cotes & pot odds",
+  "le-semi-bluff": "Semi-bluff",
+  "gto-explique": "GTO",
+  "jeu-exploitant": "Exploiter",
+  "les-blockers": "Blockers",
+  "la-mdf": "MDF",
+  "equilibrage-des-ranges": "Équilibre",
+};
 
 export function generateStaticParams(): Params[] {
   return LESSONS.map((l) => ({ lesson: l.slug }));
@@ -70,6 +89,12 @@ export default async function LessonPage({
           {l.summary}
         </p>
       </div>
+
+      <PokerTable
+        seats={TABLE_6MAX}
+        center={STRAT_CENTER[l.slug] ?? "À la table"}
+        caption={l.summary.split(". ")[0] + "."}
+      />
 
       {l.sections.map((s) => (
         <Section key={s.heading} kicker="Cours" title={s.heading}>
