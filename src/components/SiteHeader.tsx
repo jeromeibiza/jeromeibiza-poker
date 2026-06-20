@@ -69,12 +69,13 @@ export function SiteHeader() {
           ))}
         </nav>
 
-        <div style={{ marginLeft: "auto", display: "flex", alignItems: "center", gap: 10 }}>
+        <div style={{ marginLeft: "auto", display: "flex", alignItems: "center", gap: 10, position: "relative" }}>
           <Link href="/academie-croupier" className="btn btn-gold cta-desktop" style={{ fontSize: 12, padding: "10px 16px" }}>
             🎓 Formation croupier
           </Link>
           <button
-            aria-label="Ouvrir le menu"
+            aria-label="Menu"
+            aria-haspopup="true"
             aria-expanded={open}
             onClick={() => setOpen((v) => !v)}
             className="menu-btn"
@@ -94,47 +95,66 @@ export function SiteHeader() {
           >
             {open ? "✕" : "☰"}
           </button>
+
+          {open && (
+            <>
+              {/* Cliquer en dehors ferme le menu */}
+              <div
+                aria-hidden
+                onClick={() => setOpen(false)}
+                style={{ position: "fixed", inset: 0, zIndex: 55 }}
+              />
+              <nav className="menu-dropdown" aria-label="Menu du site">
+                {NAV.map((s) => (
+                  <Link key={s.href} href={s.href} onClick={() => setOpen(false)}>
+                    <span aria-hidden style={{ fontSize: 18, width: 22, textAlign: "center" }}>{s.emoji}</span>
+                    <span className="label" style={{ fontSize: 13 }}>{s.label}</span>
+                  </Link>
+                ))}
+                <Link href="/a-propos" onClick={() => setOpen(false)}>
+                  <span aria-hidden style={{ fontSize: 18, width: 22, textAlign: "center" }}>👤</span>
+                  <span className="label" style={{ fontSize: 13 }}>À propos</span>
+                </Link>
+              </nav>
+            </>
+          )}
         </div>
       </div>
 
-      {open && (
-        <div className="wrap" style={{ paddingBottom: 18 }}>
-          <div className="grid-cards" style={{ marginTop: 4 }}>
-            {NAV.map((s) => (
-              <Link
-                key={s.href}
-                href={s.href}
-                onClick={() => setOpen(false)}
-                className="card card-hover"
-                style={{ padding: 16 }}
-              >
-                <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-                  <span style={{ fontSize: 20 }}>{s.emoji}</span>
-                  <span className="display" style={{ fontSize: 16 }}>{s.label}</span>
-                </div>
-                <p style={{ margin: "8px 0 0", color: "var(--muted)", fontSize: 14 }}>{s.desc}</p>
-              </Link>
-            ))}
-            <Link
-              href="/a-propos"
-              onClick={() => setOpen(false)}
-              className="card card-hover"
-              style={{ padding: 16 }}
-            >
-              <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-                <span style={{ fontSize: 20 }}>👤</span>
-                <span className="display" style={{ fontSize: 16 }}>À propos</span>
-              </div>
-              <p style={{ margin: "8px 0 0", color: "var(--muted)", fontSize: 14 }}>
-                Qui est Jérôme Ibiza, le croupier derrière le hub.
-              </p>
-            </Link>
-          </div>
-        </div>
-      )}
-
       <style>{`
         .nav-link:hover { color: var(--fg); background: rgba(255,255,255,0.04); }
+        .menu-dropdown {
+          position: absolute;
+          top: calc(100% + 12px);
+          right: 0;
+          width: min(280px, calc(100vw - 24px));
+          background: linear-gradient(180deg, var(--surface), var(--surface-2));
+          border: 1px solid var(--line);
+          border-radius: 16px;
+          box-shadow: 0 22px 55px -18px rgba(0,0,0,0.85);
+          padding: 8px;
+          z-index: 60;
+          max-height: calc(100vh - 88px);
+          overflow-y: auto;
+          display: grid;
+          gap: 2px;
+          animation: menuIn 0.14s ease;
+        }
+        @keyframes menuIn {
+          from { opacity: 0; transform: translateY(-6px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+        .menu-dropdown a {
+          display: flex;
+          align-items: center;
+          gap: 12px;
+          padding: 11px 12px;
+          border-radius: 10px;
+          color: var(--fg);
+        }
+        .menu-dropdown a .label { color: var(--fg); transition: color 0.12s ease; }
+        .menu-dropdown a:hover { background: rgba(255,255,255,0.06); }
+        .menu-dropdown a:hover .label { color: var(--gold-soft); }
         @media (max-width: 900px) {
           .primary-nav { display: none !important; }
           .cta-desktop { display: none !important; }
