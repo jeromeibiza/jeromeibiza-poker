@@ -6,7 +6,7 @@ import { Crumbs, PageHero, JsonLd } from "@/components/ui";
 export const metadata: Metadata = {
   title: "Glossaire poker complet : tous les termes de A à Z, expliqués",
   description:
-    "Le dictionnaire du poker : plus de 240 termes définis simplement, " +
+    "Le dictionnaire du poker : plus de 300 termes définis simplement, " +
     "avec exemples. Bluff, range, ICM, pot odds, cbet, squeeze... cherchez, trouvez, comprenez.",
   alternates: { canonical: "/glossaire" },
 };
@@ -37,10 +37,11 @@ export default function GlossairePage() {
       </div>
 
       <div className="card" style={{ marginTop: 32, borderColor: "rgba(232,176,75,0.3)" }}>
-        <div className="label" style={{ color: "var(--gold)", fontSize: 12 }}>En construction</div>
+        <div className="label" style={{ color: "var(--gold)", fontSize: 12 }}>Plus de 300 termes</div>
         <p style={{ marginTop: 8, color: "var(--muted)" }}>
-          Ce glossaire s&apos;enrichit en continu vers l&apos;objectif de 300+ termes. Un mot manque ?
-          Il sera ajouté dans une prochaine mise à jour.
+          Du B-A-BA aux concepts GTO, des surnoms de mains au vocabulaire du croupier : le dico est
+          taillé pour répondre à n&apos;importe quel doute en pleine partie. Un mot te manque encore ?
+          Il sera ajouté avec plaisir.
         </p>
       </div>
     </div>
