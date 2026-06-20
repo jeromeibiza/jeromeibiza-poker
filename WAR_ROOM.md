@@ -4,9 +4,19 @@
 > Aucun lien croise pour l'instant. Repo dedie, futur Vercel dedie
 > (futur `poker.jeromeibiza.com`). On ne touche JAMAIS au site live.
 
-Derniere mise a jour : 2026-06-19 — V1 + parcours interactif + passe qualite FR.
+Derniere mise a jour : 2026-06-20 — gros lot contenu (nuit) + audit multi-experts.
 
 ---
+
+## ✅ Fait (nuit du 2026-06-20 — contenu + audit)
+
+- [x] **Identite visuelle** : palette repassee 100% bleu/or/noir (zero vert), banniere croupier (image dealer) sur l'Academie, logo en or, menu burger transforme en vrai menu deroulant flottant.
+- [x] **Glossaire 300 termes** (objectif atteint) : accents OK, zero marqueur "contenu IA".
+- [x] **Strategie** : 15 cours reels (debutant/intermediaire/avance) + route dynamique `/strategie/[lecon]` + index relie. Fini les "Cours a venir".
+- [x] **Formats** : 8 fiches detaillees + route `/formats/[format]` + comparatif relie.
+- [x] **Poker en ligne** : 7 articles pedago (neutres, sans promo room) + route `/poker-en-ligne/[article]`.
+- [x] Build OK : **63 pages** statiques, 0 erreur.
+- [x] **Audit complet multi-experts** (7 experts + challenge croise + 3 veilles concurrentielles, 18 agents) : voir `AUDIT.md`. Note globale 6,8/10. 3 sites gagnants identifies : Winamax Ecole de poker, Cerus Casino Academy, PokerCoaching.com.
 
 ## ✅ Fait (V1.1 — ajouts du 2026-06-19 soir)
 
@@ -36,12 +46,20 @@ Derniere mise a jour : 2026-06-19 — V1 + parcours interactif + passe qualite F
 
 ## 🔜 Prochaines etapes (par priorite)
 
+### Lot 0 — Quick wins issus de l'audit (a faire en priorite, cf. AUDIT.md)
+- [ ] Passer Videos + Actualites en `noindex` tant que vides + retirer "certifie" la ou le certificat n'existe pas (~30 min)
+- [ ] **Rendre Jerome prouvable** : reecrire `/a-propos` avec PSPC 2023, enrichir JSON-LD Person, PSPC dans hero + footer (~2-3 h)
+- [ ] Capture email (newsletter + lead magnet) sur tout le site (~3-4 h)
+- [ ] Refonte home : barre d'entree (recherche + 3 raccourcis) au lieu d'un plein ecran de branding (~3-4 h)
+- [ ] Cluster croupier = tete de pont SEO : finir le module 10 + pages d'intention ("devenir croupier de poker", "salaire croupier"...) (~1 semaine)
+- [ ] Trancher : `jeromeibiza.com/poker` (rewrite) vs sous-domaine, AVANT de brancher le DNS
+
 ### Lot 2 — Contenu (le nerf de la guerre SEO)
-- [ ] Glossaire : passer de ~75 a 300+ termes (~3-4 h)
-- [ ] Academie : rediger les modules 2 a 9 en entier (texte + schemas) (~1 j)
-- [ ] Strategie : transformer chaque theme en cours complet (~2-3 j etale)
-- [ ] Formats : une page detaillee par format (~1 j)
-- [ ] Poker en ligne : rediger les 7 articles du guide (~1 j)
+- [x] Glossaire : passer de ~75 a 300 termes ✅
+- [x] Academie : modules 1 a 9 rediges ✅ ; reste le module 10 (examen + vrai certificat partageable)
+- [x] Strategie : transformer chaque theme en cours complet ✅ (15 cours)
+- [x] Formats : une page detaillee par format ✅ (8 fiches)
+- [x] Poker en ligne : rediger les 7 articles du guide ✅
 
 ### Lot 3 — Outils
 - [ ] Calculateurs bankroll / ICM / rake / ROI (~1 j)
