@@ -4,23 +4,33 @@ import { useEffect, useState } from "react";
 import { STEPS, FINAL_QUIZ, FINAL_PASS, type QuizQuestion } from "@/lib/poker/parcours";
 
 const STORE_KEY = "ph_parcours_debutant_v1";
+const XP_REWARD = 200;
+const BADGE_NAME = "Diplômé débutant";
 
-type Saved = { validated: string[]; examPassed: boolean; examScore: number | null; name: string };
+type Saved = {
+  validated: string[];
+  examPassed: boolean;
+  examScore: number | null;
+  name: string;
+  badgeCollected: boolean;
+};
 
 function load(): Saved {
-  if (typeof window === "undefined") return { validated: [], examPassed: false, examScore: null, name: "" };
+  const empty: Saved = { validated: [], examPassed: false, examScore: null, name: "", badgeCollected: false };
+  if (typeof window === "undefined") return empty;
   try {
     const raw = window.localStorage.getItem(STORE_KEY);
-    if (!raw) return { validated: [], examPassed: false, examScore: null, name: "" };
+    if (!raw) return empty;
     const p = JSON.parse(raw);
     return {
       validated: Array.isArray(p.validated) ? p.validated : [],
       examPassed: !!p.examPassed,
       examScore: typeof p.examScore === "number" ? p.examScore : null,
       name: typeof p.name === "string" ? p.name : "",
+      badgeCollected: !!p.badgeCollected,
     };
   } catch {
-    return { validated: [], examPassed: false, examScore: null, name: "" };
+    return empty;
   }
 }
 
@@ -30,6 +40,8 @@ export function ParcoursDebutant() {
   const [examPassed, setExamPassed] = useState(false);
   const [examScore, setExamScore] = useState<number | null>(null);
   const [name, setName] = useState("");
+  const [badgeCollected, setBadgeCollected] = useState(false);
+  const [showReward, setShowReward] = useState(false);
   const [activeId, setActiveId] = useState<string>(STEPS[0].id);
 
   // Chargement depuis localStorage après le montage (évite tout mismatch d'hydratation).
@@ -39,6 +51,7 @@ export function ParcoursDebutant() {
     setExamPassed(s.examPassed);
     setExamScore(s.examScore);
     setName(s.name);
+    setBadgeCollected(s.badgeCollected);
     const firstUnvalidated = STEPS.find((st) => !s.validated.includes(st.id));
     setActiveId(firstUnvalidated ? firstUnvalidated.id : "examen");
     setMounted(true);
@@ -50,12 +63,12 @@ export function ParcoursDebutant() {
     try {
       window.localStorage.setItem(
         STORE_KEY,
-        JSON.stringify({ validated, examPassed, examScore, name }),
+        JSON.stringify({ validated, examPassed, examScore, name, badgeCollected }),
       );
     } catch {
       /* stockage indisponible : on ignore */
     }
-  }, [mounted, validated, examPassed, examScore, name]);
+  }, [mounted, validated, examPassed, examScore, name, badgeCollected]);
 
   const allValidated = validated.length === STEPS.length;
   const progress = Math.round((validated.length / STEPS.length) * 100);
@@ -71,6 +84,8 @@ export function ParcoursDebutant() {
     setValidated([]);
     setExamPassed(false);
     setExamScore(null);
+    setBadgeCollected(false);
+    setShowReward(false);
     setActiveId(STEPS[0].id);
     try {
       window.localStorage.removeItem(STORE_KEY);
@@ -134,9 +149,11 @@ export function ParcoursDebutant() {
           score={examScore}
           name={name}
           onName={setName}
+          onShowReward={() => setShowReward(true)}
           onResult={(score, passed) => {
             setExamScore(score);
             setExamPassed(passed);
+            if (passed && !badgeCollected) setShowReward(true);
           }}
         />
       </div>
@@ -149,6 +166,16 @@ export function ParcoursDebutant() {
           </button>
         </div>
       )}
+
+      <RewardModal
+        open={showReward}
+        name={name}
+        collected={badgeCollected}
+        onClose={() => {
+          setBadgeCollected(true);
+          setShowReward(false);
+        }}
+      />
     </div>
   );
 }
@@ -257,6 +284,7 @@ function ExamCard({
   score,
   name,
   onName,
+  onShowReward,
   onResult,
 }: {
   unlocked: boolean;
@@ -264,6 +292,7 @@ function ExamCard({
   score: number | null;
   name: string;
   onName: (n: string) => void;
+  onShowReward: () => void;
   onResult: (score: number, passed: boolean) => void;
 }) {
   if (!unlocked && !passed) {
@@ -281,16 +310,20 @@ function ExamCard({
   if (passed) {
     return (
       <div className="felt" style={{ padding: "32px 24px", textAlign: "center" }}>
-        <div style={{ fontSize: 40 }}>🏅</div>
-        <div className="label" style={{ color: "#fbe8c2", fontSize: 12, marginTop: 8 }}>
-          Certificat, Bases du poker
+        <div className="medal" style={{ marginInline: "auto" }}>
+          <div className="medal-disc">♠</div>
+          <div className="medal-tag">{BADGE_NAME}</div>
         </div>
-        <div className="display" style={{ fontSize: 26, color: "#fff", marginTop: 6 }}>
+        <div className="display" style={{ fontSize: 26, color: "#fff", marginTop: 16 }}>
           Félicitations{name ? `, ${name}` : ""} !
         </div>
         <p style={{ color: "rgba(255,255,255,0.9)", fontSize: 16, marginTop: 10, maxWidth: 460, marginInline: "auto" }}>
           Tu maîtrises les bases du poker {score !== null && `(${score}/${FINAL_QUIZ.length} à l'examen)`}.
           Tu es prêt pour la stratégie, ou pour passer de l&apos;autre côté de la table.
+        </p>
+        <div className="reward-xp" style={{ marginTop: 12 }}>+{XP_REWARD} XP</div>
+        <p style={{ color: "rgba(255,255,255,0.65)", fontSize: 12, marginTop: 8 }}>
+          Badge et XP à créditer sur ton compte jeromeibiza.com, bientôt disponible.
         </p>
         <input
           value={name}
@@ -309,6 +342,15 @@ function ExamCard({
             textAlign: "center",
           }}
         />
+        <div style={{ marginTop: 16 }}>
+          <button
+            onClick={onShowReward}
+            className="btn btn-ghost"
+            style={{ fontSize: 12, borderColor: "rgba(255,255,255,0.3)", color: "#fff" }}
+          >
+            🏅 Revoir mon badge
+          </button>
+        </div>
       </div>
     );
   }
@@ -498,6 +540,47 @@ function QuizBlock({
           </button>
         </div>
       )}
+    </div>
+  );
+}
+
+/* ---------- Pop-up de récompense (fin d'examen) ---------- */
+
+function RewardModal({
+  open,
+  name,
+  collected,
+  onClose,
+}: {
+  open: boolean;
+  name: string;
+  collected: boolean;
+  onClose: () => void;
+}) {
+  if (!open) return null;
+  return (
+    <div className="reward-overlay" role="dialog" aria-modal="true" aria-label="Félicitations" onClick={onClose}>
+      <div className="reward-modal" onClick={(e) => e.stopPropagation()}>
+        <button className="reward-close" aria-label="Fermer" onClick={onClose}>✕</button>
+        <div className="medal" style={{ marginInline: "auto" }}>
+          <div className="medal-disc">♠</div>
+          <div className="medal-tag">{BADGE_NAME}</div>
+        </div>
+        <div className="label" style={{ color: "var(--gold)", fontSize: 12, marginTop: 16 }}>
+          Badge débloqué
+        </div>
+        <h2 className="display reward-title">Félicitations{name ? `, ${name}` : ""} !</h2>
+        <p style={{ color: "var(--muted)", fontSize: 15, marginTop: 10 }}>
+          Tu décroches le badge <strong>{BADGE_NAME}</strong>. Tu connais officiellement les bases du poker.
+        </p>
+        <div className="reward-xp">+{XP_REWARD} XP</div>
+        <p className="reward-note">
+          Ton badge et ton XP seront crédités sur ton compte jeromeibiza.com, bientôt disponible.
+        </p>
+        <button className="btn btn-gold" style={{ marginTop: 18 }} onClick={onClose}>
+          {collected ? "Continuer" : "Récupérer mon badge"}
+        </button>
+      </div>
     </div>
   );
 }
