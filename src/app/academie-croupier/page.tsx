@@ -111,7 +111,6 @@ export default function AcademiePage() {
                     <span className={`pill ${m.status === "complet" ? "pill-beginner" : ""}`}>
                       {m.status === "complet" ? "Disponible" : "Plan détaillé"}
                     </span>
-                    <span className="pill">{m.minutes} min</span>
                   </span>
                   <span style={{ display: "block", color: "var(--muted)", fontSize: 14, marginTop: 6 }}>
                     {m.summary}

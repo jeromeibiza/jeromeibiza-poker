@@ -64,7 +64,7 @@ export default function StrategiePage() {
                   <div className="display" style={{ fontSize: 16 }}>{l.short}</div>
                   <p style={{ color: "var(--muted)", fontSize: 14, marginTop: 8 }}>{l.summary.split(". ")[0]}.</p>
                   <div className="label" style={{ color: "var(--gold)", fontSize: 11, marginTop: 12 }}>
-                    Lire le cours · {l.minutes} min →
+                    Lire le cours →
                   </div>
                 </Link>
               ))}

@@ -76,7 +76,6 @@ export default function ApprendrePage() {
                 <span style={{ display: "flex", alignItems: "center", gap: 10, flexWrap: "wrap" }}>
                   <span className="display" style={{ fontSize: 19 }}>{l.title}</span>
                   <LevelPill level={l.level} />
-                  <span className="pill">{l.minutes} min</span>
                 </span>
                 <span style={{ display: "block", color: "var(--muted)", fontSize: 14, marginTop: 8 }}>
                   {l.desc}

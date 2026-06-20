@@ -40,7 +40,7 @@ export default function PokerEnLignePage() {
               <div className="display" style={{ fontSize: 16 }}>{a.short}</div>
               <p style={{ color: "var(--muted)", fontSize: 14, marginTop: 8 }}>{a.summary.split(". ")[0]}.</p>
               <div className="label" style={{ color: "var(--gold)", fontSize: 11, marginTop: 12 }}>
-                Lire · {a.minutes} min →
+                Lire l&apos;article →
               </div>
             </Link>
           ))}

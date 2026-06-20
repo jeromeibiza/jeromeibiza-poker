@@ -213,7 +213,6 @@ function StepCard({
           <span style={{ display: "flex", gap: 10, alignItems: "center", flexWrap: "wrap" }}>
             <span style={{ fontSize: 18 }}>{step.emoji}</span>
             <span className="display" style={{ fontSize: 17 }}>{step.title}</span>
-            <span className="pill">{step.minutes} min</span>
             {isValidated && <span className="pill pill-beginner">Validée</span>}
           </span>
           <span style={{ display: "block", color: "var(--muted)", fontSize: 14, marginTop: 6 }}>{step.intro}</span>

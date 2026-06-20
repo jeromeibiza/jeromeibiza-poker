@@ -62,7 +62,7 @@ export default async function ModulePage({
 
       <div style={{ paddingBlock: "20px 0" }}>
         <div className="label" style={{ color: "var(--gold)", fontSize: 12, marginBottom: 10 }}>
-          Module {String(m.n).padStart(2, "0")} · {m.minutes} min
+          Module {String(m.n).padStart(2, "0")}
           {m.status === "plan" && " · plan détaillé"}
         </div>
         <h1 style={{ fontSize: "clamp(28px, 5.5vw, 48px)", margin: 0 }}>

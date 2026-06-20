@@ -47,7 +47,6 @@ export default async function LessonPage({
     isPartOf: { "@type": "Course", name: "Stratégie poker, Jérôme Ibiza" },
     inLanguage: "fr-FR",
     isAccessibleForFree: true,
-    timeRequired: `PT${l.minutes}M`,
   };
 
   return (
@@ -64,9 +63,6 @@ export default async function LessonPage({
       <div style={{ paddingBlock: "20px 0" }}>
         <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 12 }}>
           <LevelPill level={l.level} />
-          <span className="label" style={{ color: "var(--faint)", fontSize: 12 }}>
-            {l.minutes} min de lecture
-          </span>
         </div>
         <h1 style={{ fontSize: "clamp(28px, 5.5vw, 48px)", margin: 0, maxWidth: 820 }}>{l.title}</h1>
         <p style={{ color: "var(--muted)", fontSize: 18, marginTop: 14, maxWidth: 720, lineHeight: 1.6 }}>

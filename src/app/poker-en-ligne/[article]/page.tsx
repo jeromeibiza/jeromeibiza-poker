@@ -60,7 +60,7 @@ export default async function ArticlePage({
 
       <div style={{ paddingBlock: "20px 0" }}>
         <div className="label" style={{ color: "var(--gold)", fontSize: 12, marginBottom: 10 }}>
-          Guide poker en ligne · {a.minutes} min
+          Guide poker en ligne
         </div>
         <h1 style={{ fontSize: "clamp(28px, 5.5vw, 46px)", margin: 0, maxWidth: 820 }}>{a.title}</h1>
         <p style={{ color: "var(--muted)", fontSize: 18, marginTop: 14, maxWidth: 720, lineHeight: 1.6 }}>
