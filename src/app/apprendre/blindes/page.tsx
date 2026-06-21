@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { LessonLayout } from "@/components/LessonLayout";
 import { APPRENDRE_NAV } from "@/lib/poker/learn";
-import { PokerTable } from "@/components/PokerTable";
+import { BlindesBoard } from "@/components/BlindesBoard";
 import type { Metadata } from "next";
 import { Crumbs, PageHero, Section, DealerNote } from "@/components/ui";
 
@@ -53,18 +53,7 @@ export default function BlindesPage() {
             relancer, ou se coucher.
           </p>
         </div>
-        <PokerTable
-          center="Blindes 1 € / 2 €"
-          caption="Le bouton (D) donne. À sa gauche, la small blind pose 1 €, puis la big blind pose 2 €. Les autres doivent au moins suivre 2 € pour entrer dans le coup."
-          seats={[
-            { label: "BTN", note: "Bouton", tone: "gold", dealer: true },
-            { label: "SB", note: "Small blind · 1 €", tone: "blue" },
-            { label: "BB", note: "Big blind · 2 €", tone: "blue" },
-            { label: "UTG", note: "Parle en 1er" },
-            { label: "MP", note: "Milieu" },
-            { label: "CO", note: "Cutoff" },
-          ]}
-        />
+        <BlindesBoard />
       </Section>
 
       <Section kicker="Pour accélérer le jeu" title="L'ante">
@@ -78,13 +67,18 @@ export default function BlindesPage() {
         </div>
       </Section>
 
-      <Section kicker="Optionnel et agressif" title="Le straddle">
+      <Section kicker="Cash game uniquement" title="Le straddle">
         <div className="card">
+          <div style={{ display: "flex", gap: 8, flexWrap: "wrap", marginBottom: 12 }}>
+            <span className="pill">Cash game seulement</span>
+            <span className="pill">Jamais en tournoi</span>
+          </div>
           <p style={{ color: "var(--muted)" }}>
             Le <strong>straddle</strong>{" "}est une relance volontaire et à l&apos;aveugle, posée
             généralement par le joueur à gauche de la big blind, avant la distribution. Elle vaut le
-            double de la big blind et devient la nouvelle mise à suivre. C&apos;est un pari qui gonfle
-            les pots et dynamise une table de cash game, à manier avec prudence.
+            double de la big blind et devient la nouvelle mise à suivre.{" "}
+            <strong>On ne le trouve qu&apos;en cash game</strong>{" "}: il n&apos;existe pas en tournoi.
+            C&apos;est un pari qui gonfle les pots et dynamise la table, à manier avec prudence.
           </p>
         </div>
         <DealerNote>

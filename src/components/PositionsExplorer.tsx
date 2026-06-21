@@ -8,6 +8,9 @@ type Pos = { abbr: string; name: string; group: string; desc: string };
 /** Ordre des sièges autour de la table, en commençant par le bouton en bas. */
 const SEAT_ORDER = ["BTN", "SB", "BB", "UTG", "UTG+1", "MP", "HJ", "CO"];
 
+/** Ordre de lecture de la liste (dans l'ordre du jeu, de la SB au bouton). */
+const GAME_ORDER = ["SB", "BB", "UTG", "UTG+1", "MP", "HJ", "CO", "BTN"];
+
 function toneFor(abbr: string): "gold" | "blue" | "muted" {
   if (abbr === "BTN") return "gold";
   if (abbr === "SB" || abbr === "BB") return "blue";
@@ -51,13 +54,40 @@ export function PositionsExplorer({ positions }: { positions: Pos[] }) {
         }
       />
 
-      <div className="card" style={{ marginTop: 12 }}>
+      <div className="card pos-detail" style={{ marginTop: 12 }}>
         <div style={{ display: "flex", gap: 10, alignItems: "baseline", flexWrap: "wrap" }}>
           <span className="display" style={{ fontSize: 18, color: "var(--gold)" }}>{current.abbr}</span>
           <span className="display" style={{ fontSize: 16 }}>{current.name}</span>
           <span className="pill">{current.group}</span>
         </div>
         <p style={{ color: "var(--muted)", marginTop: 10, marginBottom: 0 }}>{current.desc}</p>
+      </div>
+
+      <div className="label" style={{ color: "var(--faint)", fontSize: 11, margin: "20px 0 10px" }}>
+        Les 8 positions · clique pour l&apos;afficher sur la table
+      </div>
+      <div className="pos-list">
+        {GAME_ORDER.map((abbr) => {
+          const idx = seated.findIndex((p) => p.abbr === abbr);
+          if (idx < 0) return null;
+          const p = seated[idx];
+          return (
+            <button
+              key={abbr}
+              type="button"
+              className={`pos-row${idx === sel ? " is-on" : ""}`}
+              onClick={() => setSel(idx)}
+              aria-pressed={idx === sel}
+            >
+              <span className="pos-row-abbr">{p.abbr}</span>
+              <span className="pos-row-body">
+                <span className="pos-row-name">{p.name}</span>
+                <span className="pill">{p.group}</span>
+                <span className="pos-row-desc">{p.desc}</span>
+              </span>
+            </button>
+          );
+        })}
       </div>
     </div>
   );

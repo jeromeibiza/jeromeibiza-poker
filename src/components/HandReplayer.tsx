@@ -14,6 +14,8 @@ export type ReplayStep = {
   text: string;
   seats: TableSeat[];
   board?: string[];
+  /** Index des cartes du board à mettre en surbrillance dorée (la carte qui vient de tomber). */
+  boardHighlight?: number[];
   pot?: number;
 };
 
@@ -24,9 +26,12 @@ export type ReplayStep = {
 export function HandReplayer({
   steps,
   defaultUnit,
+  numbered = false,
 }: {
   steps: ReplayStep[];
   defaultUnit?: "bb" | "chips";
+  /** Affiche un bandeau d'étapes numérotées cliquables (mode grand débutant). */
+  numbered?: boolean;
 }) {
   const [i, setI] = useState(0);
   const [playing, setPlaying] = useState(false);
@@ -53,7 +58,34 @@ export function HandReplayer({
 
   return (
     <div className="replayer">
-      <PokerTable seats={step.seats} board={step.board} pot={step.pot} defaultUnit={defaultUnit} />
+      {numbered && (
+        <div className="replayer-steplist" role="tablist" aria-label="Étapes de la main">
+          {steps.map((s, k) => (
+            <button
+              key={k}
+              type="button"
+              role="tab"
+              aria-selected={k === i}
+              className={`replayer-stepbtn${k === i ? " is-on" : ""}`}
+              onClick={() => {
+                setPlaying(false);
+                setI(k);
+              }}
+            >
+              <span className="replayer-stepbtn-n">{k + 1}</span>
+              <span className="replayer-stepbtn-t">{s.tag}</span>
+            </button>
+          ))}
+        </div>
+      )}
+
+      <PokerTable
+        seats={step.seats}
+        board={step.board}
+        boardHighlight={step.boardHighlight}
+        pot={step.pot}
+        defaultUnit={defaultUnit}
+      />
 
       {/* Explication en temps réel, très visible */}
       <div className="replayer-explain" key={i}>

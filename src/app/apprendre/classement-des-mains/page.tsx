@@ -63,6 +63,12 @@ export default function ClassementMainsPage() {
 
       {/* Liste classée */}
       <Section kicker="De la plus faible à la plus forte" title="Les 10 mains, dans l'ordre">
+        <p style={{ color: "var(--muted)", marginTop: -4, marginBottom: 16 }}>
+          Astuce de lecture : sur chaque exemple, les{" "}
+          <strong style={{ color: "var(--gold-soft)" }}>cartes en or</strong>{" "}sont celles qui
+          forment la combinaison. Les cartes grisées sont les « kickers », qui ne servent qu&apos;à
+          départager deux mains identiques.
+        </p>
         <div style={{ display: "grid", gap: 14 }}>
           {[...HANDS].reverse().map((h, i) => (
             <article key={h.slug} className="card" style={{ display: "grid", gap: 14 }}>
@@ -87,7 +93,10 @@ export default function ClassementMainsPage() {
                   <p style={{ color: "var(--muted)", fontSize: 14, marginTop: 10 }}>{h.description}</p>
                 </div>
                 <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-                  <Hand cards={h.cards} size={0.78} />
+                  <Hand cards={h.cards} size={0.78} highlight={h.highlight} />
+                  <div className="label" style={{ color: "var(--gold-soft)", fontSize: 11 }}>
+                    En or : {h.comboLabel}
+                  </div>
                   <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
                     <span className="pill">Proba {h.probabilityPct}</span>
                     <span className="pill">{h.odds}</span>

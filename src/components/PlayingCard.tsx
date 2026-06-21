@@ -21,13 +21,23 @@ export function parseCard(code: CardCode): { rank: string; suit: string } {
   return { rank, suit };
 }
 
-export function PlayingCard({ code, size = 1 }: { code: CardCode; size?: number }) {
+export function PlayingCard({
+  code,
+  size = 1,
+  hl = false,
+  dim = false,
+}: {
+  code: CardCode;
+  size?: number;
+  hl?: boolean;
+  dim?: boolean;
+}) {
   const { rank, suit } = parseCard(code);
   const isRed = RED_SUITS.has(suit);
   const display = rank === "T" ? "10" : rank;
   return (
     <span
-      className={`pcard${isRed ? " red" : ""}`}
+      className={`pcard${isRed ? " red" : ""}${hl ? " hl" : ""}${dim ? " dim" : ""}`}
       style={{
         width: 46 * size,
         height: 64 * size,
@@ -41,11 +51,27 @@ export function PlayingCard({ code, size = 1 }: { code: CardCode; size?: number 
   );
 }
 
-export function Hand({ cards, size = 1 }: { cards: CardCode[]; size?: number }) {
+export function Hand({
+  cards,
+  size = 1,
+  highlight,
+}: {
+  cards: CardCode[];
+  size?: number;
+  /** Index des cartes qui forment la combinaison : elles passent en or, les autres s'estompent. */
+  highlight?: number[];
+}) {
+  const hset = highlight ? new Set(highlight) : null;
   return (
     <span style={{ display: "inline-flex", gap: 6, flexWrap: "wrap" }}>
       {cards.map((c, i) => (
-        <PlayingCard key={`${c}-${i}`} code={c} size={size} />
+        <PlayingCard
+          key={`${c}-${i}`}
+          code={c}
+          size={size}
+          hl={hset ? hset.has(i) : false}
+          dim={hset ? !hset.has(i) : false}
+        />
       ))}
     </span>
   );

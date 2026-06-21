@@ -86,35 +86,6 @@ export default function PositionsPage() {
         <PositionsExplorer positions={POSITIONS} />
       </Section>
 
-      <Section kicker="Dans l'ordre du jeu" title="Les 8 positions">
-        <div style={{ display: "grid", gap: 12 }}>
-          {POSITIONS.map((p) => (
-            <div key={p.abbr} className="card" style={{ display: "flex", gap: 16, alignItems: "center" }}>
-              <span
-                className="display"
-                style={{
-                  fontSize: 18,
-                  color: "var(--gold)",
-                  minWidth: 64,
-                  textAlign: "center",
-                  borderRight: "1px solid var(--line)",
-                  paddingRight: 12,
-                }}
-              >
-                {p.abbr}
-              </span>
-              <span style={{ flex: 1 }}>
-                <span style={{ display: "flex", gap: 10, alignItems: "baseline", flexWrap: "wrap" }}>
-                  <span className="display" style={{ fontSize: 16 }}>{p.name}</span>
-                  <span className="pill">{p.group}</span>
-                </span>
-                <span style={{ display: "block", color: "var(--muted)", fontSize: 14, marginTop: 6 }}>{p.desc}</span>
-              </span>
-            </div>
-          ))}
-        </div>
-      </Section>
-
       <Section kicker="À retenir" title="En position vs hors de position">
         <div style={{ display: "grid", gap: 14, gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))" }}>
           <div className="card">

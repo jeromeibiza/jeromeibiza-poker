@@ -85,12 +85,12 @@ export const TABLE_FULL: TableSeat[] = [
 
 const SUIT: Record<string, string> = { s: "♠", h: "♥", d: "♦", c: "♣" };
 
-function MiniCard({ c }: { c: string }) {
+function MiniCard({ c, hl = false }: { c: string; hl?: boolean }) {
   const suit = c.slice(-1).toLowerCase();
   const rank = c.slice(0, -1).replace(/^t$/i, "10");
   const red = suit === "h" || suit === "d";
   return (
-    <span className="ptable-card" style={{ color: red ? "#cc2f44" : "#15110b" }}>
+    <span className={`ptable-card${hl ? " is-hl" : ""}`} style={{ color: red ? "#cc2f44" : "#15110b" }}>
       <span className="ptable-card-r">{rank}</span>
       <span className="ptable-card-s">{SUIT[suit] ?? ""}</span>
     </span>
@@ -113,6 +113,7 @@ export function PokerTable({
   caption,
   pot,
   board,
+  boardHighlight,
   defaultUnit = "bb",
   selectedIndex,
   onSeatClick,
@@ -122,6 +123,7 @@ export function PokerTable({
   caption?: string;
   pot?: number;
   board?: string[];
+  boardHighlight?: number[];
   defaultUnit?: Unit;
   selectedIndex?: number;
   onSeatClick?: (i: number) => void;
@@ -167,7 +169,7 @@ export function PokerTable({
               {board && board.length > 0 && (
                 <div className="ptable-board">
                   {board.map((c, k) => (
-                    <MiniCard key={k} c={c} />
+                    <MiniCard key={k} c={c} hl={boardHighlight?.includes(k)} />
                   ))}
                 </div>
               )}

@@ -252,6 +252,11 @@ a {
 .pcard .rank { font-size: 16px; align-self: flex-start; }
 .pcard .suit { font-size: 18px; align-self: flex-end; }
 .pcard.red { color: var(--red); }
+.pcard.hl {
+  outline: 2px solid var(--gold);
+  box-shadow: 0 0 0 2px rgba(232, 176, 75, 0.35), 0 6px 16px -6px rgba(232, 176, 75, 0.6);
+}
+.pcard.dim { opacity: 0.4; }
 
 /* ---------- Tapis feutre (panneau d'accent) ---------- */
 .felt {
@@ -796,6 +801,88 @@ a {
 @media (prefers-reduced-motion: reduce) {
   .ptable-card, .ptable-bet, .replayer-explain { animation: none; }
 }
+
+/* Carte du board mise en avant (celle qui vient de tomber) */
+.ptable-card.is-hl {
+  outline: 2px solid var(--gold);
+  box-shadow: 0 0 0 3px rgba(232, 176, 75, 0.45), 0 0 18px rgba(232, 176, 75, 0.5);
+  z-index: 2;
+}
+
+/* Bandeau d'étapes numérotées cliquables du replayer */
+.replayer-steplist {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+.replayer-stepbtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--surface-2);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 7px 13px 7px 7px;
+  cursor: pointer;
+  color: var(--muted);
+}
+.replayer-stepbtn:hover { border-color: rgba(232, 176, 75, 0.4); }
+.replayer-stepbtn.is-on {
+  border-color: var(--gold);
+  color: var(--fg);
+  box-shadow: 0 0 0 1px var(--gold);
+}
+.replayer-stepbtn-n {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--line);
+  color: var(--fg);
+  font-family: var(--font-label), sans-serif;
+  font-size: 12px;
+}
+.replayer-stepbtn.is-on .replayer-stepbtn-n { background: var(--gold); color: #14110b; }
+.replayer-stepbtn-t {
+  font-family: var(--font-label), sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-size: 12px;
+}
+
+/* Liste de positions cliquable (page Positions) */
+.pos-list { display: grid; gap: 10px; }
+.pos-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  width: 100%;
+  text-align: left;
+  background: linear-gradient(180deg, var(--surface), var(--surface-2));
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 14px 16px;
+  cursor: pointer;
+  color: var(--fg);
+}
+.pos-row:hover { border-color: rgba(232, 176, 75, 0.4); }
+.pos-row.is-on { border-color: var(--gold); box-shadow: 0 0 0 1px var(--gold); }
+.pos-row-abbr {
+  font-family: var(--font-display), sans-serif;
+  font-size: 18px;
+  color: var(--gold);
+  min-width: 56px;
+  text-align: center;
+  border-right: 1px solid var(--line);
+  padding-right: 12px;
+  flex: 0 0 auto;
+}
+.pos-row-body { display: flex; flex-direction: column; align-items: flex-start; gap: 6px; }
+.pos-row-name { font-family: var(--font-display), sans-serif; font-size: 16px; }
+.pos-row-desc { color: var(--muted); font-size: 14px; }
 
 /* ---------- Encart partenaire de confiance (mis en avant) ---------- */
 .partner-card {
