@@ -22,6 +22,8 @@ export type Lesson = {
   sections: LessonSection[];
   takeaways: string[];
   dealerNote?: string;
+  /** Partenaire de confiance (lien externe, futur lien d'affiliation). */
+  partner?: { name: string; url: string; hook: string; kind: string; blurb: string };
 };
 
 export const LEVEL_LABEL: Record<Level, string> = {
@@ -177,6 +179,14 @@ export const LESSONS: Lesson[] = [
     ],
     dealerNote:
       "J'ai vu des joueurs très doués tout perdre parce qu'ils jouaient trois fois trop haut pour leur caisse. La discipline de bankroll n'est pas sexy, mais c'est elle qui te garde dans le jeu assez longtemps pour devenir bon.",
+    partner: {
+      name: "PokManager",
+      url: "https://www.pokmanager.com/fr/",
+      hook: "Tu veux suivre ta bankroll sérieusement ?",
+      kind: "Gestion et suivi de bankroll",
+      blurb:
+        "PokManager fait partie de nos partenaires de confiance pour suivre tes sessions, ta bankroll et tes résultats, et garder le contrôle sur la durée.",
+    },
   },
   // --------------------------- INTERMÉDIAIRE ---------------------------
   {

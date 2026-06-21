@@ -554,6 +554,35 @@ export default async function LessonPage({
 
       {l.dealerNote && <div style={{ marginTop: 24 }}><DealerNote>{l.dealerNote}</DealerNote></div>}
 
+      {l.partner && (
+        <div className="partner-card">
+          <span className="partner-glow" aria-hidden />
+          <div style={{ position: "relative" }}>
+            <span className="partner-badge">★ Partenaire de confiance</span>
+            <h2 className="display partner-hook">{l.partner.hook}</h2>
+            <div className="label" style={{ color: "var(--gold-soft)", fontSize: 13, marginTop: 6 }}>
+              {l.partner.kind} · {l.partner.name}
+            </div>
+            <p style={{ color: "var(--fg)", fontSize: 15, marginTop: 12, maxWidth: 640 }}>
+              {l.partner.blurb}
+            </p>
+            <div style={{ marginTop: 18 }}>
+              <a
+                href={l.partner.url}
+                target="_blank"
+                rel="sponsored noopener noreferrer"
+                className="btn btn-gold partner-cta"
+              >
+                Va voir ce qui se passe chez {l.partner.name} →
+              </a>
+            </div>
+            <p style={{ color: "var(--faint)", fontSize: 12, marginTop: 14, marginBottom: 0 }}>
+              Recommandé par Jérôme. 18+, jouez responsable.
+            </p>
+          </div>
+        </div>
+      )}
+
       <nav
         style={{
           marginTop: 36,
