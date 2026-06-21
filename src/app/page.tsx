@@ -2,7 +2,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { NAV, SITE } from "@/lib/site";
 import { JsonLd } from "@/components/ui";
-import { SiteSearch } from "@/components/SiteSearch";
+import { SearchLauncher } from "@/components/SearchLauncher";
 
 export const metadata: Metadata = {
   title: "Poker Hub : apprendre le poker, jouer gratuitement et devenir croupier",
@@ -143,7 +143,7 @@ export default function Home() {
 
       {/* RECHERCHE */}
       <section className="wrap" style={{ marginTop: 28, maxWidth: 720 }}>
-        <SiteSearch />
+        <SearchLauncher variant="bar" />
       </section>
 
       {/* HIGHLIGHTS */}
