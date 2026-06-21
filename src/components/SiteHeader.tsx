@@ -63,6 +63,16 @@ export function SiteHeader() {
           </span>
         </Link>
 
+        <button
+          type="button"
+          className="search-btn"
+          onClick={() => setSearchOpen(true)}
+          aria-label="Rechercher"
+        >
+          <span aria-hidden style={{ fontSize: 15 }}>🔎</span>
+          <span className="search-btn-text">Rechercher</span>
+        </button>
+
         <nav
           aria-label="Navigation principale"
           style={{ display: "flex", gap: 4, marginLeft: 8 }}
@@ -81,15 +91,6 @@ export function SiteHeader() {
         </nav>
 
         <div style={{ marginLeft: "auto", display: "flex", alignItems: "center", gap: 10, position: "relative" }}>
-          <button
-            type="button"
-            className="search-btn"
-            onClick={() => setSearchOpen(true)}
-            aria-label="Rechercher"
-          >
-            <span aria-hidden style={{ fontSize: 15 }}>🔎</span>
-            <span className="search-btn-text">Rechercher</span>
-          </button>
           <Link href="/academie-croupier" className="btn btn-gold cta-desktop" style={{ fontSize: 12, padding: "10px 16px" }}>
             🎓 Formation croupier
           </Link>
