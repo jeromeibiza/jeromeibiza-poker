@@ -1,4 +1,12 @@
-import type { ReactNode } from "react";
+"use client";
+
+import { useEffect, useState, type ReactNode } from "react";
+
+/** 1 grosse blinde = 100 jetons (small blind 50, big blind 100). */
+const CHIPS_PER_BB = 100;
+const UNIT_KEY = "ph_poker_unit";
+
+type Unit = "bb" | "chips";
 
 export type TableSeat = {
   /** Texte court dans la pastille du siège (ex. "BTN", "Vous", "3"). */
@@ -7,70 +15,74 @@ export type TableSeat = {
   note?: string;
   /** Couleur d'accent du siège. */
   tone?: "gold" | "blue" | "muted";
-  /** Ce siège a le bouton donneur (le jeton "D" s'affiche sur le feutre devant lui). */
+  /** Ce siège a le bouton donneur (jeton "D" sur le feutre devant lui). */
   dealer?: boolean;
-  /** Montant misé par ce siège, affiché en jeton devant lui (ex. "9 BB"). */
-  bet?: string;
+  /** Tapis du joueur, exprimé en grosses blindes (BB). */
+  stack?: number;
+  /** Mise du joueur sur ce tour, en grosses blindes (BB). */
+  bet?: number;
   /** Cartes du joueur (le héros), affichées devant son siège. */
   cards?: [string, string];
 };
 
 /** Position d'un élément réparti autour de la table (en pourcentage). */
 export function seatPos(i: number, n: number, rx = 40, ry = 42) {
-  // Siège 0 en bas, puis on tourne dans le sens horaire.
   const theta = ((90 + (i * 360) / n) * Math.PI) / 180;
   return { left: 50 + rx * Math.cos(theta), top: 50 + ry * Math.sin(theta) };
 }
 
-/** Table 6 joueurs avec les positions, pour illustrer une situation de jeu. */
+const fmtChips = (n: number) => Math.round(n).toLocaleString("fr-FR");
+const fmtBB = (n: number) => `${Number.isInteger(n) ? String(n) : n.toFixed(1).replace(".", ",")} BB`;
+const fmtAmount = (bb: number, unit: Unit) => (unit === "chips" ? fmtChips(bb * CHIPS_PER_BB) : fmtBB(bb));
+
+/** Table 6 joueurs avec les positions (tapis de 100 BB chacun). */
 export const TABLE_6MAX: TableSeat[] = [
-  { label: "BTN", note: "Bouton", tone: "gold", dealer: true },
-  { label: "SB", note: "Small blind", tone: "blue" },
-  { label: "BB", note: "Big blind", tone: "blue" },
-  { label: "UTG", note: "Under the gun" },
-  { label: "MP", note: "Milieu" },
-  { label: "CO", note: "Cutoff" },
+  { label: "BTN", note: "Bouton", tone: "gold", dealer: true, stack: 100 },
+  { label: "SB", note: "Small blind", tone: "blue", stack: 80 },
+  { label: "BB", note: "Big blind", tone: "blue", stack: 120 },
+  { label: "UTG", note: "Under the gun", stack: 95 },
+  { label: "MP", note: "Milieu", stack: 110 },
+  { label: "CO", note: "Cutoff", stack: 90 },
 ];
 
 /** Table vue du croupier, pour les modules de l'académie. */
 export const TABLE_DEALER: TableSeat[] = [
   { label: "Croupier", note: "Vous", tone: "gold", dealer: true },
-  { label: "J1", tone: "blue" },
-  { label: "J2" },
-  { label: "J3" },
-  { label: "J4", tone: "blue" },
-  { label: "J5" },
+  { label: "J1", tone: "blue", stack: 100 },
+  { label: "J2", stack: 75 },
+  { label: "J3", stack: 130 },
+  { label: "J4", tone: "blue", stack: 60 },
+  { label: "J5", stack: 95 },
 ];
 
-/** Duel à 2 joueurs (heads-up). En heads-up, le bouton est aussi la small blind. */
+/** Duel à 2 joueurs (heads-up). Le bouton est aussi la small blind. */
 export const TABLE_HEADSUP: TableSeat[] = [
-  { label: "BTN", note: "Bouton + SB", tone: "gold", dealer: true },
-  { label: "BB", note: "Big blind", tone: "blue" },
+  { label: "BTN", note: "Bouton + SB", tone: "gold", dealer: true, stack: 100 },
+  { label: "BB", note: "Big blind", tone: "blue", stack: 100 },
 ];
 
-/** Table à 3 joueurs (Spin & Go). */
+/** Table à 3 joueurs (Spin & Go), tapis de départ 25 BB. */
 export const TABLE_SPIN: TableSeat[] = [
-  { label: "BTN", note: "Bouton", tone: "gold", dealer: true },
-  { label: "SB", note: "Small blind", tone: "blue" },
-  { label: "BB", note: "Big blind", tone: "blue" },
+  { label: "BTN", note: "Bouton", tone: "gold", dealer: true, stack: 25 },
+  { label: "SB", note: "Small blind", tone: "blue", stack: 25 },
+  { label: "BB", note: "Big blind", tone: "blue", stack: 25 },
 ];
 
 /** Table pleine à 9 joueurs (tournois, Sit & Go, mixed games). */
 export const TABLE_FULL: TableSeat[] = [
-  { label: "BTN", note: "Bouton", tone: "gold", dealer: true },
-  { label: "SB", note: "Small blind", tone: "blue" },
-  { label: "BB", note: "Big blind", tone: "blue" },
-  { label: "UTG" },
-  { label: "UTG+1" },
-  { label: "UTG+2" },
-  { label: "MP" },
-  { label: "HJ" },
-  { label: "CO" },
+  { label: "BTN", note: "Bouton", tone: "gold", dealer: true, stack: 100 },
+  { label: "SB", note: "Small blind", tone: "blue", stack: 80 },
+  { label: "BB", note: "Big blind", tone: "blue", stack: 120 },
+  { label: "UTG", stack: 95 },
+  { label: "UTG+1", stack: 60 },
+  { label: "UTG+2", stack: 140 },
+  { label: "MP", stack: 110 },
+  { label: "HJ", stack: 90 },
+  { label: "CO", stack: 105 },
 ];
 
 const SUIT: Record<string, string> = { s: "♠", h: "♥", d: "♦", c: "♣" };
 
-/** Mini carte à jouer (board ou main du héros). Code type "As", "Kh", "Td", "2c". */
 function MiniCard({ c }: { c: string }) {
   const suit = c.slice(-1).toLowerCase();
   const rank = c.slice(0, -1).replace(/^t$/i, "10");
@@ -84,10 +96,9 @@ function MiniCard({ c }: { c: string }) {
 }
 
 /**
- * Illustration schématique d'une table de poker vue de dessus, posée sur un
- * fond uni : feutre ovale, sièges des joueurs autour, jeton donneur "D" sur le
- * tapis, et de quoi représenter une vraie situation (mises en jetons, pot,
- * cartes communes, main du héros).
+ * Table de poker vue de dessus, façon vrai client (PokerStars / Winamax) :
+ * tapis affiché par joueur, bascule BB / jetons, bouton donneur sur le feutre,
+ * mises et pot représentés en jetons. Posée sur un fond uni.
  */
 export function PokerTable({
   seats,
@@ -95,20 +106,49 @@ export function PokerTable({
   caption,
   pot,
   board,
+  defaultUnit = "bb",
 }: {
   seats: TableSeat[];
   center?: ReactNode;
   caption?: string;
-  pot?: string;
+  pot?: number;
   board?: string[];
+  defaultUnit?: Unit;
 }) {
+  const [unit, setUnit] = useState<Unit>(defaultUnit);
+
+  // Reprend le choix mémorisé de l'utilisateur s'il existe (sans casser l'hydratation).
+  useEffect(() => {
+    try {
+      const v = window.localStorage.getItem(UNIT_KEY);
+      if (v === "bb" || v === "chips") setUnit(v);
+    } catch {
+      /* ignore */
+    }
+  }, []);
+
+  function choose(u: Unit) {
+    setUnit(u);
+    try {
+      window.localStorage.setItem(UNIT_KEY, u);
+    } catch {
+      /* ignore */
+    }
+  }
+
   const n = seats.length;
   const dealerIdx = seats.findIndex((s) => s.dealer);
   const btn = dealerIdx >= 0 ? seatPos(dealerIdx, n, 21, 20) : null;
-  const hasScene = (board && board.length > 0) || !!pot;
+  const hasScene = (board && board.length > 0) || pot != null;
+  const headsUp = n === 2;
 
   return (
     <figure className="ptable">
+      <div className="ptable-unit" role="group" aria-label="Unité d'affichage">
+        <button type="button" className={unit === "bb" ? "is-on" : ""} onClick={() => choose("bb")}>BB</button>
+        <button type="button" className={unit === "chips" ? "is-on" : ""} onClick={() => choose("chips")}>Jetons</button>
+      </div>
+
       <div className="ptable-area">
         <div className="ptable-felt">
           {hasScene ? (
@@ -120,7 +160,14 @@ export function PokerTable({
                   ))}
                 </div>
               )}
-              {pot && <div className="ptable-pot">Pot {pot}</div>}
+              {pot != null && (
+                <div className="ptable-pot">
+                  <span className="ptable-pot-chips" aria-hidden>
+                    <i /><i /><i />
+                  </span>
+                  Pot : {fmtAmount(pot, unit)}
+                </div>
+              )}
             </div>
           ) : (
             center && <div className="ptable-center">{center}</div>
@@ -137,9 +184,8 @@ export function PokerTable({
           </span>
         )}
 
-        {/* Mises (jetons devant les sièges) */}
         {seats.map((s, i) => {
-          if (!s.bet) return null;
+          if (s.bet == null) return null;
           const p = seatPos(i, n, 29, 28);
           return (
             <span
@@ -147,12 +193,11 @@ export function PokerTable({
               className={`ptable-bet tone-${s.tone ?? "muted"}`}
               style={{ left: `${p.left}%`, top: `${p.top}%` }}
             >
-              {s.bet}
+              {fmtAmount(s.bet, unit)}
             </span>
           );
         })}
 
-        {/* Cartes du héros */}
         {seats.map((s, i) => {
           if (!s.cards) return null;
           const p = seatPos(i, n, 35, 34);
@@ -168,7 +213,6 @@ export function PokerTable({
           );
         })}
 
-        {/* Sièges */}
         {seats.map((s, i) => {
           const p = seatPos(i, n);
           return (
@@ -179,10 +223,17 @@ export function PokerTable({
             >
               <span className="ptable-av">{s.label}</span>
               {s.note && <span className="ptable-note">{s.note}</span>}
+              {s.stack != null && <span className="ptable-stack">{fmtAmount(s.stack, unit)}</span>}
             </div>
           );
         })}
       </div>
+
+      {headsUp && (
+        <div className="ptable-hu-note">
+          Rappel : en heads-up (face à face), le joueur au bouton (D) est aussi la small blind.
+        </div>
+      )}
       {caption && <figcaption className="ptable-cap">{caption}</figcaption>}
     </figure>
   );

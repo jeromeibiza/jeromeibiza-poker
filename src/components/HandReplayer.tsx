@@ -14,14 +14,20 @@ export type ReplayStep = {
   text: string;
   seats: TableSeat[];
   board?: string[];
-  pot?: string;
+  pot?: number;
 };
 
 /**
  * Mini-replayer pour grands débutants : déroule une main action par action,
  * avec une explication très visible et en temps réel à chaque étape.
  */
-export function HandReplayer({ steps }: { steps: ReplayStep[] }) {
+export function HandReplayer({
+  steps,
+  defaultUnit,
+}: {
+  steps: ReplayStep[];
+  defaultUnit?: "bb" | "chips";
+}) {
   const [i, setI] = useState(0);
   const [playing, setPlaying] = useState(false);
   const atEnd = i === steps.length - 1;
@@ -47,7 +53,7 @@ export function HandReplayer({ steps }: { steps: ReplayStep[] }) {
 
   return (
     <div className="replayer">
-      <PokerTable seats={step.seats} board={step.board} pot={step.pot} />
+      <PokerTable seats={step.seats} board={step.board} pot={step.pot} defaultUnit={defaultUnit} />
 
       {/* Explication en temps réel, très visible */}
       <div className="replayer-explain" key={i}>
