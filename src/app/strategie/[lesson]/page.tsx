@@ -3,16 +3,30 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { LessonLayout } from "@/components/LessonLayout";
 import { HandReplayer, type ReplayStep } from "@/components/HandReplayer";
+import { type TableSeat } from "@/components/PokerTable";
 import { LESSONS, getLesson, LEVEL_LABEL } from "@/lib/poker/strategy";
 import { Crumbs, Section, DealerNote, LevelPill, JsonLd } from "@/components/ui";
 
 type Params = { lesson: string };
 
+/** Table 6-max : on décrit seulement ce qui change pour chaque siège, le reste
+ *  est "en jeu, cartes cachées". Le bouton (D) est toujours sur le siège BTN. */
+type Seat6 = Partial<Omit<TableSeat, "label">>;
+const POS6 = ["BTN", "SB", "BB", "UTG", "MP", "CO"];
+function t6(over: Record<string, Seat6> = {}): TableSeat[] {
+  return POS6.map((pos) => {
+    const base: TableSeat = { label: pos, stack: 100 };
+    if (pos === "BTN") base.dealer = true;
+    const o = over[pos];
+    return o ? { ...base, ...o } : { ...base, hidden: true };
+  });
+}
+
 /**
- * Mains rejouables. Chaque joueur en jeu a des cartes (vous = face visible,
- * adversaires = face cachée) ; le board se dévoile selon la rue. Registre par
- * niveau : débutant = jetons + tout expliqué, intermédiaire = vrais termes + BB,
- * avancé = pas de replayer. Montants en BB ; bascule BB / jetons sur la table.
+ * Mains rejouables 6-max, déroulées action par action. Vous = cartes visibles
+ * (siège or), adversaires = cartes cachées, joueurs couchés = sans cartes ;
+ * le board se dévoile selon la rue. Registre par niveau : débutant = jetons +
+ * tout expliqué, intermédiaire = vrais termes + BB, avancé = pas de replayer.
  */
 const HANDS: Record<string, ReplayStep[]> = {
   // -------------------- DÉBUTANT --------------------
@@ -20,98 +34,114 @@ const HANDS: Record<string, ReplayStep[]> = {
     {
       tag: "Vos 2 cartes",
       emoji: "🂡",
-      title: "On vous distribue 2 cartes",
-      text: "Au poker, tout commence par 2 cartes rien que pour vous (l'adversaire a les siennes, cachées). Ici : un As et un Roi de pique. Une très belle main de départ.",
-      seats: [
-        { label: "VOUS", note: "vos cartes", tone: "gold", dealer: true, cards: ["As", "Ks"], stack: 50 },
-        { label: "ADV.", note: "cartes cachées", tone: "blue", hidden: true, stack: 50 },
-      ],
+      title: "On distribue 2 cartes à chacun",
+      text: "Chaque joueur reçoit 2 cartes (les autres les gardent cachées). Les vôtres sont superbes : As et Roi de pique. C'est à vous de jouer.",
+      seats: t6({ UTG: { tone: "gold", note: "vous", cards: ["As", "Ks"] } }),
       pot: 1.5,
     },
     {
       tag: "Votre décision",
       emoji: "✅",
-      title: "Belle main, on attaque",
-      text: "Avec une main aussi forte, on n'hésite pas : on relance pour prendre l'avantage. Avec une main faible (genre 7 et 2), on jette sans regret. Bien choisir au départ, c'est déjà l'essentiel.",
-      seats: [
-        { label: "VOUS", note: "vous relancez", tone: "gold", dealer: true, cards: ["As", "Ks"], bet: 2.5, stack: 47.5 },
-        { label: "ADV.", note: "à lui de payer", tone: "blue", hidden: true, stack: 50 },
-      ],
+      title: "Belle main, vous ouvrez",
+      text: "Avec une main aussi forte, on relance (on « ouvre ») pour prendre l'avantage. Avec une main faible, genre un 7 et un 2, on jette sans regret.",
+      seats: t6({ UTG: { tone: "gold", note: "vous, relance", cards: ["As", "Ks"], bet: 2.5, stack: 97.5 } }),
       pot: 4,
+    },
+    {
+      tag: "La suite",
+      emoji: "👀",
+      title: "Votre relance fait le ménage",
+      text: "Votre relance fait coucher presque tout le monde (ils n'ont plus de cartes). Un seul joueur paie pour voir le flop. Vous avez pris l'initiative du coup.",
+      seats: t6({
+        UTG: { tone: "gold", note: "vous", cards: ["As", "Ks"], bet: 2.5, stack: 97.5 },
+        MP: { tone: "muted", note: "fold" },
+        CO: { tone: "muted", note: "fold" },
+        BTN: { tone: "muted", note: "fold" },
+        SB: { tone: "muted", note: "fold" },
+        BB: { tone: "blue", note: "paie", bet: 2.5, hidden: true },
+      }),
+      pot: 6,
     },
   ],
   "les-erreurs-du-debutant": [
     {
       tag: "L'erreur classique",
       emoji: "⚠️",
-      title: "« Limper » : payer sans relancer",
-      text: "Limper, c'est payer la mise minimale pour voir les cartes du milieu pas cher. Ici, deux joueurs limpent. On voit que tout le monde est encore en jeu (chacun a ses cartes).",
-      seats: [
-        { label: "VOUS", note: "vos cartes", tone: "gold", dealer: true, cards: ["Kc", "Tc"], stack: 50 },
-        { label: "J. A", note: "limpe", tone: "blue", hidden: true, bet: 1, stack: 49 },
-        { label: "J. B", note: "limpe", tone: "blue", hidden: true, bet: 1, stack: 49 },
-      ],
+      title: "Un joueur « limpe »",
+      text: "Limper, c'est juste payer la mise minimale pour voir le flop pas cher, sans relancer. Ici, UTG limpe. À vous de parler.",
+      seats: t6({
+        UTG: { tone: "blue", note: "limpe", bet: 1, hidden: true },
+        MP: { tone: "gold", note: "vous", cards: ["Kc", "Tc"] },
+      }),
       pot: 2.5,
     },
     {
-      tag: "Pourquoi c'est mauvais",
+      tag: "Le mauvais réflexe",
       emoji: "👎",
-      title: "Vous entrez sans plan",
-      text: "Si vous limpez vous aussi, personne n'a pris les commandes du coup. Vous verrez le flop avec une main moyenne, sans initiative. C'est presque toujours celui qui ose relancer qui contrôle la main.",
-      seats: [
-        { label: "VOUS", note: "limpe aussi", tone: "gold", dealer: true, cards: ["Kc", "Tc"], bet: 1, stack: 49 },
-        { label: "J. A", tone: "blue", hidden: true, stack: 49 },
-        { label: "J. B", tone: "blue", hidden: true, stack: 49 },
-      ],
+      title: "Limper à votre tour",
+      text: "Si vous limpez vous aussi, personne n'a pris les commandes du coup. Vous verrez le flop sans initiative, avec une main moyenne. C'est la fuite numéro un.",
+      seats: t6({
+        UTG: { tone: "blue", note: "limpe", bet: 1, hidden: true },
+        MP: { tone: "gold", note: "limpe aussi", cards: ["Kc", "Tc"], bet: 1, stack: 99 },
+      }),
       pot: 3.5,
     },
     {
       tag: "Le bon réflexe",
       emoji: "✅",
-      title: "Relancez, ou couchez-vous",
-      text: "La règle toute simple : si votre main vaut le coup, on relance pour prendre l'avantage. Ici, les deux limpeurs se couchent (ils n'ont plus de cartes). Entre relancer et se coucher, le limp est presque toujours une fuite.",
-      seats: [
-        { label: "VOUS", note: "relance !", tone: "gold", dealer: true, cards: ["Kc", "Tc"], bet: 4, stack: 46 },
-        { label: "J. A", note: "se couche", tone: "muted", stack: 49 },
-        { label: "J. B", note: "se couche", tone: "muted", stack: 49 },
-      ],
+      title: "Relancer pour prendre la main",
+      text: "Le bon réflexe : si la main vaut le coup, on relance. Ça fait coucher le limpeur et vous prenez l'initiative. Sinon on se couche, mais on ne limpe pas.",
+      seats: t6({
+        UTG: { tone: "muted", note: "se couche" },
+        MP: { tone: "gold", note: "relance !", cards: ["Kc", "Tc"], bet: 4, stack: 96 },
+      }),
       pot: 6.5,
     },
   ],
   "jouer-en-position": [
     {
-      tag: "Avant les cartes du milieu",
+      tag: "L'action vient à vous",
       emoji: "🎯",
-      title: "L'adversaire parle avant vous",
-      text: "L'adversaire attaque en misant. Vous, vous êtes « au bouton » (le jeton D) : la meilleure place, parce que vous jouez toujours en dernier.",
-      seats: [
-        { label: "VOUS", note: "vous, au bouton", tone: "gold", dealer: true, cards: ["Ah", "Qc"], stack: 50 },
-        { label: "ADV.", note: "il ouvre", tone: "blue", hidden: true, bet: 2.5, stack: 47.5 },
-      ],
+      title: "Le cutoff ouvre, vous êtes au bouton",
+      text: "UTG et MP se couchent. Le cutoff ouvre. Vous êtes au bouton (jeton D) : la meilleure place, car vous jouez en dernier après le flop.",
+      seats: t6({
+        UTG: { tone: "muted", note: "fold" },
+        MP: { tone: "muted", note: "fold" },
+        CO: { tone: "blue", note: "ouvre", bet: 2.5, hidden: true },
+        BTN: { tone: "gold", note: "vous", cards: ["Ah", "Qc"] },
+      }),
       pot: 4,
     },
     {
       tag: "Vous suivez",
       emoji: "👀",
-      title: "Vous payez et vous observez",
-      text: "Vous payez pour voir la suite. Comme vous parlez après lui à chaque tour, vous voyez toujours ce qu'il fait AVANT de décider quoi que ce soit.",
-      seats: [
-        { label: "VOUS", note: "en position", tone: "gold", dealer: true, cards: ["Ah", "Qc"], stack: 47.5 },
-        { label: "ADV.", tone: "blue", hidden: true, stack: 47.5 },
-      ],
-      pot: 5.5,
+      title: "Call en position",
+      text: "Vous payez pour voir le flop, les blindes se couchent. Vous serez « en position » sur l'adversaire : vous agirez toujours après lui.",
+      seats: t6({
+        UTG: { tone: "muted", note: "fold" },
+        MP: { tone: "muted", note: "fold" },
+        CO: { tone: "blue", bet: 2.5, hidden: true },
+        BTN: { tone: "gold", note: "call, en position", cards: ["Ah", "Qc"], bet: 2.5, stack: 97.5 },
+        SB: { tone: "muted", note: "fold" },
+        BB: { tone: "muted", note: "fold" },
+      }),
+      pot: 6.5,
     },
     {
       tag: "Le flop",
       emoji: "🃏",
-      title: "L'avantage devient évident",
-      text: "Trois cartes apparaissent au milieu. L'adversaire doit parler en premier, à l'aveugle. Vous, vous attendez de voir sa réaction avant d'agir. Cette information gratuite, coup après coup, fait gagner beaucoup d'argent.",
-      seats: [
-        { label: "VOUS", note: "vous décidez en dernier", tone: "gold", dealer: true, cards: ["Ah", "Qc"], stack: 47.5 },
-        { label: "ADV.", note: "parle en premier", tone: "blue", hidden: true, stack: 47.5 },
-      ],
+      title: "Vous décidez en dernier",
+      text: "Le flop tombe. L'adversaire doit parler en premier, à l'aveugle. Vous attendez sa réaction avant d'agir : cette information gratuite, coup après coup, fait gagner gros.",
+      seats: t6({
+        UTG: { tone: "muted", note: "fold" },
+        MP: { tone: "muted", note: "fold" },
+        CO: { tone: "blue", note: "parle en 1er", hidden: true },
+        BTN: { tone: "gold", note: "en dernier", cards: ["Ah", "Qc"] },
+        SB: { tone: "muted", note: "fold" },
+        BB: { tone: "muted", note: "fold" },
+      }),
       board: ["Js", "8h", "3c"],
-      pot: 5.5,
+      pot: 6.5,
     },
   ],
 
@@ -120,23 +150,44 @@ const HANDS: Record<string, ReplayStep[]> = {
     {
       tag: "Préflop",
       emoji: "🎯",
-      title: "Open au bouton",
-      text: "Vous ouvrez au bouton avec A-K, la big blind défend. Vous avez l'initiative et la position : deux atouts pour la suite.",
-      seats: [
-        { label: "BTN", note: "vous", tone: "gold", dealer: true, cards: ["As", "Ks"], bet: 2.5, stack: 100 },
-        { label: "BB", note: "défend", tone: "blue", hidden: true, bet: 1, stack: 100 },
-      ],
+      title: "L'action vient à vous, vous ouvrez",
+      text: "UTG, MP et CO se couchent. Au bouton avec A-K, vous ouvrez à 2,5 BB.",
+      seats: t6({
+        UTG: { tone: "muted", note: "fold" },
+        MP: { tone: "muted", note: "fold" },
+        CO: { tone: "muted", note: "fold" },
+        BTN: { tone: "gold", note: "vous, open", cards: ["As", "Ks"], bet: 2.5, stack: 97.5 },
+      }),
+      pot: 4,
+    },
+    {
+      tag: "Préflop",
+      emoji: "🛡️",
+      title: "La big blind défend",
+      text: "La small blind se couche, la big blind paie pour défendre. On voit le flop à deux, vous en position.",
+      seats: t6({
+        UTG: { tone: "muted", note: "fold" },
+        MP: { tone: "muted", note: "fold" },
+        CO: { tone: "muted", note: "fold" },
+        BTN: { tone: "gold", note: "vous", cards: ["As", "Ks"], bet: 2.5, stack: 97.5 },
+        SB: { tone: "muted", note: "fold" },
+        BB: { tone: "blue", note: "défend", bet: 2.5, hidden: true },
+      }),
       pot: 5.5,
     },
     {
       tag: "Flop",
       emoji: "🃏",
       title: "Texture sèche, favorable à votre range",
-      text: "Q-7-2 rainbow. Ce board sec avantage votre range de relanceur préflop : plus de top paires et de grosses paires que la big blind, qui check.",
-      seats: [
-        { label: "BTN", tone: "gold", dealer: true, cards: ["As", "Ks"], stack: 97.5 },
-        { label: "BB", note: "check", tone: "blue", hidden: true, stack: 97.5 },
-      ],
+      text: "Q-7-2 rainbow. Ce board sec avantage votre range de relanceur préflop. La big blind check.",
+      seats: t6({
+        UTG: { tone: "muted", note: "fold" },
+        MP: { tone: "muted", note: "fold" },
+        CO: { tone: "muted", note: "fold" },
+        BTN: { tone: "gold", note: "vous", cards: ["As", "Ks"] },
+        SB: { tone: "muted", note: "fold" },
+        BB: { tone: "blue", note: "check", hidden: true },
+      }),
       board: ["Qs", "7d", "2c"],
       pot: 6,
     },
@@ -144,11 +195,15 @@ const HANDS: Record<string, ReplayStep[]> = {
       tag: "Continuation bet",
       emoji: "💰",
       title: "C-bet",
-      text: "Vous continuez l'agression avec un c-bet d'environ la moitié du pot. Sur cette texture, l'adversaire doit souvent se coucher : votre fold equity est élevée.",
-      seats: [
-        { label: "BTN", note: "c-bet", tone: "gold", dealer: true, cards: ["As", "Ks"], bet: 3, stack: 94.5 },
-        { label: "BB", note: "souvent fold", tone: "blue", hidden: true, stack: 97.5 },
-      ],
+      text: "Vous continuez l'agression : c-bet d'environ la moitié du pot. Fold equity élevée, et vous protégez vos meilleures mains.",
+      seats: t6({
+        UTG: { tone: "muted", note: "fold" },
+        MP: { tone: "muted", note: "fold" },
+        CO: { tone: "muted", note: "fold" },
+        BTN: { tone: "gold", note: "c-bet", cards: ["As", "Ks"], bet: 3, stack: 94.5 },
+        SB: { tone: "muted", note: "fold" },
+        BB: { tone: "blue", note: "à parler", hidden: true },
+      }),
       board: ["Qs", "7d", "2c"],
       pot: 6,
     },
@@ -156,35 +211,66 @@ const HANDS: Record<string, ReplayStep[]> = {
   "le-3-bet": [
     {
       tag: "Préflop",
+      emoji: "➡️",
+      title: "UTG se couche",
+      text: "UTG parle en premier (sous le pistolet) et se couche.",
+      seats: t6({
+        UTG: { tone: "muted", note: "fold" },
+        BTN: { tone: "gold", note: "vous", cards: ["As", "5s"] },
+      }),
+      pot: 1.5,
+    },
+    {
+      tag: "Préflop",
+      emoji: "➡️",
+      title: "MP se couche",
+      text: "Le joueur du milieu (MP) se couche aussi.",
+      seats: t6({
+        UTG: { tone: "muted", note: "fold" },
+        MP: { tone: "muted", note: "fold" },
+        BTN: { tone: "gold", note: "vous", cards: ["As", "5s"] },
+      }),
+      pot: 1.5,
+    },
+    {
+      tag: "Préflop",
       emoji: "🎯",
-      title: "UTG ouvre",
-      text: "UTG open. En première position, sa range d'ouverture est plutôt serrée.",
-      seats: [
-        { label: "BTN", note: "vous", tone: "gold", dealer: true, cards: ["As", "5s"], stack: 100 },
-        { label: "UTG", note: "open", tone: "blue", hidden: true, bet: 2.5, stack: 100 },
-      ],
+      title: "Le cutoff ouvre",
+      text: "Le cutoff ouvre à 2,5 BB. À vous, au bouton : payer, jeter, ou relancer par-dessus.",
+      seats: t6({
+        UTG: { tone: "muted", note: "fold" },
+        MP: { tone: "muted", note: "fold" },
+        CO: { tone: "blue", note: "open", bet: 2.5, hidden: true },
+        BTN: { tone: "gold", note: "vous", cards: ["As", "5s"] },
+      }),
       pot: 4,
     },
     {
       tag: "Votre 3-bet",
       emoji: "⚡",
-      title: "Re-relance par-dessus",
-      text: "Au bouton, vous 3-bet. Ici en bluff avec A5s : l'As bloque ses AA/AK (il a moins de chances de les avoir), et la main se joue bien si on vous paie.",
-      seats: [
-        { label: "BTN", note: "3-bet", tone: "gold", dealer: true, cards: ["As", "5s"], bet: 9, stack: 91 },
-        { label: "UTG", tone: "blue", hidden: true, bet: 2.5, stack: 97.5 },
-      ],
+      title: "Vous re-relancez (3-bet)",
+      text: "Vous 3-bet à 9 BB. Ici en bluff avec A5s : l'As bloque ses AA/AK, et la main se joue bien si on vous paie.",
+      seats: t6({
+        UTG: { tone: "muted", note: "fold" },
+        MP: { tone: "muted", note: "fold" },
+        CO: { tone: "blue", bet: 2.5, hidden: true },
+        BTN: { tone: "gold", note: "3-bet", cards: ["As", "5s"], bet: 9, stack: 91 },
+      }),
       pot: 13,
     },
     {
       tag: "Le résultat",
       emoji: "🏆",
-      title: "Initiative et avantage de range",
-      text: "UTG doit se défendre hors de position face à votre 3-bet. Vous gardez l'initiative et, sur la majorité des flops, l'avantage de range.",
-      seats: [
-        { label: "BTN", note: "vous menez", tone: "gold", dealer: true, cards: ["As", "5s"], bet: 9, stack: 91 },
-        { label: "UTG", note: "call ou fold", tone: "blue", hidden: true, bet: 2.5, stack: 97.5 },
-      ],
+      title: "Le cutoff doit se défendre",
+      text: "Les blindes se couchent. Le cutoff doit payer beaucoup plus, hors de position, ou abandonner. Vous menez le coup, initiative en main.",
+      seats: t6({
+        UTG: { tone: "muted", note: "fold" },
+        MP: { tone: "muted", note: "fold" },
+        CO: { tone: "blue", note: "call ou fold", bet: 2.5, hidden: true },
+        BTN: { tone: "gold", note: "vous menez", cards: ["As", "5s"], bet: 9, stack: 91 },
+        SB: { tone: "muted", note: "fold" },
+        BB: { tone: "muted", note: "fold" },
+      }),
       pot: 13,
     },
   ],
@@ -193,61 +279,85 @@ const HANDS: Record<string, ReplayStep[]> = {
       tag: "Préflop",
       emoji: "🎯",
       title: "UTG ouvre",
-      text: "UTG open en première position.",
-      seats: [
-        { label: "BTN", note: "vous", tone: "gold", dealer: true, cards: ["Ad", "Kd"], stack: 100 },
-        { label: "UTG", note: "open", tone: "blue", hidden: true, bet: 2.5, stack: 100 },
-        { label: "CO", note: "à parler", tone: "muted", hidden: true, stack: 100 },
-      ],
+      text: "UTG ouvre à 2,5 BB.",
+      seats: t6({
+        UTG: { tone: "blue", note: "open", bet: 2.5, hidden: true },
+        BTN: { tone: "gold", note: "vous", cards: ["Ad", "Kd"] },
+      }),
       pot: 4,
     },
     {
-      tag: "Cold call",
+      tag: "Préflop",
       emoji: "➕",
-      title: "Le cutoff se contente de suivre",
-      text: "Le CO flat l'open : sa range est plafonnée (capped), avec ses meilleures mains il aurait 3-bet. C'est cette faiblesse qui ouvre la porte au squeeze.",
-      seats: [
-        { label: "BTN", note: "vous", tone: "gold", dealer: true, cards: ["Ad", "Kd"], stack: 100 },
-        { label: "UTG", tone: "blue", hidden: true, bet: 2.5, stack: 97.5 },
-        { label: "CO", note: "flat", tone: "blue", hidden: true, bet: 2.5, stack: 97.5 },
-      ],
+      title: "Le cutoff suit (cold call)",
+      text: "Le cutoff se contente de suivre. Sa range est plafonnée (capped) : avec ses meilleures mains, il aurait 3-bet. C'est la porte ouverte au squeeze.",
+      seats: t6({
+        UTG: { tone: "blue", bet: 2.5, hidden: true },
+        MP: { tone: "muted", note: "fold" },
+        CO: { tone: "blue", note: "flat", bet: 2.5, hidden: true },
+        BTN: { tone: "gold", note: "vous", cards: ["Ad", "Kd"] },
+      }),
       pot: 6.5,
     },
     {
       tag: "Le squeeze",
       emoji: "✊",
       title: "Vous relancez fort au bouton",
-      text: "Vous squeezez (re-relancez gros). Vous attaquez deux ranges à la fois, avec du dead money déjà au milieu et un flatteur capped : rentable même sans grosse main.",
-      seats: [
-        { label: "BTN", note: "squeeze", tone: "gold", dealer: true, cards: ["Ad", "Kd"], bet: 12, stack: 88 },
-        { label: "UTG", tone: "muted", hidden: true, bet: 2.5, stack: 97.5 },
-        { label: "CO", tone: "muted", hidden: true, bet: 2.5, stack: 97.5 },
-      ],
+      text: "Vous squeezez à 12 BB. Vous attaquez deux ranges à la fois, avec du dead money au milieu et un flatteur capped : rentable même sans grosse main.",
+      seats: t6({
+        UTG: { tone: "blue", note: "à parler", bet: 2.5, hidden: true },
+        MP: { tone: "muted", note: "fold" },
+        CO: { tone: "blue", note: "à parler", bet: 2.5, hidden: true },
+        BTN: { tone: "gold", note: "squeeze", cards: ["Ad", "Kd"], bet: 12, stack: 88 },
+      }),
       pot: 19,
     },
   ],
   "cotes-et-pot-odds": [
     {
+      tag: "Préflop",
+      emoji: "🛡️",
+      title: "Vous défendez la big blind",
+      text: "Le bouton ouvre, ça se couche jusqu'à vous. Vous défendez la big blind avec T9 assorti.",
+      seats: t6({
+        BTN: { tone: "blue", note: "open", bet: 2.5, hidden: true },
+        UTG: { tone: "muted", note: "fold" },
+        MP: { tone: "muted", note: "fold" },
+        CO: { tone: "muted", note: "fold" },
+        SB: { tone: "muted", note: "fold" },
+        BB: { tone: "gold", note: "vous", cards: ["Th", "9h"], bet: 2.5 },
+      }),
+      pot: 5.5,
+    },
+    {
       tag: "Flop",
       emoji: "🃏",
       title: "Tirage couleur (9 outs)",
-      text: "A-K-7 à deux cœurs. Vous tenez T9 de cœur : un flush draw, soit 9 outs pour compléter votre couleur.",
-      seats: [
-        { label: "BB", note: "vous", tone: "gold", cards: ["Th", "9h"], stack: 100 },
-        { label: "BTN", note: "villain", tone: "blue", dealer: true, hidden: true, stack: 100 },
-      ],
+      text: "A-K-7 à deux cœurs. Vous avez un flush draw (9 outs). Pour l'instant rien de fait, juste le tirage.",
+      seats: t6({
+        BTN: { tone: "blue", note: "villain", hidden: true },
+        UTG: { tone: "muted", note: "fold" },
+        MP: { tone: "muted", note: "fold" },
+        CO: { tone: "muted", note: "fold" },
+        SB: { tone: "muted", note: "fold" },
+        BB: { tone: "gold", note: "vous", cards: ["Th", "9h"] },
+      }),
       board: ["Ah", "Kh", "7s"],
       pot: 6,
     },
     {
       tag: "La mise",
       emoji: "💰",
-      title: "Villain mise environ le pot",
-      text: "Il mise à peu près la taille du pot. Pour rester et voir la carte suivante, vous devez payer. La cote du pot est d'environ 2,2 contre 1.",
-      seats: [
-        { label: "BB", note: "payer ?", tone: "gold", cards: ["Th", "9h"], stack: 100 },
-        { label: "BTN", note: "bet", tone: "blue", dealer: true, hidden: true, bet: 5, stack: 95 },
-      ],
+      title: "Le bouton mise environ le pot",
+      text: "Il mise à peu près la taille du pot. Pour rester, vous devez payer. La cote du pot est d'environ 2,2 contre 1.",
+      seats: t6({
+        BTN: { tone: "blue", note: "bet", bet: 5, hidden: true },
+        UTG: { tone: "muted", note: "fold" },
+        MP: { tone: "muted", note: "fold" },
+        CO: { tone: "muted", note: "fold" },
+        SB: { tone: "muted", note: "fold" },
+        BB: { tone: "gold", note: "payer ?", cards: ["Th", "9h"] },
+      }),
       board: ["Ah", "Kh", "7s"],
       pot: 11,
     },
@@ -255,11 +365,15 @@ const HANDS: Record<string, ReplayStep[]> = {
       tag: "La décision",
       emoji: "🧮",
       title: "Cote du pot vs cote du tirage",
-      text: "Avec 9 outs, vous touchez environ 35% sur deux cartes, soit ~1,9 contre 1. C'est mieux que la cote demandée (2,2 contre 1), et vos implied odds n'arrangent que les choses : le call est rentable.",
-      seats: [
-        { label: "BB", note: "call", tone: "gold", cards: ["Th", "9h"], stack: 95 },
-        { label: "BTN", tone: "blue", dealer: true, hidden: true, bet: 5, stack: 95 },
-      ],
+      text: "Avec 9 outs vous touchez ~35% sur deux cartes (~1,9 contre 1), mieux que la cote demandée (2,2 contre 1). Sans même compter les implied odds : le call est rentable.",
+      seats: t6({
+        BTN: { tone: "blue", bet: 5, hidden: true },
+        UTG: { tone: "muted", note: "fold" },
+        MP: { tone: "muted", note: "fold" },
+        CO: { tone: "muted", note: "fold" },
+        SB: { tone: "muted", note: "fold" },
+        BB: { tone: "gold", note: "call", cards: ["Th", "9h"] },
+      }),
       board: ["Ah", "Kh", "7s"],
       pot: 11,
     },
@@ -268,23 +382,31 @@ const HANDS: Record<string, ReplayStep[]> = {
     {
       tag: "Préflop",
       emoji: "🎯",
-      title: "Open avec Q9 assorti",
-      text: "Vous ouvrez au bouton avec Q9 de pique, un suited connector qui flop très bien.",
-      seats: [
-        { label: "BTN", note: "vous", tone: "gold", dealer: true, cards: ["Qs", "9s"], bet: 2.5, stack: 100 },
-        { label: "BB", note: "call", tone: "blue", hidden: true, bet: 1, stack: 100 },
-      ],
+      title: "Vous ouvrez au bouton",
+      text: "Ça se couche jusqu'à vous. Au bouton avec Q9 de pique (un suited connector), vous ouvrez. La big blind paie.",
+      seats: t6({
+        UTG: { tone: "muted", note: "fold" },
+        MP: { tone: "muted", note: "fold" },
+        CO: { tone: "muted", note: "fold" },
+        BTN: { tone: "gold", note: "vous, open", cards: ["Qs", "9s"], bet: 2.5, stack: 97.5 },
+        SB: { tone: "muted", note: "fold" },
+        BB: { tone: "blue", note: "call", bet: 2.5, hidden: true },
+      }),
       pot: 5.5,
     },
     {
       tag: "Flop",
       emoji: "🃏",
       title: "Combo draw monstrueux",
-      text: "J-T-4 à deux piques. Vous floppez un tirage quinte par les deux bouts plus un flush draw : environ 15 outs, souvent favori face à une simple paire.",
-      seats: [
-        { label: "BTN", note: "combo draw", tone: "gold", dealer: true, cards: ["Qs", "9s"], stack: 97.5 },
-        { label: "BB", note: "check", tone: "blue", hidden: true, stack: 97.5 },
-      ],
+      text: "J-T-4 à deux piques. Tirage quinte par les deux bouts plus flush draw : environ 15 outs, souvent favori face à une simple paire. La big blind check.",
+      seats: t6({
+        UTG: { tone: "muted", note: "fold" },
+        MP: { tone: "muted", note: "fold" },
+        CO: { tone: "muted", note: "fold" },
+        BTN: { tone: "gold", note: "combo draw", cards: ["Qs", "9s"] },
+        SB: { tone: "muted", note: "fold" },
+        BB: { tone: "blue", note: "check", hidden: true },
+      }),
       board: ["Js", "Ts", "4d"],
       pot: 6,
     },
@@ -292,11 +414,15 @@ const HANDS: Record<string, ReplayStep[]> = {
       tag: "Semi-bluff",
       emoji: "⚡",
       title: "Vous misez votre tirage",
-      text: "Vous misez en semi-bluff : fold equity immédiate s'il se couche, plus toute l'équité de votre tirage s'il paie. Avec autant d'outs, c'est la ligne la plus rentable.",
-      seats: [
-        { label: "BTN", note: "semi-bluff", tone: "gold", dealer: true, cards: ["Qs", "9s"], bet: 6, stack: 91.5 },
-        { label: "BB", tone: "blue", hidden: true, stack: 97.5 },
-      ],
+      text: "Vous misez en semi-bluff : fold equity s'il se couche, plus toute l'équité de votre tirage s'il paie. Avec autant d'outs, c'est la ligne la plus rentable.",
+      seats: t6({
+        UTG: { tone: "muted", note: "fold" },
+        MP: { tone: "muted", note: "fold" },
+        CO: { tone: "muted", note: "fold" },
+        BTN: { tone: "gold", note: "semi-bluff", cards: ["Qs", "9s"], bet: 6, stack: 91.5 },
+        SB: { tone: "muted", note: "fold" },
+        BB: { tone: "blue", hidden: true },
+      }),
       board: ["Js", "Ts", "4d"],
       pot: 6,
     },
@@ -374,8 +500,8 @@ export default async function LessonPage({
         <Section kicker="Le coup en images" title="Déroulé pas à pas, à la table">
           <p style={{ color: "var(--muted)", marginTop: -4, marginBottom: 14, maxWidth: 620 }}>
             {l.level === "debutant"
-              ? "Clique sur « Dérouler la main » pour voir l'action se jouer étape par étape, tout est expliqué simplement. Tu peux basculer l'affichage en jetons ou en blindes (BB) en haut de la table."
-              : "Déroule la main étape par étape pour visualiser la ligne et le raisonnement à chaque rue. Bascule l'affichage BB / jetons en haut de la table."}
+              ? "Clique sur « Dérouler la main » pour voir l'action se jouer, joueur par joueur. Tout est expliqué simplement, et tu peux basculer l'affichage en jetons ou en blindes (BB) en haut de la table."
+              : "Déroule la main action par action (fold, open, 3-bet...) pour suivre toute la ligne. Bascule l'affichage BB / jetons en haut de la table."}
           </p>
           <HandReplayer steps={hand} defaultUnit={l.level === "debutant" ? "chips" : "bb"} />
         </Section>
