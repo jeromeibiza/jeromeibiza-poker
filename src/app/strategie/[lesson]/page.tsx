@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Fragment } from "react";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { LessonLayout } from "@/components/LessonLayout";
@@ -531,17 +532,47 @@ export default async function LessonPage({
         </Section>
       )}
 
-      {l.sections.map((s) => (
-        <Section key={s.heading} kicker="Cours" title={s.heading}>
-          {s.body && <p style={{ color: "var(--muted)", fontSize: 16, lineHeight: 1.7 }}>{s.body}</p>}
-          {s.bullets && (
-            <ul className="lb" style={{ marginTop: s.body ? 14 : 0 }}>
-              {s.bullets.map((b) => (
-                <li key={b}>{b}</li>
-              ))}
-            </ul>
+      {l.sections.map((s, i) => (
+        <Fragment key={s.heading}>
+          <Section kicker="Cours" title={s.heading}>
+            {s.body && <p style={{ color: "var(--muted)", fontSize: 16, lineHeight: 1.7 }}>{s.body}</p>}
+            {s.bullets && (
+              <ul className="lb" style={{ marginTop: s.body ? 14 : 0 }}>
+                {s.bullets.map((b) => (
+                  <li key={b}>{b}</li>
+                ))}
+              </ul>
+            )}
+          </Section>
+          {i === 0 && l.partner && (
+            <div className="partner-card">
+              <span className="partner-glow" aria-hidden />
+              <div style={{ position: "relative" }}>
+                <span className="partner-badge">★ Partenaire de confiance</span>
+                <h2 className="display partner-hook">{l.partner.hook}</h2>
+                <div className="label" style={{ color: "var(--gold-soft)", fontSize: 13, marginTop: 6 }}>
+                  {l.partner.kind} · {l.partner.name}
+                </div>
+                <p style={{ color: "var(--fg)", fontSize: 15, marginTop: 12, maxWidth: 640 }}>
+                  {l.partner.blurb}
+                </p>
+                <div style={{ marginTop: 18 }}>
+                  <a
+                    href={l.partner.url}
+                    target="_blank"
+                    rel="sponsored noopener noreferrer"
+                    className="btn btn-gold partner-cta"
+                  >
+                    Va voir ce qui se passe chez {l.partner.name} →
+                  </a>
+                </div>
+                <p style={{ color: "var(--faint)", fontSize: 12, marginTop: 14, marginBottom: 0 }}>
+                  Recommandé par Jérôme. 18+, jouez responsable.
+                </p>
+              </div>
+            </div>
           )}
-        </Section>
+        </Fragment>
       ))}
 
       <Section kicker="À retenir" title="Les points clés">
@@ -553,35 +584,6 @@ export default async function LessonPage({
       </Section>
 
       {l.dealerNote && <div style={{ marginTop: 24 }}><DealerNote>{l.dealerNote}</DealerNote></div>}
-
-      {l.partner && (
-        <div className="partner-card">
-          <span className="partner-glow" aria-hidden />
-          <div style={{ position: "relative" }}>
-            <span className="partner-badge">★ Partenaire de confiance</span>
-            <h2 className="display partner-hook">{l.partner.hook}</h2>
-            <div className="label" style={{ color: "var(--gold-soft)", fontSize: 13, marginTop: 6 }}>
-              {l.partner.kind} · {l.partner.name}
-            </div>
-            <p style={{ color: "var(--fg)", fontSize: 15, marginTop: 12, maxWidth: 640 }}>
-              {l.partner.blurb}
-            </p>
-            <div style={{ marginTop: 18 }}>
-              <a
-                href={l.partner.url}
-                target="_blank"
-                rel="sponsored noopener noreferrer"
-                className="btn btn-gold partner-cta"
-              >
-                Va voir ce qui se passe chez {l.partner.name} →
-              </a>
-            </div>
-            <p style={{ color: "var(--faint)", fontSize: 12, marginTop: 14, marginBottom: 0 }}>
-              Recommandé par Jérôme. 18+, jouez responsable.
-            </p>
-          </div>
-        </div>
-      )}
 
       <nav
         style={{
