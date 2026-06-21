@@ -1100,6 +1100,16 @@ a {
   background: linear-gradient(180deg, var(--gold-soft), var(--gold));
   color: #1a1305;
 }
+.pf-cell.is-value {
+  background: linear-gradient(180deg, var(--gold-soft), var(--gold));
+  color: #1a1305;
+  font-weight: 600;
+}
+.pf-cell.is-bluff {
+  background: linear-gradient(180deg, #3f7ff0, #2f6fe6);
+  color: #fff;
+  font-weight: 600;
+}
 .pf-legend {
   display: flex;
   gap: 16px;

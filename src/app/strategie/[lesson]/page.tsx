@@ -8,6 +8,11 @@ import { type TableSeat } from "@/components/PokerTable";
 import { PushFoldChart } from "@/components/PushFoldChart";
 import { OutsReference } from "@/components/OutsReference";
 import { OddsCalculator } from "@/components/OddsCalculator";
+import { RangeExplorer } from "@/components/RangeExplorer";
+import { MdfCalculator } from "@/components/MdfCalculator";
+import { BlockerViz } from "@/components/BlockerViz";
+import { ExploitToggle } from "@/components/ExploitToggle";
+import { BankrollCalculator } from "@/components/BankrollCalculator";
 import { LESSONS, getLesson, LEVEL_LABEL } from "@/lib/poker/strategy";
 import { Crumbs, Section, DealerNote, LevelPill, JsonLd } from "@/components/ui";
 
@@ -531,6 +536,52 @@ export default async function LessonPage({
           <div className="card">
             <PushFoldChart />
           </div>
+        </Section>
+      )}
+
+      {l.slug === "penser-en-ranges" && (
+        <Section kicker="L'outil" title="Les ranges d'ouverture, par position">
+          <p style={{ color: "var(--muted)", marginTop: -4, marginBottom: 14 }}>
+            Clique sur une position : la grille montre toutes les mains qu&apos;on ouvre depuis ce
+            siège. Plus on est proche du bouton, plus la range est large.
+          </p>
+          <RangeExplorer preset="opening" />
+        </Section>
+      )}
+
+      {l.slug === "gto-explique" && (
+        <Section kicker="L'outil" title="Une range GTO, visualisée">
+          <RangeExplorer preset="gto" />
+        </Section>
+      )}
+
+      {l.slug === "equilibrage-des-ranges" && (
+        <Section kicker="L'outil" title="Équilibrée ou prévisible ?">
+          <RangeExplorer preset="balance" />
+        </Section>
+      )}
+
+      {l.slug === "la-mdf" && (
+        <Section kicker="L'outil" title="Calculer la défense minimale">
+          <MdfCalculator />
+        </Section>
+      )}
+
+      {l.slug === "les-blockers" && (
+        <Section kicker="L'outil" title="Ce que bloque votre carte">
+          <BlockerViz />
+        </Section>
+      )}
+
+      {l.slug === "jeu-exploitant" && (
+        <Section kicker="L'outil" title="Ajuster selon l'adversaire">
+          <ExploitToggle />
+        </Section>
+      )}
+
+      {l.slug === "gestion-de-bankroll" && (
+        <Section kicker="L'outil" title="Ta bankroll en caves">
+          <BankrollCalculator />
         </Section>
       )}
 
