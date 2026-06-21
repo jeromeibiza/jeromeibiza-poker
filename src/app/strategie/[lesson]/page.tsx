@@ -9,12 +9,15 @@ import { Crumbs, Section, DealerNote, LevelPill, JsonLd } from "@/components/ui"
 type Params = { lesson: string };
 
 /**
- * Mains rejouables, expliquées pour un grand débutant (niveau "expliqué à un
- * enfant de 8 ans"). Jetons concrets, peu de joueurs (VOUS / ADV.), une
- * explication très simple à chaque étape. Les cours abstraits (ranges, GTO,
- * exploitant, équilibrage, bankroll) n'ont pas de replayer.
+ * Mains rejouables, avec un registre qui s'adapte au niveau du cours :
+ * - DÉBUTANT : tout est expliqué comme à un grand débutant (jetons, VOUS / ADV.,
+ *   aucun jargon).
+ * - INTERMÉDIAIRE : on réduit la simplification, on emploie les vrais termes
+ *   (affichage en BB, vraies positions, range, c-bet, outs, fold equity...).
+ * - AVANCÉ : pas de replayer du tout, le contenu reste purement technique.
  */
 const HANDS: Record<string, ReplayStep[]> = {
+  // -------------------- DÉBUTANT (registre grand débutant) --------------------
   "mains-de-depart": [
     {
       tag: "Vos 2 cartes",
@@ -113,267 +116,195 @@ const HANDS: Record<string, ReplayStep[]> = {
       pot: "13 jetons",
     },
   ],
+
+  // ------------------ INTERMÉDIAIRE (vrais termes, BB, positions) ------------------
   "le-c-bet": [
     {
-      tag: "Avant les cartes du milieu",
+      tag: "Préflop",
       emoji: "🎯",
-      title: "Vous attaquez le premier",
-      text: "Vous avez 2 cartes rien que pour vous. Vous décidez d'attaquer en posant 5 jetons au milieu : une « relance ». Vous montrez que vous avez peut-être une bonne main, les autres doivent payer pour rester.",
+      title: "Open au bouton",
+      text: "Vous ouvrez à 2,5 BB au bouton, la big blind défend. Vous avez l'initiative et la position : deux atouts pour la suite du coup.",
       seats: [
-        { label: "VOUS", note: "vous relancez", tone: "gold", bet: "5 jetons" },
-        { label: "ADV.", note: "il réfléchit", tone: "blue" },
+        { label: "BTN", note: "vous", tone: "gold", bet: "2,5 BB" },
+        { label: "BB", note: "défend", tone: "blue" },
       ],
-      pot: "8 jetons",
+      pot: "5,5 BB",
     },
     {
-      tag: "Le flop",
+      tag: "Flop",
       emoji: "🃏",
-      title: "3 cartes apparaissent au milieu",
-      text: "L'adversaire a payé. Le croupier retourne 3 cartes au centre de la table : le « flop ». Elles sont pour tout le monde, chacun s'en sert pour fabriquer sa main. Ici : une Dame, un 7, un 2.",
+      title: "Texture sèche, favorable à votre range",
+      text: "Q-7-2 rainbow. Ce board sec avantage votre range de relanceur préflop : vous avez bien plus de top paires et de grosses paires que la big blind, qui check.",
       seats: [
-        { label: "VOUS", tone: "gold" },
-        { label: "ADV.", note: "il a checké (passé)", tone: "blue" },
+        { label: "BTN", tone: "gold" },
+        { label: "BB", note: "check", tone: "blue" },
       ],
       board: ["Qs", "7d", "2c"],
-      pot: "13 jetons",
+      pot: "6 BB",
     },
     {
-      tag: "Votre suite logique",
+      tag: "Continuation bet",
       emoji: "💰",
-      title: "Vous re-misez tout de suite",
-      text: "Comme c'est vous qui avez attaqué avant le flop, vous continuez : vous remettez 8 jetons. On appelle ça un « continuation bet », ou c-bet. Très souvent, l'adversaire n'a rien touché et préfère abandonner : vous gagnez le pot.",
+      title: "C-bet 3 BB",
+      text: "Vous continuez l'agression avec un c-bet d'environ la moitié du pot. Sur cette texture, l'adversaire doit souvent se coucher : votre fold equity est élevée et vous protégez vos meilleures mains.",
       seats: [
-        { label: "VOUS", note: "vous misez encore", tone: "gold", bet: "8 jetons" },
-        { label: "ADV.", note: "souvent, il abandonne", tone: "blue" },
+        { label: "BTN", note: "c-bet", tone: "gold", bet: "3 BB" },
+        { label: "BB", note: "souvent fold", tone: "blue" },
       ],
       board: ["Qs", "7d", "2c"],
-      pot: "13 jetons",
+      pot: "6 BB",
     },
   ],
   "le-3-bet": [
     {
-      tag: "Avant le flop",
+      tag: "Préflop",
       emoji: "🎯",
-      title: "L'adversaire attaque le premier",
-      text: "L'adversaire ouvre les hostilités : il pose 5 jetons. C'est sa relance. Normalement, on a le choix entre payer, jeter ses cartes, ou relancer par-dessus.",
+      title: "UTG ouvre",
+      text: "UTG open à 2,5 BB. En première position, sa range d'ouverture est plutôt serrée.",
       seats: [
-        { label: "VOUS", note: "à vous de jouer", tone: "gold" },
-        { label: "ADV.", note: "il ouvre", tone: "blue", bet: "5 jetons" },
+        { label: "BTN", note: "vous", tone: "gold" },
+        { label: "UTG", note: "open", tone: "blue", bet: "2,5 BB" },
       ],
-      pot: "8 jetons",
+      pot: "4 BB",
     },
     {
-      tag: "Votre contre-attaque",
+      tag: "Votre 3-bet",
       emoji: "⚡",
-      title: "Vous re-relancez par-dessus",
-      text: "Au lieu de juste payer, vous re-relancez encore plus haut : 15 jetons. Relancer une relance, ça s'appelle un « 3-bet ». Vous reprenez les commandes du coup et vous montrez de la force.",
+      title: "Re-relance à 9 BB",
+      text: "Au bouton, vous 3-bet à environ 3,5x l'open. En value avec vos premiums (QQ+, AK), en bluff avec des mains à blockers comme A5s, qui bloquent ses AA/AK et se jouent bien si on vous paie.",
       seats: [
-        { label: "VOUS", note: "vous 3-bet", tone: "gold", bet: "15 jetons" },
-        { label: "ADV.", tone: "blue", bet: "5 jetons" },
+        { label: "BTN", note: "3-bet", tone: "gold", bet: "9 BB" },
+        { label: "UTG", tone: "blue", bet: "2,5 BB" },
       ],
-      pot: "23 jetons",
+      pot: "13 BB",
     },
     {
       tag: "Le résultat",
       emoji: "🏆",
-      title: "C'est vous qui menez",
-      text: "L'adversaire doit maintenant choisir : payer 10 jetons de plus, ou abandonner. Souvent il se couche, et vous remportez les jetons déjà au milieu. C'est ça, prendre l'initiative.",
+      title: "Initiative et avantage de range",
+      text: "UTG doit se défendre hors de position face à votre 3-bet. Vous gardez l'initiative et, sur la majorité des flops, l'avantage de range.",
       seats: [
-        { label: "VOUS", note: "vous menez", tone: "gold", bet: "15 jetons" },
-        { label: "ADV.", note: "payer ou jeter ?", tone: "blue", bet: "5 jetons" },
+        { label: "BTN", note: "vous menez", tone: "gold", bet: "9 BB" },
+        { label: "UTG", note: "call ou fold", tone: "blue", bet: "2,5 BB" },
       ],
-      pot: "23 jetons",
+      pot: "13 BB",
     },
   ],
   "le-squeeze": [
     {
-      tag: "Avant le flop",
+      tag: "Préflop",
       emoji: "🎯",
-      title: "Un joueur ouvre",
-      text: "Un premier joueur attaque : il pose 5 jetons.",
+      title: "UTG ouvre",
+      text: "UTG open à 2,5 BB.",
       seats: [
-        { label: "VOUS", note: "vous, bientôt", tone: "gold" },
-        { label: "J. A", note: "il ouvre", tone: "blue", bet: "5 jetons" },
-        { label: "J. B", note: "il réfléchit", tone: "muted" },
+        { label: "SB", note: "vous", tone: "gold" },
+        { label: "UTG", note: "open", tone: "blue", bet: "2,5 BB" },
+        { label: "CO", note: "à parler", tone: "muted" },
       ],
-      pot: "8 jetons",
+      pot: "4 BB",
     },
     {
-      tag: "Et un autre suit",
+      tag: "Cold call",
       emoji: "➕",
-      title: "Un deuxième joueur paie",
-      text: "Un deuxième joueur se contente de payer les 5 jetons pour voir le flop. Il a rarement une main très forte, sinon il aurait relancé. C'est ce détail qui vous ouvre une porte.",
+      title: "Le cutoff se contente de suivre",
+      text: "Le CO flat l'open. Sa range est plafonnée (capped) : avec ses meilleures mains, il aurait 3-bet. C'est cette faiblesse qui ouvre la porte au squeeze.",
       seats: [
-        { label: "VOUS", note: "à vous", tone: "gold" },
-        { label: "J. A", tone: "blue", bet: "5 jetons" },
-        { label: "J. B", note: "il suit", tone: "blue", bet: "5 jetons" },
+        { label: "SB", note: "vous", tone: "gold" },
+        { label: "UTG", tone: "blue", bet: "2,5 BB" },
+        { label: "CO", note: "flat", tone: "blue", bet: "2,5 BB" },
       ],
-      pot: "13 jetons",
+      pot: "6,5 BB",
     },
     {
-      tag: "Votre coup",
+      tag: "Le squeeze",
       emoji: "✊",
-      title: "Vous relancez fort : le squeeze",
-      text: "C'est le moment : vous relancez gros, 18 jetons, pour mettre la pression sur les deux à la fois. On appelle ça un « squeeze » (pincer). Souvent, ils abandonnent tous les deux et vous ramassez les jetons déjà au milieu.",
+      title: "Relance à 12 BB depuis la SB",
+      text: "Vous squeezez à 12 BB. Vous attaquez deux ranges à la fois, avec du dead money déjà au milieu et un flatteur capped : le coup est rentable même sans grosse main.",
       seats: [
-        { label: "VOUS", note: "vous squeezez", tone: "gold", bet: "18 jetons" },
-        { label: "J. A", tone: "muted", bet: "5 jetons" },
-        { label: "J. B", tone: "muted", bet: "5 jetons" },
+        { label: "SB", note: "squeeze", tone: "gold", bet: "12 BB" },
+        { label: "UTG", tone: "muted", bet: "2,5 BB" },
+        { label: "CO", tone: "muted", bet: "2,5 BB" },
       ],
-      pot: "31 jetons",
+      pot: "19 BB",
     },
   ],
   "cotes-et-pot-odds": [
     {
-      tag: "Le flop",
+      tag: "Flop",
       emoji: "🃏",
-      title: "Vous avez un tirage couleur",
-      text: "Au milieu : As, Roi, 7, dont deux cœurs. Vos 2 cartes sont aussi des cœurs (le 10 et le 9). S'il tombe encore un cœur, vous aurez 5 cartes de cœur : une « couleur », une très belle main. Pour l'instant, vous n'avez que l'espoir.",
+      title: "Tirage couleur (9 outs)",
+      text: "A-K-7 à deux cœurs. Vous tenez T9 de cœur : un flush draw, soit 9 outs pour compléter votre couleur.",
       seats: [
-        { label: "VOUS", note: "vous (tirage)", tone: "gold", cards: ["Th", "9h"] },
-        { label: "ADV.", note: "l'autre joueur", tone: "blue" },
+        { label: "BB", note: "vous", tone: "gold", cards: ["Th", "9h"] },
+        { label: "BTN", note: "villain", tone: "blue" },
       ],
       board: ["Ah", "Kh", "7s"],
-      pot: "10 jetons",
+      pot: "6 BB",
     },
     {
-      tag: "L'adversaire mise",
+      tag: "La mise",
       emoji: "💰",
-      title: "Il pose 5 jetons, à vous de choisir",
-      text: "L'adversaire mise 5 jetons. Pour rester dans le coup et voir la carte suivante, vous devez payer 5 jetons. La vraie question : est-ce que ça vaut le coup de payer ?",
+      title: "Villain mise 5 BB",
+      text: "Il mise 5 BB dans un pot de 6. Vous devez payer 5 pour en gagner 11 : la cote du pot est d'environ 2,2 contre 1.",
       seats: [
-        { label: "VOUS", note: "payer ?", tone: "gold", cards: ["Th", "9h"] },
-        { label: "ADV.", note: "il mise", tone: "blue", bet: "5 jetons" },
+        { label: "BB", note: "payer ?", tone: "gold", cards: ["Th", "9h"] },
+        { label: "BTN", note: "bet", tone: "blue", bet: "5 BB" },
       ],
       board: ["Ah", "Kh", "7s"],
-      pot: "15 jetons",
+      pot: "11 BB",
     },
     {
-      tag: "Le calcul tout simple",
+      tag: "La décision",
       emoji: "🧮",
-      title: "Le pot vous fait une bonne affaire",
-      text: "Vous risquez 5 jetons pour en gagner 15. Et vous touchez votre couleur environ 1 fois sur 3. Sur la durée, payer rapporte plus que ça ne coûte : c'est exactement ça, jouer ses « cotes ».",
+      title: "Cote du pot vs cote du tirage",
+      text: "Avec 9 outs, vous touchez environ 35% sur deux cartes, soit ~1,9 contre 1. C'est mieux que la cote demandée (2,2 contre 1), et vos implied odds n'arrangent que les choses : le call est rentable.",
       seats: [
-        { label: "VOUS", note: "vous payez", tone: "gold", cards: ["Th", "9h"] },
-        { label: "ADV.", tone: "blue", bet: "5 jetons" },
+        { label: "BB", note: "call", tone: "gold", cards: ["Th", "9h"] },
+        { label: "BTN", tone: "blue", bet: "5 BB" },
       ],
       board: ["Ah", "Kh", "7s"],
-      pot: "15 jetons",
+      pot: "11 BB",
     },
   ],
   "le-semi-bluff": [
     {
-      tag: "Avant le flop",
+      tag: "Préflop",
       emoji: "🎯",
-      title: "Vous attaquez avec 2 belles cartes",
-      text: "Vous avez une Dame et un 9, de la même couleur (pique). Vous relancez à 5 jetons.",
+      title: "Open avec Q9 assorti",
+      text: "Vous ouvrez à 2,5 BB avec Q9 de pique, un suited connector qui flop bien.",
       seats: [
-        { label: "VOUS", note: "vous relancez", tone: "gold", cards: ["Qs", "9s"], bet: "5 jetons" },
-        { label: "ADV.", note: "il paie", tone: "blue" },
+        { label: "BTN", note: "vous", tone: "gold", cards: ["Qs", "9s"], bet: "2,5 BB" },
+        { label: "BB", note: "call", tone: "blue" },
       ],
-      pot: "10 jetons",
+      pot: "5,5 BB",
     },
     {
-      tag: "Le flop",
+      tag: "Flop",
       emoji: "🃏",
-      title: "Un flop plein de promesses",
-      text: "Au milieu : Valet, 10, 4, dont deux piques. Vous n'avez pas encore de main finie, mais énormément de possibilités : une couleur si un pique tombe, une suite si un 8 ou une Dame arrive. On appelle ça un « tirage ».",
+      title: "Combo draw monstrueux",
+      text: "J-T-4 à deux piques. Vous floppez un tirage quinte par les deux bouts plus un flush draw : environ 15 outs, souvent favori face à une simple paire.",
       seats: [
-        { label: "VOUS", note: "gros tirage", tone: "gold", cards: ["Qs", "9s"] },
-        { label: "ADV.", note: "il a checké", tone: "blue" },
+        { label: "BTN", note: "combo draw", tone: "gold", cards: ["Qs", "9s"] },
+        { label: "BB", note: "check", tone: "blue" },
       ],
       board: ["Js", "Ts", "4d"],
-      pot: "13 jetons",
+      pot: "6 BB",
     },
     {
-      tag: "Le semi-bluff",
+      tag: "Semi-bluff",
       emoji: "⚡",
-      title: "Vous misez quand même : malin",
-      text: "Vous misez 9 jetons. Deux façons de gagner : soit l'adversaire abandonne tout de suite, soit il paie et vous complétez votre couleur ou votre suite ensuite. C'est le « semi-bluff » : un bluff avec un plan B.",
+      title: "Mise de 6 BB",
+      text: "Vous misez en semi-bluff : fold equity immédiate s'il se couche, plus toute l'équité de votre tirage s'il paie. Avec autant d'outs, c'est la ligne la plus rentable.",
       seats: [
-        { label: "VOUS", note: "vous misez", tone: "gold", cards: ["Qs", "9s"], bet: "9 jetons" },
-        { label: "ADV.", tone: "blue" },
+        { label: "BTN", note: "semi-bluff", tone: "gold", cards: ["Qs", "9s"], bet: "6 BB" },
+        { label: "BB", tone: "blue" },
       ],
       board: ["Js", "Ts", "4d"],
-      pot: "13 jetons",
+      pot: "6 BB",
     },
   ],
-  "les-blockers": [
-    {
-      tag: "La dernière carte",
-      emoji: "🃏",
-      title: "Toutes les cartes sont sorties",
-      text: "Les cartes du milieu sont là : As, Dame, 5, 2. Vous, vous avez l'As de pique et un Roi. Vous n'avez pas une grosse main, mais votre As va vous servir autrement.",
-      seats: [
-        { label: "VOUS", note: "vous", tone: "gold", cards: ["As", "Kc"] },
-        { label: "ADV.", note: "l'autre joueur", tone: "blue" },
-      ],
-      board: ["Ah", "Qd", "5c", "2s"],
-      pot: "16 jetons",
-    },
-    {
-      tag: "L'astuce cachée",
-      emoji: "🔒",
-      title: "Vous tenez un As : info précieuse",
-      text: "Comme vous avez un As en main, l'adversaire ne peut quasiment pas avoir une paire d'As : il n'en reste presque plus. Il a donc beaucoup moins de très grosses mains possibles. On dit que votre As « bloque » ses bonnes mains.",
-      seats: [
-        { label: "VOUS", note: "vous bloquez", tone: "gold", cards: ["As", "Kc"] },
-        { label: "ADV.", note: "peu de grosses mains", tone: "blue" },
-      ],
-      board: ["Ah", "Qd", "5c", "2s"],
-      pot: "16 jetons",
-    },
-    {
-      tag: "Le bluff malin",
-      emoji: "💰",
-      title: "Du coup, vous pouvez bluffer",
-      text: "Puisqu'il a rarement une grosse main, vous misez fort (12 jetons) comme si vous étiez très puissant. Votre bluff a beaucoup plus de chances de le faire abandonner. C'est toute la force des « blockers ».",
-      seats: [
-        { label: "VOUS", note: "vous bluffez", tone: "gold", cards: ["As", "Kc"], bet: "12 jetons" },
-        { label: "ADV.", note: "il y croit", tone: "blue" },
-      ],
-      board: ["Ah", "Qd", "5c", "2s"],
-      pot: "16 jetons",
-    },
-  ],
-  "la-mdf": [
-    {
-      tag: "La dernière carte",
-      emoji: "🃏",
-      title: "L'adversaire mise très gros",
-      text: "Dernière carte posée au milieu. L'adversaire mise 10 jetons, autant qu'il y a déjà dans le pot. Il vous met la pression pour vous faire jeter vos cartes.",
-      seats: [
-        { label: "VOUS", note: "défendre ?", tone: "gold" },
-        { label: "ADV.", note: "il mise tout le pot", tone: "blue", bet: "10 jetons" },
-      ],
-      board: ["Kd", "8s", "3c", "7h"],
-      pot: "10 jetons",
-    },
-    {
-      tag: "Le piège à éviter",
-      emoji: "⚠️",
-      title: "Abandonner trop souvent, c'est se faire plumer",
-      text: "Si vous jetez vos cartes presque à chaque fois qu'on vous mise dessus, l'adversaire peut bluffer tout le temps sans aucun risque. Il gagnerait à tous les coups, juste en misant.",
-      seats: [
-        { label: "VOUS", note: "ne jetez pas tout", tone: "gold" },
-        { label: "ADV.", tone: "blue", bet: "10 jetons" },
-      ],
-      board: ["Kd", "8s", "3c", "7h"],
-      pot: "10 jetons",
-    },
-    {
-      tag: "La règle (MDF)",
-      emoji: "🛡️",
-      title: "Gardez environ la moitié de vos mains",
-      text: "Pour ne pas vous faire avoir, vous devez continuer (payer) avec à peu près la moitié de vos mains, même les moyennes. Comme ça, bluffer contre vous redevient risqué pour lui. C'est la « fréquence de défense minimale ».",
-      seats: [
-        { label: "VOUS", note: "vous payez", tone: "gold" },
-        { label: "ADV.", tone: "blue", bet: "10 jetons" },
-      ],
-      board: ["Kd", "8s", "3c", "7h"],
-      pot: "10 jetons",
-    },
-  ],
+
+  // ------------------ AVANCÉ : pas de replayer (contenu 100% technique) ------------------
 };
 
 export function generateStaticParams(): Params[] {
@@ -444,8 +375,9 @@ export default async function LessonPage({
       {hand && (
         <Section kicker="Le coup en images" title="Déroulé pas à pas, à la table">
           <p style={{ color: "var(--muted)", marginTop: -4, marginBottom: 14, maxWidth: 620 }}>
-            Clique sur « Dérouler la main » pour voir l&apos;action se jouer étape par étape, avec
-            l&apos;explication en direct. Tu peux aussi avancer toi-même avec les flèches.
+            {l.level === "debutant"
+              ? "Clique sur « Dérouler la main » pour voir l'action se jouer étape par étape, tout est expliqué simplement. Tu peux aussi avancer toi-même avec les flèches."
+              : "Déroule la main étape par étape pour visualiser la ligne et le raisonnement à chaque rue."}
           </p>
           <HandReplayer steps={hand} />
         </Section>
