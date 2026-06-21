@@ -163,6 +163,15 @@ export default async function FormatPage({
 
       {f.dealerNote && <div style={{ marginTop: 24 }}><DealerNote>{f.dealerNote}</DealerNote></div>}
 
+      {["tournoi-mtt", "sit-and-go", "spin-and-go"].includes(f.slug) && (
+        <div className="card" style={{ marginTop: 16, borderColor: "rgba(232,176,75,0.3)" }}>
+          <p style={{ color: "var(--muted)", margin: 0 }}>
+            🃏 À tapis court, tout se joue en push or fold. Vois le mémo{" "}
+            <Link href="/strategie/push-or-fold-10bb" className="link">quelles mains pousser à 10 BB →</Link>
+          </p>
+        </div>
+      )}
+
       <nav
         style={{
           marginTop: 36,
