@@ -456,7 +456,7 @@ export const MODULES: AcademyModule[] = [
     emoji: "🎓",
     summary: "QCM de 100 questions, exercices pratiques et certification Jérôme Ibiza.",
     minutes: 60,
-    status: "plan",
+    status: "complet",
     objectives: [
       "Valider l'ensemble des connaissances",
       "Réussir les exercices pratiques",

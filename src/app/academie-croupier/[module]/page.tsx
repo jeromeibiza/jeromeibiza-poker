@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { LessonLayout } from "@/components/LessonLayout";
+import { CroupierExam } from "@/components/CroupierExam";
 import { MODULES, getModule } from "@/lib/poker/academy";
 import { Crumbs, Section, DealerNote, JsonLd } from "@/components/ui";
 
@@ -100,6 +101,17 @@ export default async function ModulePage({
           )}
         </Section>
       ))}
+
+      {m.slug === "examen-final" && (
+        <Section kicker="L'examen" title="Passe l'examen : 100 questions">
+          <p style={{ color: "var(--muted)", marginTop: -4, marginBottom: 16 }}>
+            Réponds aux 100 questions (réparties sur les 9 modules). Il te faut{" "}
+            <strong>80 bonnes réponses sur 100</strong> pour valider et décrocher ton certificat. Tu
+            peux naviguer entre les questions et revenir en arrière avant de terminer.
+          </p>
+          <CroupierExam />
+        </Section>
+      )}
 
       {m.status === "plan" && (
         <div className="card" style={{ marginTop: 28, borderColor: "rgba(232,176,75,0.3)" }}>
