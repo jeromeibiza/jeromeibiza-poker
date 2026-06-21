@@ -16,10 +16,25 @@ type Seat6 = Partial<Omit<TableSeat, "label">>;
 const POS6 = ["BTN", "SB", "BB", "UTG", "MP", "CO"];
 function t6(over: Record<string, Seat6> = {}): TableSeat[] {
   return POS6.map((pos) => {
-    const base: TableSeat = { label: pos, stack: 100 };
+    // Siège dont l'action est décrite : on prend tel quel (le bouton garde le D).
+    if (over[pos]) {
+      const base: TableSeat = { label: pos, stack: 100 };
+      if (pos === "BTN") base.dealer = true;
+      return { ...base, ...over[pos] };
+    }
+    // Sinon : joueur encore en jeu (cartes cachées). Les blindes SB/BB sont
+    // postées pour qu'on voie la structure préflop et qu'on ne se perde pas.
+    const base: TableSeat = { label: pos, stack: 100, hidden: true };
     if (pos === "BTN") base.dealer = true;
-    const o = over[pos];
-    return o ? { ...base, ...o } : { ...base, hidden: true };
+    if (pos === "SB") {
+      base.bet = 0.5;
+      base.stack = 99.5;
+    }
+    if (pos === "BB") {
+      base.bet = 1;
+      base.stack = 99;
+    }
+    return base;
   });
 }
 

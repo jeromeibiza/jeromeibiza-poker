@@ -127,9 +127,14 @@ export function PushFoldChart() {
 
       <div className="pf-legend">
         <span><span className="pf-key push" /> Pousse (all-in)</span>
-        <span><span className="pf-key" /> Jette</span>
-        <span className="pf-pct">≈ {pct}% des mains depuis {POSITIONS.find((p) => p.key === pos)?.label}</span>
+        <span><span className="pf-key gold" /> Paire à pousser</span>
+        <span><span className="pf-key" /> À jeter</span>
       </div>
+      <p className="pf-note">
+        Ces ranges supposent que <strong>tout le monde s&apos;est couché jusqu&apos;à vous</strong> (vous
+        êtes le premier à entrer dans le coup). Depuis {POSITIONS.find((p) => p.key === pos)?.label},
+        vous poussez alors environ <strong>{pct}% de vos mains</strong>.
+      </p>
     </div>
   );
 }
