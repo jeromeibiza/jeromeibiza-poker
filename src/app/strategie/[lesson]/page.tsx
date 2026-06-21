@@ -6,6 +6,8 @@ import { LessonLayout } from "@/components/LessonLayout";
 import { HandReplayer, type ReplayStep } from "@/components/HandReplayer";
 import { type TableSeat } from "@/components/PokerTable";
 import { PushFoldChart } from "@/components/PushFoldChart";
+import { OutsReference } from "@/components/OutsReference";
+import { OddsCalculator } from "@/components/OddsCalculator";
 import { LESSONS, getLesson, LEVEL_LABEL } from "@/lib/poker/strategy";
 import { Crumbs, Section, DealerNote, LevelPill, JsonLd } from "@/components/ui";
 
@@ -574,6 +576,22 @@ export default async function LessonPage({
           )}
         </Fragment>
       ))}
+
+      {l.slug === "compter-ses-outs" && (
+        <Section kicker="Le mémo" title="Les tirages classiques et leurs outs">
+          <OutsReference />
+        </Section>
+      )}
+
+      {l.slug === "calculer-les-cotes" && (
+        <Section kicker="L'outil" title="Calculateur de cote du pot">
+          <OddsCalculator />
+          <p style={{ color: "var(--muted)", marginTop: 14 }}>
+            Tu retrouves aussi tous les{" "}
+            <Link href="/calculateurs" className="link">calculateurs du hub ici</Link>.
+          </p>
+        </Section>
+      )}
 
       <Section kicker="À retenir" title="Les points clés">
         <ul className="lb check">

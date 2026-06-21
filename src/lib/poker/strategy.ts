@@ -367,6 +367,84 @@ export const LESSONS: Lesson[] = [
       "Tu n'as pas besoin d'être fort en maths. Apprends trois ou quatre repères de cotes par coeur, et tu prendras 90% de tes décisions de tirage correctement, sans jamais sortir une calculette.",
   },
   {
+    slug: "compter-ses-outs",
+    level: "intermediaire",
+    title: "Compter ses outs (et évaluer ses chances)",
+    short: "Compter ses outs",
+    summary:
+      "Tes outs, ce sont les cartes encore dans le paquet qui transforment ta main en main gagnante. Savoir les compter, et ne pas se tromper, c'est la base pour évaluer tes vraies chances et bien jouer tes tirages.",
+    minutes: 7,
+    sections: [
+      {
+        heading: "Qu'est-ce qu'un out",
+        body:
+          "Un out est une carte encore dans le paquet qui améliore ta main en (probable) meilleure main. Exemple : tu as quatre cartes à cœur, il reste neuf cœurs dans le paquet, donc tu as neuf outs pour compléter ta couleur. Plus tu as d'outs, plus tu as de chances de gagner.",
+      },
+      {
+        heading: "Les tirages à connaître par cœur",
+        body:
+          "Quelques situations reviennent tout le temps. Apprends leur nombre d'outs par cœur, tu n'auras plus jamais à les recompter en pleine main. Le mémo ci-dessous donne aussi tes chances de toucher.",
+      },
+      {
+        heading: "Outs propres ou outs sales (évalue les ranges)",
+        body:
+          "Tous les outs ne se valent pas. Certains sont « sales » : la carte qui complète ta couleur peut aussi donner un full à l'adversaire, ou pairer le board. Pour estimer tes VRAIES chances, demande-toi ce que l'adversaire peut avoir (sa range) : s'il a déjà un brelan, certains de tes outs ne gagnent plus. Sur un board dangereux, compte un out ou deux de moins.",
+      },
+      {
+        heading: "Des outs au pourcentage",
+        body:
+          "Une fois tes outs comptés, la règle des 2 et 4 te donne tes chances de tête : multiplie par 4 au flop (2 cartes à venir), par 2 au turn (1 carte). Neuf outs valent donc environ 36% au flop, 18% au turn. La suite logique, c'est de comparer ces chances à la cote du pot.",
+      },
+    ],
+    takeaways: [
+      "Un out, c'est une carte qui te fait passer devant.",
+      "Tirage couleur 9 outs, quinte ouverte 8, ventre 4 : à savoir par cœur.",
+      "Tous les outs ne sont pas propres : enlève-en sur un board dangereux.",
+      "Règle des 2 et 4 : outs fois 4 au flop, fois 2 au turn.",
+    ],
+    dealerNote:
+      "Le réflexe du bon joueur : dès que le flop tombe, il compte ses outs en deux secondes. Apprends les tirages classiques par cœur, et tu sauras toujours exactement où tu en es dans le coup.",
+  },
+  {
+    slug: "calculer-les-cotes",
+    level: "intermediaire",
+    title: "Calculer ses cotes (pot odds)",
+    short: "Calculer ses cotes",
+    summary:
+      "La cote du pot te dit si payer un tirage est rentable. C'est un calcul tout simple : ce que tu paies comparé à ce que tu peux gagner, mis en face de tes chances de toucher.",
+    minutes: 7,
+    sections: [
+      {
+        heading: "La cote du pot",
+        body:
+          "La cote du pot, c'est le rapport entre ce que tu dois payer et ce que tu peux gagner. Exemple : le pot fait 100, on te mise 50. Tu dois payer 50 pour en remporter 150 : tu risques 50 pour gagner 150, soit une cote de 3 contre 1.",
+      },
+      {
+        heading: "Compare aux chances de ton tirage",
+        body:
+          "Convertis tes outs en pourcentage (règle des 2 et 4), puis compare. Si tes chances de toucher sont meilleures que ce que la cote exige, le call est gagnant sur la durée. Un tirage couleur au flop fait environ 35%, et il ne faut qu'environ 25% pour payer une mise de la moitié du pot : tu paies les yeux fermés.",
+      },
+      {
+        heading: "Essaie avec le calculateur",
+        body:
+          "Entre le pot, la mise à suivre et tes outs : le calculateur t'affiche immédiatement ta cote, ton équité exacte, et si suivre est rentable ou non.",
+      },
+      {
+        heading: "Les cotes implicites",
+        body:
+          "Parfois, même quand la cote immédiate ne suffit pas, payer reste correct : si tu penses gagner beaucoup PLUS le jour où tu touches (l'adversaire te paiera un gros tapis), ce sont les « cotes implicites ». À l'inverse, méfie-toi des reverse implied odds, quand toucher ton tirage peut te coûter cher face à mieux.",
+      },
+    ],
+    takeaways: [
+      "Cote du pot : ce que tu paies face à ce que tu peux gagner.",
+      "Compare tes chances (tes outs) à la cote demandée.",
+      "Chances supérieures à la cote : le call est rentable.",
+      "Cotes implicites : les gains futurs peuvent justifier un call limite.",
+    ],
+    dealerNote:
+      "Pas besoin d'être un crack en maths : retiens deux ou trois repères (9 outs valent environ 35% au flop, une mise demi-pot demande environ 25%) et tu prendras tes décisions de tirage correctement, sans jamais sortir de calculette en pleine partie.",
+  },
+  {
     slug: "le-semi-bluff",
     level: "intermediaire",
     title: "Le semi-bluff",
