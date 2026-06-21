@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { seatPos } from "@/components/PokerTable";
+import { PokerTable, type TableSeat } from "@/components/PokerTable";
 
 type Pos = { abbr: string; name: string; group: string; desc: string };
 
@@ -15,60 +15,41 @@ function toneFor(abbr: string): "gold" | "blue" | "muted" {
 }
 
 /**
- * Table interactive : on clique sur une position pour mettre à jour l'affichage
- * (le centre du tapis et la fiche sous la table). Fond uni, bouton donneur sur
- * le feutre devant le siège du bouton.
+ * Table interactive des positions, bâtie sur le composant universel PokerTable :
+ * sièges cliquables (la position choisie s'affiche au centre et dans la fiche
+ * sous la table), tapis par joueur, bascule BB / jetons et bouton donneur.
  */
 export function PositionsExplorer({ positions }: { positions: Pos[] }) {
   const seated = SEAT_ORDER.map((a) => positions.find((p) => p.abbr === a)).filter(
     (p): p is Pos => Boolean(p),
   );
-  const n = seated.length;
   const [sel, setSel] = useState(0);
   const current = seated[sel];
-  const btn = seatPos(0, n, 24, 23);
+
+  const seats: TableSeat[] = seated.map((p) => ({
+    label: p.abbr,
+    note: p.group,
+    tone: toneFor(p.abbr),
+    dealer: p.abbr === "BTN",
+    stack: 100,
+  }));
 
   return (
     <div>
-      <figure className="ptable">
-        <div className="ptable-area">
-          <div className="ptable-felt">
-            <div className="ptable-center">
-              <span style={{ fontSize: 26, color: "var(--gold-soft)", display: "block", lineHeight: 1.1 }}>
-                {current.abbr}
-              </span>
-              <span style={{ display: "block", marginTop: 4 }}>{current.name}</span>
-            </div>
-          </div>
-
-          <span
-            className="ptable-felt-btn"
-            style={{ left: `${btn.left}%`, top: `${btn.top}%` }}
-            aria-label="bouton donneur (dealer)"
-          >
-            D
+      <PokerTable
+        seats={seats}
+        selectedIndex={sel}
+        onSeatClick={setSel}
+        caption="Clique sur une position pour voir son rôle."
+        center={
+          <span>
+            <span style={{ fontSize: 26, color: "var(--gold-soft)", display: "block", lineHeight: 1.1 }}>
+              {current.abbr}
+            </span>
+            <span style={{ display: "block", marginTop: 4 }}>{current.name}</span>
           </span>
-
-          {seated.map((p, i) => {
-            const pos = seatPos(i, n);
-            const selected = i === sel;
-            return (
-              <button
-                key={p.abbr}
-                type="button"
-                onClick={() => setSel(i)}
-                aria-pressed={selected}
-                className={`ptable-seat ptable-seat-btn tone-${toneFor(p.abbr)}${selected ? " is-selected" : ""}`}
-                style={{ left: `${pos.left}%`, top: `${pos.top}%` }}
-              >
-                <span className="ptable-av">{p.abbr}</span>
-                <span className="ptable-note">{p.group}</span>
-              </button>
-            );
-          })}
-        </div>
-        <figcaption className="ptable-cap">Clique sur une position pour voir son rôle.</figcaption>
-      </figure>
+        }
+      />
 
       <div className="card" style={{ marginTop: 12 }}>
         <div style={{ display: "flex", gap: 10, alignItems: "baseline", flexWrap: "wrap" }}>

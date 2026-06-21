@@ -568,6 +568,12 @@ a {
 }
 .ptable-card-r { font-size: 11px; }
 .ptable-card-s { font-size: 12px; margin-top: 1px; }
+.ptable-card-back {
+  background:
+    repeating-linear-gradient(45deg, #234d8c 0, #234d8c 4px, #18386a 4px, #18386a 8px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.45), inset 0 0 0 2px rgba(255, 255, 255, 0.07);
+}
 .ptable-pot {
   display: inline-flex;
   align-items: center;

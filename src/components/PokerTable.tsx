@@ -21,8 +21,10 @@ export type TableSeat = {
   stack?: number;
   /** Mise du joueur sur ce tour, en grosses blindes (BB). */
   bet?: number;
-  /** Cartes du joueur (le héros), affichées devant son siège. */
+  /** Cartes du joueur (le héros), affichées face visible devant son siège. */
   cards?: [string, string];
+  /** Le joueur est en jeu mais ses cartes sont cachées (dos de carte). */
+  hidden?: boolean;
 };
 
 /** Position d'un élément réparti autour de la table (en pourcentage). */
@@ -95,6 +97,11 @@ function MiniCard({ c }: { c: string }) {
   );
 }
 
+/** Dos de carte (adversaire en jeu, cartes cachées). */
+function CardBack() {
+  return <span className="ptable-card ptable-card-back" aria-hidden />;
+}
+
 /**
  * Table de poker vue de dessus, façon vrai client (PokerStars / Winamax) :
  * tapis affiché par joueur, bascule BB / jetons, bouton donneur sur le feutre,
@@ -107,6 +114,8 @@ export function PokerTable({
   pot,
   board,
   defaultUnit = "bb",
+  selectedIndex,
+  onSeatClick,
 }: {
   seats: TableSeat[];
   center?: ReactNode;
@@ -114,6 +123,8 @@ export function PokerTable({
   pot?: number;
   board?: string[];
   defaultUnit?: Unit;
+  selectedIndex?: number;
+  onSeatClick?: (i: number) => void;
 }) {
   const [unit, setUnit] = useState<Unit>(defaultUnit);
 
@@ -199,7 +210,7 @@ export function PokerTable({
         })}
 
         {seats.map((s, i) => {
-          if (!s.cards) return null;
+          if (!s.cards && !s.hidden) return null;
           const p = seatPos(i, n, 35, 34);
           return (
             <span
@@ -207,23 +218,47 @@ export function PokerTable({
               className="ptable-hero-cards"
               style={{ left: `${p.left}%`, top: `${p.top}%` }}
             >
-              <MiniCard c={s.cards[0]} />
-              <MiniCard c={s.cards[1]} />
+              {s.cards ? (
+                <>
+                  <MiniCard c={s.cards[0]} />
+                  <MiniCard c={s.cards[1]} />
+                </>
+              ) : (
+                <>
+                  <CardBack />
+                  <CardBack />
+                </>
+              )}
             </span>
           );
         })}
 
         {seats.map((s, i) => {
           const p = seatPos(i, n);
-          return (
-            <div
-              key={i}
-              className={`ptable-seat tone-${s.tone ?? "muted"}`}
-              style={{ left: `${p.left}%`, top: `${p.top}%` }}
-            >
+          const selected = selectedIndex === i;
+          const cls = `ptable-seat tone-${s.tone ?? "muted"}${onSeatClick ? " ptable-seat-btn" : ""}${selected ? " is-selected" : ""}`;
+          const style = { left: `${p.left}%`, top: `${p.top}%` };
+          const inner = (
+            <>
               <span className="ptable-av">{s.label}</span>
               {s.note && <span className="ptable-note">{s.note}</span>}
               {s.stack != null && <span className="ptable-stack">{fmtAmount(s.stack, unit)}</span>}
+            </>
+          );
+          return onSeatClick ? (
+            <button
+              key={i}
+              type="button"
+              className={cls}
+              style={style}
+              onClick={() => onSeatClick(i)}
+              aria-pressed={selected}
+            >
+              {inner}
+            </button>
+          ) : (
+            <div key={i} className={cls} style={style}>
+              {inner}
             </div>
           );
         })}
