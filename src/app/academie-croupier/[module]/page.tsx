@@ -103,11 +103,12 @@ export default async function ModulePage({
       ))}
 
       {m.slug === "examen-final" && (
-        <Section kicker="L'examen" title="Passe l'examen : 100 questions">
+        <Section kicker="L'examen" title="Passe ton examen de certification">
           <p style={{ color: "var(--muted)", marginTop: -4, marginBottom: 16 }}>
-            Réponds aux 100 questions (réparties sur les 9 modules). Il te faut{" "}
-            <strong>80 bonnes réponses sur 100</strong> pour valider et décrocher ton certificat. Tu
-            peux naviguer entre les questions et revenir en arrière avant de terminer.
+            Choisis l&apos;<strong>examen complet</strong> (100 questions) ou l&apos;<strong>examen rapide</strong>{" "}
+            (40 tirées au hasard). Il te faut <strong>80% de bonnes réponses</strong> pour valider et
+            décrocher ton certificat (téléchargeable à ton nom). Les questions sont mélangées à chaque
+            tentative, et tu peux naviguer librement avant de terminer.
           </p>
           <CroupierExam />
         </Section>
