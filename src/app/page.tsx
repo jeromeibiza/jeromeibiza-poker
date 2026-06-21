@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { NAV, SITE } from "@/lib/site";
 import { JsonLd } from "@/components/ui";
 import { SearchLauncher } from "@/components/SearchLauncher";
+import { EmailSignup } from "@/components/EmailSignup";
 
 export const metadata: Metadata = {
   title: "Poker Hub : apprendre le poker, jouer gratuitement et devenir croupier",
@@ -201,6 +202,16 @@ export default function Home() {
             </Link>
           </div>
         </div>
+      </section>
+
+      {/* CAPTURE EMAIL */}
+      <section className="wrap" style={{ marginTop: 56, maxWidth: 720 }}>
+        <EmailSignup
+          source="home"
+          title="Reste informé"
+          subtitle="Les nouveaux contenus du hub, des conseils de poker et de croupier, et l'ouverture des stages à Malte. Gratuit, zéro spam."
+          cta="Je m'inscris"
+        />
       </section>
 
       <div style={{ height: 24 }} />

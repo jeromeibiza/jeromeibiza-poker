@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import type { Metadata } from "next";
 import { SITE } from "@/lib/site";
+import { EmailSignup } from "@/components/EmailSignup";
 import { Crumbs, Section, JsonLd } from "@/components/ui";
 
 export const metadata: Metadata = {
@@ -21,6 +22,8 @@ export default function AProposPage() {
     description:
       "Croupier professionnel et passionné de poker, fondateur du Poker Hub Jérôme Ibiza.",
     url: `${SITE.url}/a-propos`,
+    award: "20e place, PokerStars Players Championship (PSPC) 2023",
+    knowsAbout: ["Poker", "Croupier de poker", "Texas Hold'em", "Tournois de poker"],
   };
 
   return (
@@ -102,6 +105,23 @@ export default function AProposPage() {
         </div>
       </section>
 
+      {/* PARCOURS / PREUVES */}
+      <Section kicker="Le parcours" title="Ce qui me légitime">
+        <div className="grid-cards">
+          {[
+            ["♠ Croupier professionnel", "Des années derrière la table : distribution, gestion du pot et des side pots, prélèvement du rake, annonces et arbitrage des litiges, dans le feu de l'action."],
+            ["🏆 20e du PSPC 2023", "20e place au PokerStars Players Championship 2023, l'un des plus grands tournois du monde. Je connais le poker aussi du côté du joueur, au plus haut niveau."],
+            ["🎰 Événements au Casino Portomaso", "J'ai organisé plusieurs événements privés au Casino Portomaso (Malte), un haut lieu du poker européen."],
+            ["🤝 Un réseau de pros", "Entouré de professionnels du circuit : floors, tournament directors et direction de casino. C'est tout ce monde que je veux transmettre."],
+          ].map(([t, d]) => (
+            <div key={t} className="card">
+              <div className="display" style={{ fontSize: 16 }}>{t}</div>
+              <p style={{ color: "var(--muted)", fontSize: 14, marginTop: 8 }}>{d}</p>
+            </div>
+          ))}
+        </div>
+      </Section>
+
       {/* MISSION */}
       <Section kicker="Pourquoi ce site" title="Ma mission">
         <div className="grid-cards">
@@ -128,6 +148,16 @@ export default function AProposPage() {
             <li>Une conviction : le poker est un jeu d&apos;adresse qui s&apos;apprend, et la formation doit être libre et gratuite.</li>
           </ul>
         </div>
+      </Section>
+
+      {/* CAPTURE EMAIL */}
+      <Section kicker="Rester en contact" title="Suis l'aventure">
+        <EmailSignup
+          source="a-propos"
+          title="Reçois mes conseils de croupier par email"
+          subtitle="Les nouveaux contenus, les coulisses du métier et l'ouverture des stages à Malte. Zéro spam, désinscription en un clic."
+          cta="Je m'abonne"
+        />
       </Section>
 
       {/* CTA */}
