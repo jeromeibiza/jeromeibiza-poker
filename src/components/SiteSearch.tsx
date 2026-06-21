@@ -1,15 +1,26 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { SEARCH_INDEX, PRESET_QUERIES } from "@/lib/poker/searchIndex";
 
 const norm = (s: string) =>
   s.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "");
 
-export function SiteSearch() {
+export function SiteSearch({
+  autoFocus = false,
+  onSelect,
+}: {
+  autoFocus?: boolean;
+  onSelect?: () => void;
+}) {
   const [q, setQ] = useState("");
+  const inputRef = useRef<HTMLInputElement>(null);
   const nq = norm(q.trim());
+
+  useEffect(() => {
+    if (autoFocus) inputRef.current?.focus();
+  }, [autoFocus]);
 
   const results =
     nq.length >= 1
@@ -21,6 +32,7 @@ export function SiteSearch() {
       <div className="search-box">
         <span className="search-ico" aria-hidden>🔎</span>
         <input
+          ref={inputRef}
           type="search"
           value={q}
           onChange={(e) => setQ(e.target.value)}
@@ -38,7 +50,7 @@ export function SiteSearch() {
         <div className="search-results">
           {results.length > 0 ? (
             results.map((r) => (
-              <Link key={r.href} href={r.href} className="search-result">
+              <Link key={r.href} href={r.href} className="search-result" onClick={onSelect}>
                 <span>{r.title}</span>
                 <span className="search-cat">{r.cat}</span>
               </Link>
@@ -46,7 +58,7 @@ export function SiteSearch() {
           ) : (
             <div className="search-empty">
               Aucun résultat pour « {q} ». Essaie le{" "}
-              <Link href="/glossaire" className="link">glossaire</Link>.
+              <Link href="/glossaire" className="link" onClick={onSelect}>glossaire</Link>.
             </div>
           )}
         </div>

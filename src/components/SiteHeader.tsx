@@ -1,11 +1,22 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { NAV, PRIMARY_NAV, SITE } from "@/lib/site";
+import { SiteSearch } from "@/components/SiteSearch";
 
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false);
+
+  useEffect(() => {
+    if (!searchOpen) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setSearchOpen(false);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [searchOpen]);
 
   return (
     <header
@@ -70,6 +81,15 @@ export function SiteHeader() {
         </nav>
 
         <div style={{ marginLeft: "auto", display: "flex", alignItems: "center", gap: 10, position: "relative" }}>
+          <button
+            type="button"
+            className="search-btn"
+            onClick={() => setSearchOpen(true)}
+            aria-label="Rechercher"
+          >
+            <span aria-hidden style={{ fontSize: 15 }}>🔎</span>
+            <span className="search-btn-text">Rechercher</span>
+          </button>
           <Link href="/academie-croupier" className="btn btn-gold cta-desktop" style={{ fontSize: 12, padding: "10px 16px" }}>
             🎓 Formation croupier
           </Link>
@@ -120,6 +140,20 @@ export function SiteHeader() {
           )}
         </div>
       </div>
+
+      {searchOpen && (
+        <div
+          className="search-overlay"
+          onClick={() => setSearchOpen(false)}
+          role="dialog"
+          aria-modal="true"
+          aria-label="Recherche"
+        >
+          <div className="search-panel" onClick={(e) => e.stopPropagation()}>
+            <SiteSearch autoFocus onSelect={() => setSearchOpen(false)} />
+          </div>
+        </div>
+      )}
 
       <style>{`
         .nav-link:hover { color: var(--fg); background: rgba(255,255,255,0.04); }
