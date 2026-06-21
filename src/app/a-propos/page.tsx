@@ -2,7 +2,6 @@ import Link from "next/link";
 import Image from "next/image";
 import type { Metadata } from "next";
 import { SITE } from "@/lib/site";
-import { EmailSignup } from "@/components/EmailSignup";
 import { Crumbs, Section, JsonLd } from "@/components/ui";
 
 export const metadata: Metadata = {
@@ -148,16 +147,6 @@ export default function AProposPage() {
             <li>Une conviction : le poker est un jeu d&apos;adresse qui s&apos;apprend, et la formation doit être libre et gratuite.</li>
           </ul>
         </div>
-      </Section>
-
-      {/* CAPTURE EMAIL */}
-      <Section kicker="Rester en contact" title="Suis l'aventure">
-        <EmailSignup
-          source="a-propos"
-          title="Reçois mes conseils de croupier par email"
-          subtitle="Les nouveaux contenus, les coulisses du métier et l'ouverture des stages à Malte. Zéro spam, désinscription en un clic."
-          cta="Je m'abonne"
-        />
       </Section>
 
       {/* CTA */}

@@ -1,7 +1,6 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import { MODULES } from "@/lib/poker/academy";
-import { EmailSignup } from "@/components/EmailSignup";
 import { Crumbs, Section, JsonLd } from "@/components/ui";
 
 export const metadata: Metadata = {
@@ -147,15 +146,6 @@ export default function AcademiePage() {
             </div>
           ))}
         </div>
-      </Section>
-
-      <Section kicker="Reste dans la boucle" title="La formation continue">
-        <EmailSignup
-          source="academie"
-          title="Reçois les coulisses du métier et la suite de la formation"
-          subtitle="Les nouveaux modules, des conseils de croupier, et l'ouverture des stages à Malte en avant-première. Gratuit, et tu te désinscris quand tu veux."
-          cta="Je veux la suite"
-        />
       </Section>
 
       <div className="card" style={{ marginTop: 32, borderColor: "rgba(232,176,75,0.3)" }}>
