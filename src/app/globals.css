@@ -1144,6 +1144,22 @@ a {
   line-height: 1.5;
 }
 
+/* Bannière illustration de module (Académie Croupier) */
+.module-hero {
+  margin: 22px 0 6px;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: 1px solid var(--line);
+  background: var(--surface-2);
+}
+.module-hero img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 7;
+  object-fit: cover;
+}
+
 /* ---------- Recherche : bouton header + barre home ---------- */
 .search-ico { font-size: 16px; opacity: 0.85; }
 .search-btn {

@@ -19,6 +19,7 @@ export type AcademyModule = {
   summary: string;
   minutes: number;
   status: "complet" | "plan"; // complet = rédigé, plan = plan détaillé
+  image?: string; // illustration Gemini, ex: "/academie/module-1.jpg" (bannière en tête de module)
   objectives: string[];
   sections: ModuleSection[];
 };
@@ -97,7 +98,6 @@ export const MODULES: AcademyModule[] = [
         bullets: [
           "Blanc : 1",
           "Rouge : 5",
-          "Bleu : 10",
           "Vert : 25",
           "Noir : 100",
           "Violet : 500",
