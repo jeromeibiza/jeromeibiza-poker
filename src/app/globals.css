@@ -662,27 +662,39 @@ a {
   z-index: 2;
   display: inline-flex;
   align-items: center;
-  gap: 5px;
+  gap: 6px;
   font-family: var(--font-label), sans-serif;
   font-size: 11px;
   font-weight: 600;
   color: var(--fg);
   white-space: nowrap;
-  background: rgba(7, 11, 20, 0.88);
-  border: 1px solid var(--line);
+  background: rgba(7, 11, 20, 0.82);
+  border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 999px;
-  padding: 3px 9px 3px 6px;
+  padding: 3px 10px 3px 5px;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.45);
 }
-.ptable-bet::before {
-  content: "";
-  width: 12px;
-  height: 12px;
+.ptable-bet-chips {
+  display: inline-flex;
+}
+.ptable-bet-chips i {
+  width: 13px;
+  height: 13px;
   border-radius: 50%;
+  margin-left: -5px;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.22);
   background: radial-gradient(circle at 50% 35%, #6ea0f0, #2f6fe6);
-  box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.25);
 }
-.ptable-bet.tone-gold::before {
+.ptable-bet-chips i:first-child { margin-left: 0; }
+.ptable-bet-chips i:nth-child(2) {
+  background: radial-gradient(circle at 50% 35%, #fff, #cfd8e6);
+}
+.tone-gold .ptable-bet-chips i {
   background: radial-gradient(circle at 50% 35%, var(--gold-soft), var(--gold));
+}
+.tone-gold .ptable-bet-chips i:nth-child(2) {
+  background: radial-gradient(circle at 50% 35%, #fff, #f0e2c0);
 }
 .ptable-hero-cards {
   position: absolute;

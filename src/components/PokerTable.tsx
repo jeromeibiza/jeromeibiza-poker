@@ -28,8 +28,8 @@ export type TableSeat = {
 };
 
 /** Position d'un élément réparti autour de la table (en pourcentage). */
-export function seatPos(i: number, n: number, rx = 40, ry = 42) {
-  const theta = ((90 + (i * 360) / n) * Math.PI) / 180;
+export function seatPos(i: number, n: number, rx = 40, ry = 42, offsetDeg = 0) {
+  const theta = ((90 + (i * 360) / n + offsetDeg) * Math.PI) / 180;
   return { left: 50 + rx * Math.cos(theta), top: 50 + ry * Math.sin(theta) };
 }
 
@@ -149,7 +149,7 @@ export function PokerTable({
 
   const n = seats.length;
   const dealerIdx = seats.findIndex((s) => s.dealer);
-  const btn = dealerIdx >= 0 ? seatPos(dealerIdx, n, 21, 20) : null;
+  const btn = dealerIdx >= 0 ? seatPos(dealerIdx, n, 23, 22, 26) : null;
   const hasScene = (board && board.length > 0) || pot != null;
   const headsUp = n === 2;
 
@@ -197,13 +197,16 @@ export function PokerTable({
 
         {seats.map((s, i) => {
           if (s.bet == null) return null;
-          const p = seatPos(i, n, 29, 28);
+          const p = seatPos(i, n, 26, 24);
           return (
             <span
               key={`bet-${i}`}
               className={`ptable-bet tone-${s.tone ?? "muted"}`}
               style={{ left: `${p.left}%`, top: `${p.top}%` }}
             >
+              <span className="ptable-bet-chips" aria-hidden>
+                <i /><i /><i />
+              </span>
               {fmtAmount(s.bet, unit)}
             </span>
           );
