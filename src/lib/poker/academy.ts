@@ -28,6 +28,7 @@ export const MODULES: AcademyModule[] = [
   {
     n: 1,
     slug: "introduction-au-metier",
+    image: "/academie/module-1.jpg",
     title: "Introduction au métier de croupier poker",
     emoji: "🎩",
     summary: "Le rôle du dealer, les qualités requises et les évolutions de carrière possibles.",
@@ -80,6 +81,7 @@ export const MODULES: AcademyModule[] = [
   {
     n: 2,
     slug: "manipulation-des-jetons",
+    image: "/academie/module-2.jpg",
     title: "La manipulation des jetons",
     emoji: "🔵",
     summary: "Couper, compter, faire de la monnaie et gérer une cave proprement.",
@@ -129,6 +131,7 @@ export const MODULES: AcademyModule[] = [
   {
     n: 3,
     slug: "manipulation-des-cartes",
+    image: "/academie/module-3.jpg",
     title: "La manipulation des cartes",
     emoji: "🃏",
     summary: "Wash, riffle, strip, cut et distribution : les gestes du dealer.",
@@ -175,6 +178,7 @@ export const MODULES: AcademyModule[] = [
   {
     n: 4,
     slug: "dealer-texas-holdem",
+    image: "/academie/module-4.jpg",
     title: "Dealer au Texas Hold'em",
     emoji: "♠",
     summary: "Ouverture de main, distribution, gestion du pot, side pots et showdown.",
@@ -221,6 +225,7 @@ export const MODULES: AcademyModule[] = [
   {
     n: 5,
     slug: "situations-cash-game",
+    image: "/academie/module-5.jpg",
     title: "Situations en cash game",
     emoji: "💵",
     summary: "Joueur absent, miss blind, changement de place, nouveau joueur, cave minimum.",
@@ -262,6 +267,7 @@ export const MODULES: AcademyModule[] = [
   {
     n: 6,
     slug: "situations-tournoi",
+    image: "/academie/module-6.jpg",
     title: "Situations en tournoi",
     emoji: "🏆",
     summary: "Cassage de table, chip race, redraw, balancing, changement de niveau.",
@@ -303,6 +309,7 @@ export const MODULES: AcademyModule[] = [
   {
     n: 7,
     slug: "gestion-des-erreurs",
+    image: "/academie/module-7.jpg",
     title: "La gestion des erreurs et litiges",
     emoji: "⚠️",
     summary: "Misdeal, carte retournée, jeton contesté, litige entre joueurs.",
@@ -344,6 +351,7 @@ export const MODULES: AcademyModule[] = [
   {
     n: 8,
     slug: "prelevement-du-rake",
+    image: "/academie/module-8.jpg",
     title: "Le prélèvement du rake",
     emoji: "🧾",
     summary: "Calcul du rake, jackpot drop et impact des side pots.",
@@ -385,6 +393,7 @@ export const MODULES: AcademyModule[] = [
   {
     n: 9,
     slug: "annonces-du-dealer",
+    image: "/academie/module-9.jpg",
     title: "Les annonces du dealer",
     emoji: "📣",
     summary: "Le vocabulaire à annoncer à voix haute, en français et en anglais.",
@@ -442,6 +451,7 @@ export const MODULES: AcademyModule[] = [
   {
     n: 10,
     slug: "examen-final",
+    image: "/academie/module-10.jpg",
     title: "Examen final & certification",
     emoji: "🎓",
     summary: "QCM de 100 questions, exercices pratiques et certification Jérôme Ibiza.",
