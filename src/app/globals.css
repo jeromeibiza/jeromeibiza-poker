@@ -1047,6 +1047,95 @@ a {
   line-height: 1.5;
 }
 
+/* ---------- Barre de recherche globale ---------- */
+.search { width: 100%; }
+.search-box {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: linear-gradient(180deg, var(--surface), var(--surface-2));
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 4px 6px 4px 16px;
+}
+.search-box:focus-within { border-color: rgba(232, 176, 75, 0.5); }
+.search-ico { font-size: 16px; opacity: 0.85; }
+.search-box input {
+  flex: 1;
+  min-width: 0;
+  background: transparent;
+  border: 0;
+  outline: 0;
+  color: var(--fg);
+  font-size: 15px;
+  padding: 11px 0;
+}
+.search-box input::placeholder { color: var(--faint); }
+.search-clear {
+  background: transparent;
+  border: 0;
+  color: var(--faint);
+  cursor: pointer;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  flex: 0 0 32px;
+}
+.search-clear:hover { color: var(--fg); background: rgba(255, 255, 255, 0.06); }
+.search-presets {
+  margin-top: 12px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+.search-presets-label {
+  font-family: var(--font-label), sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 11px;
+  color: var(--faint);
+  margin-right: 4px;
+}
+.search-preset {
+  font-size: 13px;
+  color: var(--muted);
+  background: var(--surface-2);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 6px 12px;
+  cursor: pointer;
+}
+.search-preset:hover { color: var(--gold-soft); border-color: rgba(232, 176, 75, 0.4); }
+.search-results {
+  margin-top: 10px;
+  background: linear-gradient(180deg, var(--surface), var(--surface-2));
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 6px;
+  display: grid;
+  gap: 2px;
+}
+.search-result {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 11px 14px;
+  border-radius: 10px;
+  color: var(--fg);
+}
+.search-result:hover { background: rgba(255, 255, 255, 0.05); }
+.search-cat {
+  font-family: var(--font-label), sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-size: 10px;
+  color: var(--gold-soft);
+  white-space: nowrap;
+}
+.search-empty { padding: 14px; color: var(--muted); font-size: 14px; }
+
 /* ---------- Focus accessibilite ---------- */
 :focus-visible {
   outline: 2px solid var(--gold);

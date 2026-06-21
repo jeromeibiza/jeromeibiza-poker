@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { NAV, SITE } from "@/lib/site";
 import { JsonLd } from "@/components/ui";
+import { SiteSearch } from "@/components/SiteSearch";
 
 export const metadata: Metadata = {
   title: "Poker Hub : apprendre le poker, jouer gratuitement et devenir croupier",
@@ -140,8 +141,13 @@ export default function Home() {
         </div>
       </section>
 
+      {/* RECHERCHE */}
+      <section className="wrap" style={{ marginTop: 28, maxWidth: 720 }}>
+        <SiteSearch />
+      </section>
+
       {/* HIGHLIGHTS */}
-      <section className="wrap" style={{ marginTop: 24 }}>
+      <section className="wrap" style={{ marginTop: 40 }}>
         <div className="grid-cards">
           {HIGHLIGHTS.map((h) => (
             <Link key={h.href} href={h.href} className="card card-hover">
