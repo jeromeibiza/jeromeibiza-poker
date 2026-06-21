@@ -959,6 +959,85 @@ a {
   .ptable-note { font-size: 10px; }
 }
 
+/* ---------- Memo push or fold (grille de mains) ---------- */
+.pf-tabs {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-bottom: 14px;
+}
+.pf-tab {
+  font-family: var(--font-label), sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--muted);
+  background: var(--surface-2);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 7px 13px;
+  cursor: pointer;
+}
+.pf-tab:hover { color: var(--fg); }
+.pf-tab.is-on {
+  background: linear-gradient(180deg, var(--gold-soft), var(--gold));
+  color: #1a1305;
+  border-color: transparent;
+}
+.pf-grid {
+  display: grid;
+  grid-template-columns: repeat(13, 1fr);
+  gap: 2px;
+  max-width: 540px;
+}
+.pf-cell {
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-label), sans-serif;
+  font-size: clamp(7px, 1.7vw, 11px);
+  border-radius: 3px;
+  background: var(--surface-2);
+  color: var(--faint);
+}
+.pf-cell.pf-pair { background: rgba(232, 176, 75, 0.09); }
+.pf-cell.push {
+  background: linear-gradient(180deg, #3f7ff0, #2f6fe6);
+  color: #fff;
+  font-weight: 600;
+}
+.pf-cell.pf-pair.push {
+  background: linear-gradient(180deg, var(--gold-soft), var(--gold));
+  color: #1a1305;
+}
+.pf-legend {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-top: 14px;
+  color: var(--muted);
+  font-size: 13px;
+}
+.pf-legend > span { display: inline-flex; align-items: center; gap: 7px; }
+.pf-key {
+  width: 14px;
+  height: 14px;
+  border-radius: 3px;
+  background: var(--surface-2);
+  display: inline-block;
+}
+.pf-key.push { background: linear-gradient(180deg, #3f7ff0, #2f6fe6); }
+.pf-pct {
+  color: var(--gold-soft);
+  font-family: var(--font-label), sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 12px;
+}
+
 /* ---------- Focus accessibilite ---------- */
 :focus-visible {
   outline: 2px solid var(--gold);

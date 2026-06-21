@@ -387,6 +387,48 @@ export const LESSONS: Lesson[] = [
     dealerNote:
       "Le semi-bluff, c'est l'agression intelligente : tu mets la pression tout en gardant un plan B dans ta poche. C'est exactement comme ça que jouent ceux que tu vois gagner à la télé.",
   },
+  {
+    slug: "push-or-fold-10bb",
+    level: "intermediaire",
+    title: "Push or fold à 10 BB en tournoi (6-max, sans ante)",
+    short: "Push or fold (10 BB)",
+    summary:
+      "À tapis court en tournoi, on ne joue plus le poker normal : préflop, c'est soit tapis, soit poubelle. Voici quelles mains pousser à 10 BB selon ta position, sur une table à 6 sans ante, version simple à mémoriser.",
+    minutes: 7,
+    sections: [
+      {
+        heading: "Pourquoi push or fold",
+        body:
+          "Quand ton tapis tombe vers 10 grosses blindes ou moins, tu n'as plus assez de jetons pour jouer après le flop : si tu relances normalement et qu'on te paie, tu es déjà presque engagé. La solution des pros est radicale et simple : préflop, soit tu pousses tout ton tapis (all-in), soit tu te couches. Plus de limp, plus de petite relance, plus de call.",
+      },
+      {
+        heading: "Pourquoi ça marche",
+        bullets: [
+          "En poussant, tu mets une grosse pression : très souvent tout le monde se couche et tu rafles les blindes sans même voir un flop.",
+          "Quand on te paie, ta main a généralement une équité correcte : tu n'es presque jamais tirage mort.",
+          "Tu supprimes toute décision difficile après le flop : pas de piège, pas d'hésitation.",
+        ],
+      },
+      {
+        heading: "Comment lire le mémo",
+        body:
+          "Choisis ta position au-dessus de la grille. Les mains en couleur sont à POUSSER, les mains sombres à JETER. Règle d'or : plus tu es proche du bouton, plus tu peux pousser large (moins de joueurs derrière toi, donc moins de risque de tomber sur un monstre). En small blind, tu n'as qu'un seul joueur derrière : tu pousses énormément de mains.",
+      },
+      {
+        heading: "À adapter",
+        body:
+          "Ce mémo est une version simplifiée et vulgarisée (inspirée des charts Jennifear, la référence push/fold en tournoi) pour 10 BB, à 6 joueurs, sans ante. En pratique, on pousse un peu plus large dès qu'il y a des antes, et un peu plus serré près des places payées (ICM). Mais à 10 BB sans ante, suivre ces ranges te rendra déjà bien meilleur que la moyenne.",
+      },
+    ],
+    takeaways: [
+      "À 10 BB et moins, c'est push ou fold : pas de demi-mesure.",
+      "Plus tu es proche du bouton, plus tu pousses large.",
+      "Pousser fait souvent tout coucher : tu gagnes les blindes sans combat.",
+      "En small blind, tu pousses une énorme partie de tes mains.",
+    ],
+    dealerNote:
+      "À tapis court, les bons joueurs ne réfléchissent pas trois heures : push ou fold, point. Mémorise ces ranges et tu arrêteras de te faire grignoter par les blindes en attendant « la bonne main ».",
+  },
   // ------------------------------ AVANCÉ ------------------------------
   {
     slug: "gto-explique",

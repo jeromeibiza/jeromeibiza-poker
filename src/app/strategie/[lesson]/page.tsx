@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { LessonLayout } from "@/components/LessonLayout";
 import { HandReplayer, type ReplayStep } from "@/components/HandReplayer";
 import { type TableSeat } from "@/components/PokerTable";
+import { PushFoldChart } from "@/components/PushFoldChart";
 import { LESSONS, getLesson, LEVEL_LABEL } from "@/lib/poker/strategy";
 import { Crumbs, Section, DealerNote, LevelPill, JsonLd } from "@/components/ui";
 
@@ -504,6 +505,14 @@ export default async function LessonPage({
               : "Déroule la main action par action (fold, open, 3-bet...) pour suivre toute la ligne. Bascule l'affichage BB / jetons en haut de la table."}
           </p>
           <HandReplayer steps={hand} defaultUnit={l.level === "debutant" ? "chips" : "bb"} />
+        </Section>
+      )}
+
+      {l.slug === "push-or-fold-10bb" && (
+        <Section kicker="Le mémo" title="Quelles mains pousser à 10 BB">
+          <div className="card">
+            <PushFoldChart />
+          </div>
         </Section>
       )}
 
