@@ -1,177 +1,69 @@
-# Quiz Académie Croupier — à valider par Jérôme
+# Quiz Académie Croupier — suivi de validation
 
-> ⚠️ Rien ici n'est encore dans le quiz. Jérôme review et valide, puis on injecte
-> les questions approuvées dans `src/lib/poker/examQuestions.ts` (fichier géré par
-> l'autre IA → injection coordonnée). Convention : ✅ = bonne réponse.
->
-> **Légende contexte : [Cash] = cash game · [Tournoi] = tournoi · [Général] = les deux.**
+> Validation en cours avec Jérôme (croupier pro). Rien n'est injecté dans le quiz
+> tant qu'il n'a pas validé. ✅ = bonne réponse. [Cash]/[Tournoi]/[Général] = contexte.
+> Compteur questions neuves validées : **~14 / 100**.
 
 ---
 
-## Partie 1 — Questions existantes à CORRIGER ou RETIRER
+## ✅ VALIDÉES — prêtes à injecter (avec corrections de Jérôme)
 
-### À corriger
+**Corrections de questions existantes :**
+- **C1. [Général]** « Le croupier compte et annonce le pot sur demande : » → B) Seulement en pot-limit ✅ (pas en no-limit).
+- **C2. [Cash]** « Retirer des jetons de son tapis pour les mettre de côté (se **décaver**) est : » → B) Interdit (table stakes) ✅. *(terme correct = "décaver", pas rat-holing/going south)*
+- **C3. [Cash]** « Sur une main avec side pots, le rake est prélevé : » → B) Une seule fois, sur le total, dans la limite du cap ✅.
 
-**C1. [Général] « La taille du pot peut être annoncée si un joueur la demande, à condition que : »** (M9)
-- Actuel : bonne réponse = « la salle l'autorise » → imprécis/faux.
-- ➡️ Proposition de remplacement :
-  - Q : « Le croupier compte et annonce le pot sur demande : »
-  - A) Dans tous les jeux ❌
-  - B) Seulement en pot-limit (la mise max dépend du pot) ✅
-  - C) Jamais ❌
-  - *Justif : en no-limit on ne compte pas le pot pour les joueurs ; en pot-limit, si.*
-
-**C2. [Cash] « Le rat-holing est : » + « Le rat-holing consiste à : »** (M5, lignes 68-69)
-- Problème : terme jamais employé tel quel + option « Toléré la nuit » = blague.
-- ➡️ Fusionner en une seule question, terme correct :
-  - Q : « En cash game, retirer des jetons de son tapis pour les mettre de côté (le "going south" ou "aller au sud") est : »
-  - A) Autorisé ❌
-  - B) Interdit (règle du table stakes : tout le tapis reste en jeu) ✅
-  - C) Autorisé seulement en quittant la table ❌
-
-**C3. [Cash] Rake sur side pots** (M8, doublon lignes 110 et 212)
-- Problème : 2 questions quasi identiques + réponse floue.
-- ➡️ Garder UNE seule question, précise :
-  - Q : « En cash game, sur une main avec side pots, le rake est prélevé : »
-  - A) Une fois par pot ❌
-  - B) Une seule fois, sur le total, dans la limite du plafond (cap) ✅
-  - C) À parts égales sur chaque side pot ❌
-
-**C4. [Général] « Avant de prendre une table, le croupier vérifie toujours »** (M2, ligne 32)
-- Problème : il vérifie les cartes ET les jetons ; réponse unique = piège.
-- ➡️ Reformuler sans ambiguïté :
-  - Q : « En prenant une table, pour annoncer et payer juste, le croupier doit connaître : »
-  - A) Le nombre de joueurs ❌
-  - B) La valeur des jetons en jeu (le code couleur de la salle) ✅
-  - C) Le classement des joueurs ❌
-
-**C5. [Tournoi] « Conséquence d'une erreur de niveau »** (M6, ligne 188)
-- Problème : « erreur de niveau » trop vague.
-- ➡️ Préciser :
-  - Q : « En tournoi, lancer une main avec un mauvais niveau de blindes/antes : »
-  - A) Est sans incidence ❌
-  - B) Fausse la main (montants erronés) et doit être corrigé par le floor ✅
-  - C) Ne touche que la pause suivante ❌
-
-### À retirer ou réécrire (faibles / subjectives)
-
-**C6. [Général]** « Un dealer qui parle bien = table qui ne se dispute pas » (M9, l.213) → subjectif, les 2 réponses se défendent. **À retirer.**
-
-**C7. [Général]** « Tapis (all-in) se dit : All-in » (M9, l.116) → trivial, et « Pass » n'est pas un terme FR. **À retirer ou enrichir.**
-
-**C8. [Général]** Valeurs de jetons fixes (vert = 25, etc., M2) → à présenter comme « convention courante », jamais comme une règle absolue (ça varie selon salle, et tout change en tournoi).
+**Nouvelles questions validées (lot 1) :**
+- **1. [Général]** Carte exposée par le croupier pendant la donne → on continue, la carte est remplacée selon la règle de la salle ✅.
+- **4. [Général]** Avant le flop, le croupier brûle → une carte ✅.
+- **5. [Tournoi]** Le « chip race » a lieu → à un changement de niveau qui retire une valeur de jeton ✅.
+- **6. [Tournoi]** Le « dead button » → gère le déplacement du bouton sans léser les blindes ✅.
+- **7. [Tournoi]** La « big blind ante » → accélère le jeu (une seule ante par tour) ✅.
+- **8. [Tournoi]** Table cassée (break) → joueurs redistribués par tirage ✅.
+- **9. [Tournoi]** La « clock » → appelée quand un joueur tarde trop ✅.
+- **11. [Cash]** Un « straddle » → mise à l'aveugle, en général le double de la BB, avant la donne ✅.
+- **12. [Cash]** Retour après blindes manquées → poster les blindes manquées ou attendre son tour de BB ✅.
+- **13. [Cash]** « Run it twice » → seulement si la salle l'autorise et accord des joueurs ✅.
+- **14. [Général]** Mise contestée → le croupier annonce « Floor ! » ✅.
+- **17. [Général]** Quand un joueur relance, le croupier annonce → « relance » ✅ (sans le montant).
 
 ---
 
-## Partie 2 — Nouvelles questions (premier lot à valider)
+## 🔁 À RE-VALIDER (corrigées, en attente du OK de Jérôme)
 
-> Si le style + la précision te vont, je complète jusqu'à 100. Chaque question est
-> taguée Cash / Tournoi / Général.
+**2. [Général]** Une carte retournée dans le sabot (une **« feuille morte »**) est :
+- A) une carte normale ❌ · B) écartée, comme inexistante ✅ · C) brûlée ❌
 
-### Procédure de donne
-
-**1. [Général]** Une carte du joueur se retourne pendant la distribution (carte exposée par le croupier). Le croupier :
-- A) Annule la main (misdeal) ❌
-- B) Continue : la carte exposée est remplacée selon la règle de la salle, la main suit ✅
-- C) Laisse le joueur la garder face visible ❌
-
-**2. [Général]** Un « boxed card » (carte retournée à l'envers dans le sabot) est traité comme :
-- A) Une carte normale ❌
-- B) Inexistant : on l'écarte comme si elle n'était pas là ✅
-- C) Une carte brûlée ❌
-
-**3. [Général]** Combien de conditions de misdeal le croupier doit-il connaître avant de lancer la main ? La plus classique est :
-- A) Un joueur a trop de jetons ❌
-- B) La première carte est distribuée au mauvais joueur (mauvais départ) ✅
-- C) Un joueur parle trop fort ❌
-
-**4. [Général]** Avant le flop, le croupier brûle :
-- A) Aucune carte ❌
-- B) Une carte ✅
-- C) Trois cartes ❌
-
-### Tournoi
-
-**5. [Tournoi]** Le « chip race » (échange des petits jetons devenus inutiles) se fait :
-- A) À chaque main ❌
-- B) Lors d'un changement de niveau qui retire une valeur de jeton ✅
-- C) Jamais ❌
-
-**6. [Tournoi]** Le « dead button » (bouton mort) sert à :
-- A) Accélérer le jeu ❌
-- B) Gérer le déplacement du bouton quand un joueur est éliminé, sans léser les blindes ✅
-- C) Désigner le chip leader ❌
-
-**7. [Tournoi]** La « big blind ante » (ante payée par la big blind pour toute la table) sert surtout à :
-- A) Augmenter le rake ❌
-- B) Accélérer le jeu en évitant de collecter une ante par joueur ✅
-- C) Récompenser le bouton ❌
-
-**8. [Tournoi]** Quand une table est « cassée » (break), les joueurs :
-- A) Sont éliminés ❌
-- B) Sont redistribués sur les autres tables selon un tirage ✅
-- C) Attendent la fin du niveau ❌
-
-**9. [Tournoi]** La « clock » (règle du temps) est appelée quand :
-- A) Un joueur tarde trop à décider ✅
-- B) Le niveau change ❌
-- C) Un side pot existe ❌
-
-### Cash game
-
-**10. [Cash]** Le principe du « table stakes » signifie :
-- A) On ne peut miser que les jetons présents devant soi au début de la main ✅
-- B) On peut rajouter de l'argent en cours de main ❌
-- C) Les mises sont plafonnées par la salle ❌
-
-**11. [Cash]** Un « straddle » est :
-- A) Une mise volontaire à l'aveugle, en général le double de la big blind, avant la donne ✅
-- B) Une relance au flop ❌
-- C) Un type de side pot ❌
-
-**12. [Cash]** Un joueur revient après avoir manqué ses blindes. Il doit :
-- A) Jouer gratuitement ❌
-- B) Poster les blindes manquées ou attendre son tour de big blind ✅
-- C) Payer le rake ❌
-
-**13. [Cash]** « Run it twice » (dérouler deux fois le board sur un tapis) :
-- A) Est une procédure standard partout ❌
-- B) Se fait seulement si la salle l'autorise et que les joueurs concernés sont d'accord ✅
-- C) Double le rake ❌
-
-### Annonces et litiges
-
-**14. [Général]** Sur une mise contestée, l'annonce du croupier pour appeler le superviseur est :
-- A) « Misdeal ! » ❌
-- B) « Floor ! » ✅
-- C) « Showdown ! » ❌
-
-**15. [Général]** Un « string bet » (mise en plusieurs gestes) est :
-- A) Autorisé si le joueur annonce le montant ❌ (toléré seulement si le montant est annoncé d'abord)
-- B) Interdit s'il n'a pas été annoncé : seule la première action compte ✅
-- C) Toujours autorisé ❌
-
-**16. [Général]** À l'abattage (showdown) sans dernière mise non suivie, qui montre en premier ?
-- A) Le joueur à gauche du bouton ❌
-- B) Le dernier joueur à avoir misé ou relancé ✅
-- C) Le bouton ❌
-
-**17. [Général]** Quand un joueur relance, le croupier annonce :
-- A) « suit » ❌
-- B) « relance à [montant total] » ✅
-- C) « tapis » ❌
-
-### Manipulation
-
-**18. [Général]** Le « wash » (brassage à plat, cartes étalées) se fait :
-- A) À chaque main ❌
-- B) À l'ouverture d'une partie ou quand le jeu doit être totalement rebrassé ✅
-- C) Jamais ❌
+**16. [Général]** À l'abattage, quand tout le monde a checké à la river (aucune mise au dernier tour), qui montre en premier ?
+- A) le premier joueur à gauche du bouton ✅ · B) le bouton ❌ · C) celui qui pense avoir gagné ❌
+- *(S'il y a eu une mise à la river : le dernier à avoir misé montre en premier.)*
 
 ---
 
-## Suite
+## 🆕 LOT 2 — à valider
 
-Dis-moi : **le format + la précision te conviennent ?** Si oui, je complète jusqu'à
-100 questions neuves (réparties sur les 9 modules, taguées Cash/Tournoi), et on
-applique les corrections de la Partie 1. Tu valides, puis on injecte.
+- **19. [Général]** Avant le turn, le croupier brûle → une carte ✅.
+- **20. [Général]** Une main qui touche le muck → morte, même si c'était la meilleure ✅.
+- **21. [Général]** « Un joueur par main » interdit → de se faire conseiller pendant le coup ✅.
+- **22. [Général]** En heads-up, le bouton → est la small blind, parle en premier préflop ✅.
+- **23. [Général]** « Cards speak » → la vraie valeur des cartes fait foi, même mal annoncée ✅.
+- **24. [Tournoi]** « Color up » → échanger les petits jetons contre de plus grosses valeurs et les retirer ✅.
+- **25. [Général]** Protéger sa main → éviter qu'elle soit ramassée/mélangée au muck par erreur ✅.
+- **26. [Général]** Mise à tapis inférieure à une relance complète → ne rouvre pas les enchères pour ceux ayant déjà parlé ✅.
+- **27. [Tournoi]** Redraw (nouveau tirage) → à la table finale ✅.
+- **28. [Tournoi]** Joueur absent → quand même blindé/anté, cartes jetées à son tour ✅.
+
+---
+
+## 🗑️ SUPPRIMÉES (décidé par Jérôme)
+- Partie 1 : C4 (avant de prendre une table), C5 (erreur de niveau), C6 (dealer parle bien), C7 (tapis = all-in), C8 (valeurs de jetons fixes).
+- Lot 1 : 3 (conditions de misdeal), 10 (table stakes), 15 (string bet), 18 (wash).
+
+---
+
+## 🔧 À APPLIQUER dans `examQuestions.ts` (à l'injection, coordonné avec l'autre IA)
+1. Remplacer la question « pot annoncé si la salle l'autorise » par C1.
+2. Remplacer les 2 questions « rat-holing » par une seule (C2, terme « décaver »).
+3. Dédoublonner + corriger la question rake/side pots (C3).
+4. **Supprimer** : « avant de prendre une table » (l.32), « erreur de niveau » (l.188), « dealer parle bien » (l.213), « tapis se dit all-in » (l.116), les 5 questions de valeurs de jetons (l.22-26).
+5. Corriger l.215 : le croupier annonce « relance » (pas « relance à [montant] »).
