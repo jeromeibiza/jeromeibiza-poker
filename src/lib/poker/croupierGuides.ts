@@ -137,6 +137,63 @@ export const CROUPIER_GUIDES: CroupierGuide[] = [
       { label: "L'académie croupier (gratuite)", href: "/academie-croupier" },
     ],
   },
+  {
+    slug: "salaire",
+    metaTitle: "Salaire croupier poker en France : combien gagne un dealer de poker ?",
+    metaDescription:
+      "Combien gagne un croupier de poker en France ? Fourchettes réalistes par niveau (débutant, confirmé), " +
+      "en extra et sur l'année, hors pourboires. Par Jérôme Ibiza, croupier professionnel.",
+    kicker: "La paie",
+    title: "Salaire d'un croupier de poker en France",
+    intro:
+      "Combien gagne un croupier de poker ? On parle ici uniquement du poker, pas des autres jeux. Voici des fourchettes réalistes, par niveau et par type de contrat, hors pourboires.",
+    sections: [
+      {
+        heading: "Combien gagne un croupier de poker",
+        body:
+          "En France, un croupier de poker gagne généralement entre 1 900 et 2 500 euros brut par mois, hors pourboires et primes. Un débutant tourne plutôt autour de 1 900 à 2 250 euros brut mensuels, tandis qu'un dealer poker confirmé peut atteindre environ 2 250 à 2 500 euros brut par mois.",
+      },
+      {
+        heading: "En extra ou en événementiel",
+        body:
+          "Pour les missions ponctuelles (extra, festivals, soirées privées), la rémunération se compte souvent à l'heure : autour de 13,40 à 14 euros brut de l'heure, avec une majoration pour le travail de nuit selon l'établissement.",
+      },
+      {
+        heading: "Sur l'année, primes comprises",
+        body:
+          "Ramené à l'année, un poste de croupier poker se situe souvent entre 23 000 et 30 000 euros brut, primes incluses, selon le niveau et l'établissement. Le bas de la fourchette correspond aux débutants, le haut aux profils confirmés des clubs de jeux et casinos les plus actifs.",
+      },
+      {
+        heading: "Ce qui fait varier la paie",
+        bullets: [
+          "Le niveau et l'expérience : un senior dealer sur les grosses tables n'est pas payé comme un débutant.",
+          "L'établissement et la ville : les clubs de jeux parisiens et les casinos très actifs paient mieux.",
+          "Le type de contrat : fixe mensuel, extra à l'heure, ou mission de festival.",
+          "Les pourboires (le tronc) : selon l'établissement, ils peuvent s'ajouter au salaire de base.",
+          "Le travail de nuit : souvent majoré.",
+        ],
+      },
+    ],
+    faq: [
+      {
+        q: "Combien gagne un croupier de poker débutant ?",
+        a: "En France, un croupier de poker débutant gagne généralement entre 1 900 et 2 250 euros brut par mois, hors pourboires. La rémunération progresse avec l'expérience et le niveau des tables confiées.",
+      },
+      {
+        q: "Un croupier poker confirmé gagne combien ?",
+        a: "Un croupier de poker confirmé se rapproche plutôt de 2 250 à 2 500 euros brut par mois, et davantage sur l'année une fois les primes incluses (souvent jusqu'à 27 000 à 30 000 euros brut annuels).",
+      },
+      {
+        q: "Les pourboires comptent-ils dans le salaire ?",
+        a: "Les fourchettes ci-dessus sont hors pourboires. Selon l'établissement, le tronc (la mise en commun des pourboires) peut s'ajouter au salaire de base et faire une vraie différence sur la fiche de paie.",
+      },
+    ],
+    related: [
+      { label: "Comment devenir croupier de poker", href: "/devenir-croupier-de-poker" },
+      { label: "Formation croupier poker", href: "/croupier/formation" },
+      { label: "Les gestes techniques du croupier", href: "/croupier/gestes-techniques" },
+    ],
+  },
 ];
 
 export function getCroupierGuide(slug: string): CroupierGuide | undefined {

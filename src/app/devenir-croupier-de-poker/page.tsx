@@ -190,6 +190,7 @@ export default function DevenirCroupierPage() {
         <div className="grid-cards">
           {[
             ["📚 Formation croupier poker", "Les voies pour se former : écoles, sur le tas, ou l'académie gratuite.", "/croupier/formation"],
+            ["💶 Salaire croupier poker", "Combien gagne un croupier de poker en France, par niveau.", "/croupier/salaire"],
             ["🃏 Les gestes techniques", "Mélange, distribution, manipulation et découpe des jetons (chip cutting).", "/croupier/gestes-techniques"],
             ["🎓 L'académie croupier", "La formation complète, module par module, jusqu'à l'examen final.", "/academie-croupier"],
           ].map(([t, d, href]) => (
