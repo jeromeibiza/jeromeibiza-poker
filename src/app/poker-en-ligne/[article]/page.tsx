@@ -5,6 +5,7 @@ import { LessonLayout } from "@/components/LessonLayout";
 import { PokerTable, TABLE_6MAX } from "@/components/PokerTable";
 import { ARTICLES, getArticle } from "@/lib/poker/online";
 import { Crumbs, Section, DealerNote, JsonLd } from "@/components/ui";
+import { autolink } from "@/lib/poker/autolink";
 
 type Params = { article: string };
 
@@ -39,6 +40,7 @@ export default async function ArticlePage({
   const idx = ARTICLES.findIndex((x) => x.slug === a.slug);
   const prev = idx > 0 ? ARTICLES[idx - 1] : null;
   const next = idx < ARTICLES.length - 1 ? ARTICLES[idx + 1] : null;
+  const linked = new Set<string>(); // maillage : 1 lien par terme et par page
 
   const ld = {
     "@context": "https://schema.org",
@@ -74,11 +76,11 @@ export default async function ArticlePage({
 
       {a.sections.map((s) => (
         <Section key={s.heading} kicker="Le guide" title={s.heading}>
-          {s.body && <p style={{ color: "var(--muted)", fontSize: 16, lineHeight: 1.7 }}>{s.body}</p>}
+          {s.body && <p style={{ color: "var(--muted)", fontSize: 16, lineHeight: 1.7 }}>{autolink(s.body, linked)}</p>}
           {s.bullets && (
             <ul className="lb" style={{ marginTop: s.body ? 14 : 0 }}>
               {s.bullets.map((b) => (
-                <li key={b}>{b}</li>
+                <li key={b}>{autolink(b, linked)}</li>
               ))}
             </ul>
           )}

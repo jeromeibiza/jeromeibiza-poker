@@ -8,6 +8,9 @@ export const metadata: Metadata = {
     "L'actualité du poker : news, résultats des grands circuits (WSOP, WPT, EPT, Triton) et les " +
     "plus grosses mains de l'année. Mises à jour à venir.",
   alternates: { canonical: "/actualites" },
+  // Section encore vide : noindex tant qu'elle n'est pas remplie (les robots
+  // suivent quand même les liens). À repasser en index au remplissage.
+  robots: { index: false, follow: true },
 };
 
 const TOPICS = [

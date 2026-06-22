@@ -15,6 +15,7 @@ import { ExploitToggle } from "@/components/ExploitToggle";
 import { BankrollCalculator } from "@/components/BankrollCalculator";
 import { LESSONS, getLesson, LEVEL_LABEL } from "@/lib/poker/strategy";
 import { Crumbs, Section, DealerNote, LevelPill, JsonLd } from "@/components/ui";
+import { autolink } from "@/lib/poker/autolink";
 
 type Params = { lesson: string };
 
@@ -487,6 +488,8 @@ export default async function LessonPage({
   const prev = idx > 0 ? LESSONS[idx - 1] : null;
   const next = idx < LESSONS.length - 1 ? LESSONS[idx + 1] : null;
   const hand = HANDS[l.slug];
+  // Maillage interne : un terme du glossaire n'est lié qu'une fois par page.
+  const linked = new Set<string>();
 
   const learnLd = {
     "@context": "https://schema.org",
@@ -588,11 +591,11 @@ export default async function LessonPage({
       {l.sections.map((s, i) => (
         <Fragment key={s.heading}>
           <Section kicker="Cours" title={s.heading}>
-            {s.body && <p style={{ color: "var(--muted)", fontSize: 16, lineHeight: 1.7 }}>{s.body}</p>}
+            {s.body && <p style={{ color: "var(--muted)", fontSize: 16, lineHeight: 1.7 }}>{autolink(s.body, linked)}</p>}
             {s.bullets && (
               <ul className="lb" style={{ marginTop: s.body ? 14 : 0 }}>
                 {s.bullets.map((b) => (
-                  <li key={b}>{b}</li>
+                  <li key={b}>{autolink(b, linked)}</li>
                 ))}
               </ul>
             )}

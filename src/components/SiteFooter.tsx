@@ -15,7 +15,11 @@ export function SiteFooter() {
           <div>
             <div className="display" style={{ fontSize: 20 }}>♠ Poker Hub</div>
             <p style={{ color: "var(--muted)", fontSize: 14, marginTop: 10, maxWidth: 320 }}>
-              {SITE.tagline} Par Jérôme Ibiza, croupier professionnel et joueur de poker.
+              {SITE.tagline} Par{" "}
+              <Link href="/a-propos" style={{ color: "var(--fg)", textDecoration: "underline" }}>
+                Jérôme Ibiza
+              </Link>
+              , croupier professionnel et 20e du PSPC 2023.
             </p>
             <p style={{ color: "var(--faint)", fontSize: 12, marginTop: 14 }}>
               Contenu pédagogique et de divertissement. Jeu gratuit, sans argent réel,

@@ -6,6 +6,7 @@ import { PokerTable, TABLE_6MAX, TABLE_FULL, TABLE_SPIN, TABLE_HEADSUP } from "@
 import { SpinMultiplier } from "@/components/SpinMultiplier";
 import { FORMATS, getFormat } from "@/lib/poker/formats";
 import { Crumbs, Section, DealerNote, JsonLd } from "@/components/ui";
+import { autolink } from "@/lib/poker/autolink";
 
 type Params = { format: string };
 
@@ -52,6 +53,7 @@ export default async function FormatPage({
   const idx = FORMATS.findIndex((x) => x.slug === f.slug);
   const prev = idx > 0 ? FORMATS[idx - 1] : null;
   const next = idx < FORMATS.length - 1 ? FORMATS[idx + 1] : null;
+  const linked = new Set<string>(); // maillage : 1 lien par terme et par page
 
   const ld = {
     "@context": "https://schema.org",
@@ -150,11 +152,11 @@ export default async function FormatPage({
 
       {f.sections.map((s) => (
         <Section key={s.heading} kicker="À savoir" title={s.heading}>
-          {s.body && <p style={{ color: "var(--muted)", fontSize: 16, lineHeight: 1.7 }}>{s.body}</p>}
+          {s.body && <p style={{ color: "var(--muted)", fontSize: 16, lineHeight: 1.7 }}>{autolink(s.body, linked)}</p>}
           {s.bullets && (
             <ul className="lb" style={{ marginTop: s.body ? 14 : 0 }}>
               {s.bullets.map((b) => (
-                <li key={b}>{b}</li>
+                <li key={b}>{autolink(b, linked)}</li>
               ))}
             </ul>
           )}

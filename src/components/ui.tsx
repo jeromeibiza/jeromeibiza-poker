@@ -1,10 +1,27 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
+import { SITE } from "@/lib/site";
 
-/** Fil d'Ariane (bon pour l'UX et le SEO). */
+/** Fil d'Ariane (bon pour l'UX et le SEO). Émet aussi le JSON-LD BreadcrumbList
+ *  (chemin d'accès indexable) en plus du rendu visuel. */
 export function Crumbs({ items }: { items: { label: string; href?: string }[] }) {
+  const base = SITE.url.replace(/\/$/, "");
+  const breadcrumbLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: items.map((it, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      name: it.label,
+      ...(it.href ? { item: `${base}${it.href === "/" ? "" : it.href}` } : {}),
+    })),
+  };
   return (
     <nav aria-label="Fil d'Ariane" style={{ marginBottom: 18 }}>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }}
+      />
       <ol
         style={{
           display: "flex",

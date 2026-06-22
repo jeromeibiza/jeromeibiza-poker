@@ -51,6 +51,35 @@ export const metadata: Metadata = {
   robots: { index: true, follow: true },
 };
 
+// JSON-LD global : relie le site à Jérôme (autorité de marque + auteur prouvable
+// sur chaque page). Le PSPC 2023 est la preuve clé. Les liens sociaux/Hendon Mob
+// pourront être ajoutés dans `sameAs` quand Jérôme les fournira.
+const siteLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": `${SITE.url}/#website`,
+      url: SITE.url,
+      name: SITE.name,
+      description: SITE.description,
+      inLanguage: "fr-FR",
+      publisher: { "@id": `${SITE.url}/#jerome` },
+    },
+    {
+      "@type": "Person",
+      "@id": `${SITE.url}/#jerome`,
+      name: "Jérôme Ibiza",
+      jobTitle: "Croupier professionnel",
+      description:
+        "Croupier professionnel et joueur de poker, 20e du PokerStars Players Championship (PSPC) 2023, fondateur du Poker Hub Jérôme Ibiza.",
+      url: `${SITE.url}/a-propos`,
+      award: "20e place, PokerStars Players Championship (PSPC) 2023",
+      knowsAbout: ["Poker", "Croupier de poker", "Texas Hold'em", "Tournois de poker"],
+    },
+  ],
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
@@ -60,6 +89,10 @@ export default function RootLayout({
       className={`${anton.variable} ${oswald.variable} ${inter.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(siteLd) }}
+        />
         <SiteHeader />
         <main className="flex-1">{children}</main>
         <SiteFooter />

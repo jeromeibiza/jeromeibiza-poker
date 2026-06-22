@@ -89,6 +89,15 @@ export default function AcademiePage() {
         </div>
       </div>
 
+      <div className="card" style={{ marginTop: 18 }}>
+        <p style={{ color: "var(--muted)", margin: 0 }}>
+          Tu te demandes{" "}
+          <Link href="/devenir-croupier-de-poker" className="link">comment devenir croupier de poker</Link>{" "}?
+          Le guide complet (le métier, les qualités, les étapes et les débouchés) résume tout le
+          parcours avant de plonger dans les modules.
+        </p>
+      </div>
+
       <div className="card" style={{ marginTop: 18, borderColor: "rgba(232,176,75,0.3)" }}>
         <div className="label" style={{ color: "var(--gold)", fontSize: 12, marginBottom: 10 }}>Par qui ?</div>
         <p style={{ color: "var(--fg)", marginTop: 0, marginBottom: 10 }}>

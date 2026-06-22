@@ -8,6 +8,9 @@ export const metadata: Metadata = {
     "Le Netflix du poker : vidéos pédagogiques, analyses de mains, documentaires et les grands " +
     "circuits WSOP, WPT, EPT et Triton. Classées par niveau et par circuit.",
   alternates: { canonical: "/videos" },
+  // Section encore vide : noindex tant qu'elle n'est pas remplie (les robots
+  // suivent quand même les liens). À repasser en index au remplissage.
+  robots: { index: false, follow: true },
 };
 
 const CIRCUITS = [

@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState, type CSSProperties } from "react";
+import { useEffect, useMemo, useState, type CSSProperties } from "react";
 import type { Term } from "@/lib/poker/glossary";
 
 function normalize(s: string) {
@@ -13,6 +13,14 @@ function normalize(s: string) {
 export function GlossaryBrowser({ terms }: { terms: Term[] }) {
   const [q, setQ] = useState("");
   const [letter, setLetter] = useState<string | null>(null);
+
+  // Pré-remplit la recherche depuis l'URL (?q=terme) : sert au maillage interne,
+  // les liens « glossaire » des cours pointent vers /glossaire?q=<terme>. Lu en
+  // effet (pas à l'init) pour éviter tout décalage d'hydratation.
+  useEffect(() => {
+    const p = new URLSearchParams(window.location.search).get("q");
+    if (p) setQ(p);
+  }, []);
 
   const sorted = useMemo(
     () => [...terms].sort((a, b) => a.term.localeCompare(b.term, "fr")),
