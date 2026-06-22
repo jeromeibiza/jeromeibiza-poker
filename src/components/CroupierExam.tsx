@@ -1,7 +1,11 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import { EXAM } from "@/lib/poker/examQuestions";
+import { EXAM as EXAM_BASE } from "@/lib/poker/examQuestions";
+import { EXAM_EXTRA } from "@/lib/poker/examQuestionsExtra";
+
+// Banque complète = questions d'origine + lot validé par Jérôme via la review.
+const EXAM = [...EXAM_BASE, ...EXAM_EXTRA];
 
 const KEY = "ph_croupier_exam";
 const FULL_N = 100; // examen complet : 100 questions tirées au hasard dans la banque
