@@ -34,10 +34,6 @@
 **2. [Général]** Une carte retournée dans le sabot (une **« feuille morte »**) est :
 - A) une carte normale ❌ · B) écartée, comme inexistante ✅ · C) brûlée ❌
 
-**16. [Général]** À l'abattage, quand tout le monde a checké à la river (aucune mise au dernier tour), qui montre en premier ?
-- A) le premier joueur à gauche du bouton ✅ · B) le bouton ❌ · C) celui qui pense avoir gagné ❌
-- *(S'il y a eu une mise à la river : le dernier à avoir misé montre en premier.)*
-
 ---
 
 ## 🆕 LOT 2 — à valider
@@ -58,6 +54,7 @@
 ## 🗑️ SUPPRIMÉES (décidé par Jérôme)
 - Partie 1 : C4 (avant de prendre une table), C5 (erreur de niveau), C6 (dealer parle bien), C7 (tapis = all-in), C8 (valeurs de jetons fixes).
 - Lot 1 : 3 (conditions de misdeal), 10 (table stakes), 15 (string bet), 18 (wash).
+- Via sub-issue (Jérôme) : 16 (abattage), 33 (annonce du gagnant).
 
 ---
 
