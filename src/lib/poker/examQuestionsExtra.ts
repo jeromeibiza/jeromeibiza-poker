@@ -17,7 +17,6 @@ export const EXAM_EXTRA: ExamQuestion[] = [
 
   // Module 4 — Dealer au Texas Hold'em
   { m: 4, q: "Avant le flop, le croupier brûle :", choices: ["Aucune carte", "Une carte", "Trois cartes"], answer: 1 },
-  { m: 4, q: "Avant le turn, le croupier brûle :", choices: ["Aucune carte", "Une carte", "Trois cartes"], answer: 1 },
   { m: 4, q: "Sur une main complète (flop, turn, river), le croupier brûle au total :", choices: ["Une carte", "Trois cartes", "Cinq cartes"], answer: 1 },
   { m: 4, q: "En heads-up (deux joueurs), le bouton :", choices: ["Est la big blind", "Est la small blind et parle en premier préflop", "Ne paie pas de blinde"], answer: 1 },
   { m: 4, q: "« Cards speak » signifie qu'à l'abattage :", choices: ["Le joueur doit annoncer sa main juste pour la gagner", "La vraie valeur des cartes fait foi, même mal annoncée", "Seul le croupier peut lire les mains"], answer: 1 },
@@ -43,7 +42,6 @@ export const EXAM_EXTRA: ExamQuestion[] = [
   { m: 6, q: "Le « dead button » (bouton mort) sert à :", choices: ["Accélérer le jeu", "Gérer le déplacement du bouton après une élimination sans léser les blindes", "Désigner le chip leader"], answer: 1 },
   { m: 6, q: "La « big blind ante » (ante payée par la big blind pour toute la table) sert surtout à :", choices: ["Augmenter le rake", "Accélérer le jeu en évitant une ante par joueur", "Récompenser le bouton"], answer: 1 },
   { m: 6, q: "Quand une table est « cassée » (break), les joueurs :", choices: ["Sont éliminés", "Sont redistribués sur les autres tables par tirage", "Attendent la fin du niveau"], answer: 1 },
-  { m: 6, q: "La « clock » (règle du temps) est appelée quand :", choices: ["Un joueur tarde trop à décider", "Le niveau change", "Un side pot existe"], answer: 0 },
   { m: 6, q: "Le « color up » (montée des couleurs) consiste à :", choices: ["Changer la couleur du tapis", "Échanger les petits jetons contre de plus grosses valeurs et retirer les petits", "Trier les jetons par couleur"], answer: 1 },
   { m: 6, q: "Un nouveau tirage des places (redraw) a lieu notamment :", choices: ["À chaque élimination", "À la formation de la table finale", "À chaque niveau"], answer: 1 },
   { m: 6, q: "En tournoi, un joueur absent de sa place est :", choices: ["Éliminé immédiatement", "Quand même blindé et anté, ses cartes jetées à son tour", "Sauté sans payer"], answer: 1 },
@@ -63,7 +61,6 @@ export const EXAM_EXTRA: ExamQuestion[] = [
   // ===== Lots 5 à 7 (validés via l'Issue GitHub #1) =====
   { m: 3, q: "Un joueur demande à changer de jeu de cartes. Le croupier :", choices: ["Refuse, c'est interdit", "Le change dès que possible (souvent en fin de main)", "Le change seulement à la pause"], answer: 1 },
   { m: 3, q: "Une carte cornée ou marquée est découverte en jeu. Le croupier :", choices: ["Continue avec", "Remplace le jeu de cartes", "Retire seulement cette carte"], answer: 1 },
-  { m: 4, q: "Le flop est dévoilé :", choices: ["Une carte à la fois", "Les 3 cartes ensemble, d'un seul geste", "Après une nouvelle mise"], answer: 1 },
   { m: 4, q: "La carte brûlée est posée :", choices: ["Face visible", "Face cachée, à part", "Dans le pot"], answer: 1 },
   { m: 5, q: "Discuter de sa main alors qu'on est encore dans le coup est :", choices: ["Autorisé", "Interdit", "Autorisé en heads-up"], answer: 1 },
   { m: 5, q: "Montrer ses cartes à un autre joueur pendant que le coup est en cours est :", choices: ["Autorisé", "Interdit", "Autorisé si on est déjà couché"], answer: 1 },
@@ -76,13 +73,11 @@ export const EXAM_EXTRA: ExamQuestion[] = [
   { m: 7, q: "Face à de l'« angle shooting » (tromper via une ambiguïté), le croupier :", choices: ["L'encourage", "Veille à l'équité et prévient le floor si besoin", "L'ignore"], answer: 1 },
   { m: 8, q: "Le rake prélevé va :", choices: ["Dans la poche du croupier", "Dans la boîte prévue (drop), à la vue de tous", "Dans le pot suivant"], answer: 1 },
   { m: 4, q: "Pendant le coup, un joueur ne doit jamais :", choices: ["Protéger sa main", "Toucher le pot au centre", "Vérifier son tapis"], answer: 1 },
-  { m: 4, q: "Au Texas Hold'em, chaque joueur reçoit :", choices: ["1 carte", "2 cartes fermées", "5 cartes"], answer: 1 },
   { m: 3, q: "Le croupier distribue les cartes :", choices: ["Dans le sens antihoraire", "Dans le sens horaire, en commençant à gauche du bouton", "En commençant par le bouton"], answer: 1 },
   { m: 4, q: "Le bouton se déplace :", choices: ["Il reste fixe", "D'un siège vers la gauche à chaque main", "Au hasard"], answer: 1 },
   { m: 4, q: "Le turn et la river dévoilent :", choices: ["Deux cartes chacun", "Une carte chacun", "Trois cartes au total"], answer: 1 },
   { m: 4, q: "Taper la table avec la main signifie :", choices: ["Se coucher", "Checker (passer sans miser)", "Demander une carte"], answer: 1 },
   { m: 4, q: "Les cartes jetées (le muck) sont :", choices: ["Posées face visible", "Posées face cachée", "Remises dans le sabot"], answer: 1 },
-  { m: 8, q: "Le rake en tournoi :", choices: ["Est prélevé à chaque pot", "N'existe pas pendant le jeu, il est inclus dans le buy-in", "Est doublé en table finale"], answer: 1 },
   { m: 6, q: "Les blindes en tournoi :", choices: ["Restent fixes", "Augmentent à intervalles réguliers (les niveaux)", "Diminuent avec le temps"], answer: 1 },
   { m: 6, q: "En début de tournoi, les tapis de départ sont :", choices: ["Au choix du joueur", "Identiques pour tous", "Proportionnels au buy-in payé"], answer: 1 },
   { m: 6, q: "Quand le nombre de joueurs baisse, on :", choices: ["Garde toutes les tables ouvertes", "Regroupe et équilibre les tables", "Arrête le tournoi"], answer: 1 },
