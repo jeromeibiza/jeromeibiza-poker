@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { GLOSSARY } from "@/lib/poker/glossary";
 import { GlossaryBrowser } from "@/components/GlossaryBrowser";
-import { Crumbs, PageHero, JsonLd } from "@/components/ui";
+import { Crumbs, PageHero, JsonLd, SeeAlso } from "@/components/ui";
 
 export const metadata: Metadata = {
   title: "Glossaire poker complet : tous les termes de A à Z, expliqués",
@@ -44,6 +44,14 @@ export default function GlossairePage() {
           Il sera ajouté avec plaisir.
         </p>
       </div>
+
+      <SeeAlso
+        links={[
+          { label: "Apprendre le poker", href: "/apprendre", desc: "Les règles et les bases, pas à pas." },
+          { label: "La stratégie poker", href: "/strategie", desc: "Mettre ces termes en pratique, du débutant au GTO." },
+          { label: "Les calculateurs", href: "/calculateurs", desc: "Cotes, bankroll, ICM, ROI tournoi." },
+        ]}
+      />
     </div>
   );
 }

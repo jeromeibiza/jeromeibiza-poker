@@ -125,6 +125,37 @@ export function JsonLd({ data }: { data: Record<string, unknown> | Record<string
   );
 }
 
+/** Bloc « Voir aussi » : maillage interne cross-thématique en bas de page.
+ *  Tisse des liens entre apprendre / stratégie / formats / glossaire / académie. */
+export function SeeAlso({
+  links,
+  title = "Voir aussi",
+  kicker = "Pour aller plus loin",
+}: {
+  links: { label: string; href: string; desc?: string }[];
+  title?: string;
+  kicker?: string;
+}) {
+  if (!links.length) return null;
+  return (
+    <Section kicker={kicker} title={title}>
+      <div className="grid-cards">
+        {links.map((l) => (
+          <Link key={l.href} href={l.href} className="card card-hover">
+            <span className="display" style={{ fontSize: 15 }}>{l.label}</span>
+            {l.desc && (
+              <span style={{ display: "block", color: "var(--muted)", fontSize: 13, marginTop: 6 }}>{l.desc}</span>
+            )}
+            <span className="label" style={{ color: "var(--gold)", fontSize: 13, marginTop: 8, display: "block" }}>
+              Découvrir →
+            </span>
+          </Link>
+        ))}
+      </div>
+    </Section>
+  );
+}
+
 /** Encart "note du croupier", signature editoriale de Jerome. */
 export function DealerNote({ children }: { children: ReactNode }) {
   return (

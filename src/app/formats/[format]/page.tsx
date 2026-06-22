@@ -5,7 +5,7 @@ import { LessonLayout } from "@/components/LessonLayout";
 import { PokerTable, TABLE_6MAX, TABLE_FULL, TABLE_SPIN, TABLE_HEADSUP } from "@/components/PokerTable";
 import { SpinMultiplier } from "@/components/SpinMultiplier";
 import { FORMATS, getFormat } from "@/lib/poker/formats";
-import { Crumbs, Section, DealerNote, JsonLd } from "@/components/ui";
+import { Crumbs, Section, DealerNote, JsonLd, SeeAlso } from "@/components/ui";
 import { autolink } from "@/lib/poker/autolink";
 
 type Params = { format: string };
@@ -173,6 +173,14 @@ export default async function FormatPage({
           </p>
         </div>
       )}
+
+      <SeeAlso
+        links={[
+          { label: "La stratégie poker", href: "/strategie", desc: "Du débutant au GTO : comment bien jouer ce format." },
+          { label: "Le glossaire poker", href: "/glossaire", desc: "Tous les termes du format, expliqués." },
+          { label: "Apprendre les bases", href: "/apprendre", desc: "Règles, classement des mains, positions." },
+        ]}
+      />
 
       <nav
         style={{

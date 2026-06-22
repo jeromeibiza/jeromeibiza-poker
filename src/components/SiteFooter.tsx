@@ -47,6 +47,9 @@ export function SiteFooter() {
                 {s.label}
               </Link>
             ))}
+            <Link href="/devenir-croupier-de-poker" style={{ color: "var(--muted)", fontSize: 14 }}>
+              Devenir croupier
+            </Link>
             <Link href="/a-propos" style={{ color: "var(--muted)", fontSize: 14 }}>
               À propos
             </Link>

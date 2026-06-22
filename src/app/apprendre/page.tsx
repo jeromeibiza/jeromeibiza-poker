@@ -1,7 +1,7 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import { LESSONS } from "@/lib/poker/learn";
-import { Crumbs, PageHero, LevelPill, JsonLd } from "@/components/ui";
+import { Crumbs, PageHero, LevelPill, JsonLd, SeeAlso } from "@/components/ui";
 
 export const metadata: Metadata = {
   title: "Apprendre le poker, cursus débutant complet et gratuit",
@@ -97,6 +97,14 @@ export default function ApprendrePage() {
           à distribuer comme un pro.
         </p>
       </div>
+
+      <SeeAlso
+        links={[
+          { label: "Le glossaire poker", href: "/glossaire", desc: "Plus de 300 termes définis simplement." },
+          { label: "Les calculateurs", href: "/calculateurs", desc: "Cotes, bankroll, ICM, ROI tournoi." },
+          { label: "Devenir croupier de poker", href: "/devenir-croupier-de-poker", desc: "Le métier, la formation et les débouchés." },
+        ]}
+      />
     </div>
   );
 }

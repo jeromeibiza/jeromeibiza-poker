@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 import { LessonLayout } from "@/components/LessonLayout";
 import { PokerTable, TABLE_6MAX } from "@/components/PokerTable";
 import { ARTICLES, getArticle } from "@/lib/poker/online";
-import { Crumbs, Section, DealerNote, JsonLd } from "@/components/ui";
+import { Crumbs, Section, DealerNote, JsonLd, SeeAlso } from "@/components/ui";
 import { autolink } from "@/lib/poker/autolink";
 
 type Params = { article: string };
@@ -103,6 +103,14 @@ export default async function ArticlePage({
           de difficulté avec le jeu d&apos;argent, parles-en et fais-toi aider.
         </p>
       </div>
+
+      <SeeAlso
+        links={[
+          { label: "Apprendre le poker", href: "/apprendre", desc: "Les règles et les bases avant de jouer en ligne." },
+          { label: "La stratégie poker", href: "/strategie", desc: "Mieux jouer, du débutant au niveau avancé." },
+          { label: "Le glossaire poker", href: "/glossaire", desc: "Tous les termes définis simplement." },
+        ]}
+      />
 
       <nav
         style={{
