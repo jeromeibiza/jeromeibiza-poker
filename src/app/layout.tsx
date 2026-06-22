@@ -76,6 +76,10 @@ const siteLd = {
       url: `${SITE.url}/a-propos`,
       award: "20e place, PokerStars Players Championship (PSPC) 2023",
       knowsAbout: ["Poker", "Croupier de poker", "Texas Hold'em", "Tournois de poker"],
+      sameAs: [
+        "https://pokerdb.thehendonmob.com/player.php?a=r&n=380851",
+        "https://www.instagram.com/jerome__ibiza/",
+      ],
     },
   ],
 };

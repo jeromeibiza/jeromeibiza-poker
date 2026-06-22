@@ -23,6 +23,10 @@ export default function AProposPage() {
     url: `${SITE.url}/a-propos`,
     award: "20e place, PokerStars Players Championship (PSPC) 2023",
     knowsAbout: ["Poker", "Croupier de poker", "Texas Hold'em", "Tournois de poker"],
+    sameAs: [
+      "https://pokerdb.thehendonmob.com/player.php?a=r&n=380851",
+      "https://www.instagram.com/jerome__ibiza/",
+    ],
   };
 
   return (
@@ -63,6 +67,25 @@ export default function AProposPage() {
             <Link href="/academie-croupier" className="btn btn-gold">🎓 L&apos;académie croupier</Link>
             <Link href="/apprendre/parcours-debutant" className="btn btn-ghost">Le parcours débutant</Link>
           </div>
+          {/* Preuves vérifiables (palmarès + identité). rel=me = signal d'identité. */}
+          <p style={{ display: "flex", flexWrap: "wrap", gap: 18, marginTop: 18, fontSize: 14, color: "var(--muted)" }}>
+            <a
+              href="https://pokerdb.thehendonmob.com/player.php?a=r&n=380851"
+              target="_blank"
+              rel="noopener noreferrer me"
+              className="link"
+            >
+              🏆 Mon palmarès sur Hendon Mob
+            </a>
+            <a
+              href="https://www.instagram.com/jerome__ibiza/"
+              target="_blank"
+              rel="noopener noreferrer me"
+              className="link"
+            >
+              📷 Instagram @jerome__ibiza
+            </a>
+          </p>
         </div>
 
         {/* Photo détourée sur fond sombre (halo discret, pas de panneau vert) */}
