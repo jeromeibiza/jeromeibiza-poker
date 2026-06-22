@@ -156,7 +156,7 @@ export const CROUPIER_GUIDES: CroupierGuide[] = [
       {
         heading: "En extra ou en événementiel",
         body:
-          "Pour les missions ponctuelles (extra, festivals, soirées privées), la rémunération se compte souvent à l'heure : autour de 13,40 à 14 euros brut de l'heure, avec une majoration pour le travail de nuit selon l'établissement.",
+          "Pour les missions ponctuelles (extra, soirées privées), la rémunération se compte souvent à l'heure : autour de 13,40 à 14 euros brut de l'heure en France, avec une majoration pour le travail de nuit. Sur les grands festivals internationaux et pour les croupiers expérimentés, le tarif horaire grimpe nettement plus haut : il peut atteindre 40 à 50 de l'heure sur les plus gros événements (souvent payés en livres ou en dollars).",
       },
       {
         heading: "Sur l'année, primes comprises",
@@ -182,6 +182,10 @@ export const CROUPIER_GUIDES: CroupierGuide[] = [
       {
         q: "Un croupier poker confirmé gagne combien ?",
         a: "Un croupier de poker confirmé se rapproche plutôt de 2 250 à 2 500 euros brut par mois, et davantage sur l'année une fois les primes incluses (souvent jusqu'à 27 000 à 30 000 euros brut annuels).",
+      },
+      {
+        q: "Combien gagne un croupier de poker sur un grand festival ?",
+        a: "Sur les grands festivals internationaux, les croupiers expérimentés sont bien mieux payés qu'en extra classique : le tarif horaire peut atteindre 40 à 50 de l'heure (souvent en livres ou en dollars), selon l'événement et l'expérience.",
       },
       {
         q: "Les pourboires comptent-ils dans le salaire ?",
