@@ -5,6 +5,7 @@ import { LESSONS as STRATEGIES } from "@/lib/poker/strategy";
 import { FORMATS } from "@/lib/poker/formats";
 import { ARTICLES } from "@/lib/poker/online";
 import { MODULES } from "@/lib/poker/academy";
+import { CROUPIER_GUIDES } from "@/lib/poker/croupierGuides";
 
 // Sections encore vides : on les sort du sitemap (et elles sont en noindex sur
 // la page) tant qu'elles ne sont pas remplies, à réintégrer une par une.
@@ -30,6 +31,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const formatPaths = FORMATS.map((f) => `/formats/${f.slug}`);
   const onlinePaths = ARTICLES.map((a) => `/poker-en-ligne/${a.slug}`);
   const modulePaths = MODULES.map((m) => `/academie-croupier/${m.slug}`);
+  const croupierPaths = CROUPIER_GUIDES.map((g) => `/croupier/${g.slug}`);
 
   const all = Array.from(
     new Set([
@@ -39,6 +41,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       ...formatPaths,
       ...onlinePaths,
       ...modulePaths,
+      ...croupierPaths,
     ]),
   );
 

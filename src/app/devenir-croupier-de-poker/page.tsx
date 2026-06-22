@@ -186,6 +186,22 @@ export default function DevenirCroupierPage() {
         </div>
       </Section>
 
+      <Section kicker="Pour aller plus loin" title="Approfondir le métier">
+        <div className="grid-cards">
+          {[
+            ["📚 Formation croupier poker", "Les voies pour se former : écoles, sur le tas, ou l'académie gratuite.", "/croupier/formation"],
+            ["🃏 Les gestes techniques", "Mélange, distribution, manipulation et découpe des jetons (chip cutting).", "/croupier/gestes-techniques"],
+            ["🎓 L'académie croupier", "La formation complète, module par module, jusqu'à l'examen final.", "/academie-croupier"],
+          ].map(([t, d, href]) => (
+            <Link key={href} href={href} className="card card-hover">
+              <span className="display" style={{ fontSize: 16 }}>{t}</span>
+              <span style={{ display: "block", color: "var(--muted)", fontSize: 14, marginTop: 8 }}>{d}</span>
+              <span className="label" style={{ color: "var(--gold)", fontSize: 13, marginTop: 10, display: "block" }}>Découvrir →</span>
+            </Link>
+          ))}
+        </div>
+      </Section>
+
       <Section kicker="Qui transmet" title="Un croupier de métier">
         <p style={{ color: "var(--muted)", fontSize: 16, lineHeight: 1.7, maxWidth: 760 }}>
           Ce guide et l&apos;académie sont signés{" "}
