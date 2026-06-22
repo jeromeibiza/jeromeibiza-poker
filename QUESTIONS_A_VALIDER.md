@@ -55,6 +55,9 @@
 - Partie 1 : C4 (avant de prendre une table), C5 (erreur de niveau), C6 (dealer parle bien), C7 (tapis = all-in), C8 (valeurs de jetons fixes).
 - Lot 1 : 3 (conditions de misdeal), 10 (table stakes), 15 (string bet), 18 (wash).
 - Via sub-issue (Jérôme) : 16 (abattage), 33 (annonce du gagnant).
+- Lot 4 : 35 (relance mini, dépend du click-back/France vs interna), 37 (all-in à l'abattage, piégeuse + redondante avec Q20, cf. coup Estelle Denis).
+
+> NB : la validation se fait désormais sur l'Issue GitHub #1 (cases à cocher). Lots 3 et 4 (questions 29-44) listés là-bas.
 
 ---
 
