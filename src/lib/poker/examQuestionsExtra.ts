@@ -58,7 +58,7 @@ export const EXAM_EXTRA: ExamQuestion[] = [
   { m: 8, q: "Le « temps » (droit de table) est :", choices: ["Un pourboire obligatoire", "Un montant fixe payé par les joueurs à la place du rake dans certaines salles", "Une pénalité de retard"], answer: 1 },
 
   // Module 9 — Les annonces du dealer
-  { m: 9, q: "Quand un joueur relance, le croupier annonce :", choices: ["« suit »", "« relance »", "le montant exact à voix haute"], answer: 1 },
+  { m: 9, q: "En tournoi, quand un joueur relance, le croupier annonce :", choices: ["« suit »", "« relance » (sans le montant)", "le montant exact, toujours"], answer: 1 },
 
   // ===== Lots 5 à 7 (validés via l'Issue GitHub #1) =====
   { m: 3, q: "Un joueur demande à changer de jeu de cartes. Le croupier :", choices: ["Refuse, c'est interdit", "Le change dès que possible (souvent en fin de main)", "Le change seulement à la pause"], answer: 1 },
