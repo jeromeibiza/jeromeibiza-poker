@@ -189,9 +189,15 @@ export default function DevenirCroupierPage() {
       <Section kicker="Pour aller plus loin" title="Approfondir le métier">
         <div className="grid-cards">
           {[
+            ["📋 Fiche métier croupier", "Le rôle, les missions au quotidien et une soirée type à la table.", "/croupier/fiche-metier"],
             ["📚 Formation croupier poker", "Les voies pour se former : écoles, sur le tas, ou l'académie gratuite.", "/croupier/formation"],
+            ["🎫 Devenir croupier sans diplôme", "Ce qui compte vraiment à l'embauche, et les conditions à respecter.", "/croupier/sans-diplome"],
+            ["💪 Les qualités pour réussir", "Sang-froid, neutralité, dextérité, calcul rapide : le bon profil.", "/croupier/qualites"],
             ["💶 Salaire croupier poker", "Combien gagne un croupier de poker en France, par niveau.", "/croupier/salaire"],
+            ["🕐 Horaires et conditions", "Travail de nuit, week-ends, rotations et rythme réel du métier.", "/croupier/horaires-conditions"],
+            ["📈 Évolution de carrière", "De croupier à chef de table, floor manager puis directeur de tournoi.", "/croupier/evolution-carriere"],
             ["🃏 Les gestes techniques", "Mélange, distribution, manipulation et découpe des jetons (chip cutting).", "/croupier/gestes-techniques"],
+            ["⚖️ Poker ou casino", "Les vraies différences entre croupier de poker et croupier de casino.", "/croupier/croupier-poker-vs-casino"],
             ["🎓 L'académie croupier", "La formation complète, module par module, jusqu'à l'examen final.", "/academie-croupier"],
           ].map(([t, d, href]) => (
             <Link key={href} href={href} className="card card-hover">
