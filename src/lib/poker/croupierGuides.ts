@@ -277,6 +277,26 @@ export const CROUPIER_GUIDES: CroupierGuide[] = [
       { label: "Le salaire d'un croupier de poker", href: "/croupier/salaire" },
       { label: "Évolution de carrière du croupier", href: "/croupier/evolution-carriere" },
     ],
+    structuredData: [
+      {
+        "@context": "https://schema.org",
+        "@type": "Occupation",
+        name: "Croupier de poker",
+        description:
+          "Professionnel qui anime les tables de poker sans y jouer : il distribue les cartes, gère le pot et le rake, fait respecter les règles et arbitre les litiges en restant neutre.",
+        responsibilities: [
+          "Mélanger et distribuer les cartes proprement, main après main.",
+          "Gérer les mises, constituer le pot et séparer les side pots.",
+          "Prélever le rake selon le barème de la salle.",
+          "Faire respecter les règles et arbitrer les litiges avec neutralité.",
+        ],
+        skills:
+          "Dextérité et gestes propres (pitch, mélange, chip handling), calcul mental rapide, maîtrise des règles, neutralité, sang-froid et endurance.",
+        qualifications:
+          "Aucun diplôme d'État obligatoire : les gestes et les procédures sont validés par un test d'embauche. Majorité et casier compatible avec un agrément requis.",
+        occupationLocation: { "@type": "Country", name: "France" },
+      },
+    ],
   },
   {
     slug: "sans-diplome",
