@@ -61,7 +61,7 @@ export default async function CroupierGuidePage({
 
   return (
     <div className="wrap">
-      <JsonLd data={[articleLd, faqLd]} />
+      <JsonLd data={[articleLd, faqLd, ...(g.structuredData ?? [])]} />
       <Crumbs
         items={[
           { label: "Accueil", href: "/" },

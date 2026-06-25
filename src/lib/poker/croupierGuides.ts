@@ -21,6 +21,9 @@ export type CroupierGuide = {
   sections: GuideSection[];
   faq: { q: string; a: string }[];
   related: { label: string; href: string }[];
+  // JSON-LD supplémentaire propre à la page (ex. Occupation + salaire), émis en
+  // plus de l'Article + FAQ. Optionnel.
+  structuredData?: Record<string, unknown>[];
 };
 
 export const CROUPIER_GUIDES: CroupierGuide[] = [
@@ -196,6 +199,27 @@ export const CROUPIER_GUIDES: CroupierGuide[] = [
       { label: "Comment devenir croupier de poker", href: "/devenir-croupier-de-poker" },
       { label: "Formation croupier poker", href: "/croupier/formation" },
       { label: "Les gestes techniques du croupier", href: "/croupier/gestes-techniques" },
+    ],
+    structuredData: [
+      {
+        "@context": "https://schema.org",
+        "@type": "Occupation",
+        name: "Croupier de poker",
+        description:
+          "Professionnel qui anime les tables de poker : distribution, gestion du pot et du rake, arbitrage des litiges. Rémunération en France hors pourboires.",
+        occupationLocation: { "@type": "Country", name: "France" },
+        estimatedSalary: [
+          {
+            "@type": "MonetaryAmountDistribution",
+            name: "salaire mensuel brut (hors pourboires)",
+            currency: "EUR",
+            duration: "P1M",
+            percentile10: 1900,
+            median: 2200,
+            percentile90: 2500,
+          },
+        ],
+      },
     ],
   },
   {
@@ -521,6 +545,175 @@ export const CROUPIER_GUIDES: CroupierGuide[] = [
       { label: "Fiche métier croupier de poker", href: "/croupier/fiche-metier" },
       { label: "Formation croupier poker", href: "/croupier/formation" },
       { label: "Les gestes techniques du croupier", href: "/croupier/gestes-techniques" },
+    ],
+  },
+  {
+    slug: "test-embauche",
+    metaTitle: "Test d'embauche croupier de poker : comment ça se passe ?",
+    metaDescription:
+      "Le test d'embauche du croupier de poker : déroulé de l'audition, ce que le recruteur évalue, comment se préparer et les erreurs qui éliminent. Par Jérôme Ibiza.",
+    kicker: "L'audition",
+    title: "Le test d'embauche du croupier de poker",
+    intro:
+      "On ne devient pas croupier sur CV : on le devient à la table, le jour du test. C'est une audition pratique où l'on juge tes gestes et tes procédures en conditions réelles. Voici à quoi t'attendre, et comment mettre toutes les chances de ton côté.",
+    sections: [
+      {
+        heading: "À quoi ressemble le test",
+        body:
+          "Le test se passe sur une vraie table, avec de vrais jetons et un sabot. On te demande de dealer une ou plusieurs mains comme en condition de jeu : mélange, distribution, gestion des mises, constitution du pot, paiement du gagnant. Le recruteur observe, parfois en simulant un litige ou une situation délicate pour voir comment tu réagis.",
+      },
+      {
+        heading: "Ce que le recruteur évalue",
+        bullets: [
+          "La propreté et la régularité des gestes : pitch nette, mélange réglementaire, chip handling fluide.",
+          "La maîtrise des règles et des procédures, sans hésitation.",
+          "Le calcul : pot, side pots, rendu de monnaie et rake, vite et juste.",
+          "Le comportement : neutralité, calme, autorité tranquille face à un joueur difficile.",
+          "Le rythme : une table qui tourne vite et bien, sans erreurs.",
+        ],
+      },
+      {
+        heading: "Comment se préparer",
+        body:
+          "La préparation, c'est de la répétition. Travaille chaque geste à vide, puis en home game ou en école jusqu'à l'automatisme. Connais les procédures par coeur. Le jour J, respire, ralentis si besoin : un geste propre et un peu lent vaut mieux qu'un geste rapide et brouillon.",
+      },
+      {
+        heading: "Les erreurs qui éliminent",
+        bullets: [
+          "Exposer une carte en distribuant (flash) ou distribuer dans le désordre.",
+          "Se tromper dans le pot, le paiement ou le rake.",
+          "Perdre son sang-froid ou prendre parti dans un litige.",
+          "Des gestes brouillons qui ralentissent la table et minent la confiance.",
+        ],
+      },
+    ],
+    faq: [
+      {
+        q: "Comment se passe un test d'embauche de croupier ?",
+        a: "C'est une audition pratique sur une vraie table : tu deales des mains pendant que le recruteur juge tes gestes, ta maîtrise des règles, ton calcul et ton comportement. Il peut simuler un litige pour tester ton sang-froid.",
+      },
+      {
+        q: "Que faut-il montrer pour réussir ?",
+        a: "Des gestes propres et réguliers (pitch, mélange, chip handling), des procédures maîtrisées, un calcul juste et rapide, et une attitude neutre et calme. La fiabilité prime sur la vitesse pure.",
+      },
+      {
+        q: "Peut-on repasser un test si on échoue ?",
+        a: "Souvent oui, après s'être entraîné davantage. Un échec pointe en général ce qui n'est pas encore au niveau : on retravaille ces points précis, puis on retente, ici ou ailleurs.",
+      },
+    ],
+    related: [
+      { label: "Devenir croupier sans diplôme", href: "/croupier/sans-diplome" },
+      { label: "Les gestes techniques du croupier", href: "/croupier/gestes-techniques" },
+      { label: "Formation croupier poker", href: "/croupier/formation" },
+    ],
+  },
+  {
+    slug: "a-l-etranger",
+    metaTitle: "Croupier de poker à l'étranger : Malte, Londres et festivals",
+    metaDescription:
+      "Travailler comme croupier de poker à l'étranger : destinations (Malte, Londres, circuits), niveau d'anglais, expérience demandée et festivals internationaux. Par Jérôme Ibiza.",
+    kicker: "À l'international",
+    title: "Devenir croupier de poker à l'étranger",
+    intro:
+      "L'une des plus belles évolutions du métier, c'est de passer les frontières. Les grands festivals et les places fortes du poker recrutent des croupiers fiables, et y travailler paie souvent bien mieux qu'en extra classique. Voici comment s'y projeter.",
+    sections: [
+      {
+        heading: "Pourquoi partir",
+        body:
+          "Travailler à l'étranger, c'est dealer les plus gros événements, gagner en expérience et, souvent, mieux gagner sa vie. C'est aussi une vitrine : un croupier qui a tenu de grandes tables internationales se revend mieux partout ensuite.",
+      },
+      {
+        heading: "Les destinations phares",
+        bullets: [
+          "Malte : un hub majeur du poker en ligne et live, avec de nombreux événements.",
+          "Londres et le Royaume-Uni : circuits réguliers et gros festivals.",
+          "Les circuits internationaux : étapes à travers l'Europe et le monde, qui recrutent des dealers à la mission.",
+        ],
+      },
+      {
+        heading: "Ce qu'il faut pour y aller",
+        body:
+          "Trois choses comptent : de l'expérience et des gestes irréprochables, un anglais fonctionnel (la langue de travail des tables internationales), et une vraie fiabilité (ponctualité, neutralité, endurance). Les recruteurs de festivals misent sur des croupiers sûrs, capables de tenir le rythme sur plusieurs jours.",
+      },
+      {
+        heading: "Les festivals internationaux",
+        body:
+          "Les grands festivals embauchent des croupiers le temps de l'événement. C'est exigeant (longues journées, niveau élevé) mais formateur et bien rémunéré : sur ces missions, le tarif horaire grimpe nettement plus haut qu'en extra classique, souvent payé en livres ou en dollars.",
+      },
+    ],
+    faq: [
+      {
+        q: "Peut-on travailler comme croupier de poker à l'étranger ?",
+        a: "Oui, c'est une évolution courante du métier. Les festivals et les places fortes du poker (Malte, Londres, circuits internationaux) recrutent des croupiers expérimentés et fiables, souvent à la mission.",
+      },
+      {
+        q: "Faut-il parler anglais pour dealer à l'international ?",
+        a: "Oui, un anglais fonctionnel est quasi indispensable : c'est la langue de travail des tables internationales, pour les annonces, les procédures et la communication avec les joueurs.",
+      },
+      {
+        q: "Est-ce mieux payé qu'en France ?",
+        a: "Sur les grands festivals, oui : le tarif horaire des croupiers expérimentés y est nettement plus élevé qu'en extra classique en France, souvent payé en devises étrangères. En contrepartie, les journées sont longues et le niveau élevé.",
+      },
+    ],
+    related: [
+      { label: "Le salaire d'un croupier de poker", href: "/croupier/salaire" },
+      { label: "Évolution de carrière du croupier", href: "/croupier/evolution-carriere" },
+      { label: "Comment devenir croupier de poker", href: "/devenir-croupier-de-poker" },
+    ],
+  },
+  {
+    slug: "reconversion",
+    metaTitle: "Reconversion croupier de poker : se lancer à tout âge",
+    metaDescription:
+      "Se reconvertir en croupier de poker : un métier accessible sans diplôme d'État, les atouts d'un profil en reconversion, par où commencer et comment concilier avec un emploi. Par Jérôme Ibiza.",
+    kicker: "La reconversion",
+    title: "Devenir croupier de poker en reconversion",
+    intro:
+      "Le métier de croupier n'est pas réservé aux jeunes diplômés : c'est l'une des reconversions les plus ouvertes, parce qu'on y est jugé sur la pratique, pas sur un parcours scolaire. Voici pourquoi, et comment s'y prendre concrètement.",
+    sections: [
+      {
+        heading: "Un métier ouvert à la reconversion",
+        body:
+          "Comme il n'existe pas de diplôme d'État obligatoire, on entre dans le métier par la compétence : des gestes propres, des procédures maîtrisées, et la réussite d'un test d'embauche. C'est ce qui rend la reconversion possible à des âges et des parcours très variés.",
+      },
+      {
+        heading: "Les atouts d'un profil en reconversion",
+        bullets: [
+          "La maturité et le sang-froid, précieux pour gérer une table et les litiges.",
+          "L'expérience du contact client ou du service, directement réutilisable.",
+          "La motivation : on se reconvertit par choix, ce qui se voit à l'entraînement.",
+          "La rigueur professionnelle, déjà acquise dans un autre métier.",
+        ],
+      },
+      {
+        heading: "Par où commencer",
+        body:
+          "On commence par la théorie et les gestes : règles, procédures, mélange, distribution, chip handling. L'académie croupier gratuite de ce site couvre le métier module par module. On complète par de la pratique réelle (home games, école de croupiers) avant de viser les tests d'embauche.",
+      },
+      {
+        heading: "Concilier avec son emploi actuel",
+        body:
+          "Bonne nouvelle : les horaires du métier (soir, nuit, week-end) permettent souvent de s'entraîner et de débuter en extra sans tout quitter d'un coup. Beaucoup commencent par des missions ponctuelles avant de basculer à plein temps une fois les gestes fiables et le réseau construit.",
+      },
+    ],
+    faq: [
+      {
+        q: "Peut-on devenir croupier de poker en reconversion ?",
+        a: "Oui, c'est même une voie fréquente. Sans diplôme d'État obligatoire, on entre par la pratique : on se forme aux gestes et aux procédures, puis on réussit un test d'embauche. Maturité et expérience du contact sont des atouts.",
+      },
+      {
+        q: "Y a-t-il un âge limite pour se reconvertir croupier ?",
+        a: "Il faut être majeur, et au-delà c'est surtout la compétence et la fiabilité qui comptent. Un profil en reconversion, mûr et motivé, est tout à fait recevable à la table.",
+      },
+      {
+        q: "Combien de temps pour se reconvertir croupier ?",
+        a: "Cela dépend du rythme d'entraînement. Les gestes techniques demandent plusieurs semaines à plusieurs mois de répétition pour devenir propres et automatiques ; les règles et procédures s'apprennent plus vite. La régularité fait toute la différence.",
+      },
+    ],
+    related: [
+      { label: "Formation croupier poker", href: "/croupier/formation" },
+      { label: "Devenir croupier sans diplôme", href: "/croupier/sans-diplome" },
+      { label: "L'académie croupier (gratuite)", href: "/academie-croupier" },
     ],
   },
 ];
