@@ -1,6 +1,6 @@
 import Link from "next/link";
 import type { Metadata } from "next";
-import { Crumbs, PageHero, JsonLd } from "@/components/ui";
+import { Crumbs, PageHero, JsonLd, SeeAlso } from "@/components/ui";
 
 export const metadata: Metadata = {
   title: "Calculateurs poker : cotes, bankroll, ICM, rake et ROI",
@@ -48,6 +48,14 @@ export default function CalculateursPage() {
           </Link>
         ))}
       </div>
+
+      <SeeAlso
+        links={[
+          { label: "Cotes et pot odds", href: "/strategie/cotes-et-pot-odds", desc: "La théorie derrière le calculateur de cotes." },
+          { label: "La gestion de bankroll", href: "/strategie/gestion-de-bankroll", desc: "Combien de caves garder pour ne jamais sauter." },
+          { label: "Le glossaire poker", href: "/glossaire", desc: "Pot odds, ICM, ROI, rake : tous les termes définis." },
+        ]}
+      />
     </div>
   );
 }

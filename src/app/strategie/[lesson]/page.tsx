@@ -16,6 +16,7 @@ import { BankrollCalculator } from "@/components/BankrollCalculator";
 import { LESSONS, getLesson, LEVEL_LABEL } from "@/lib/poker/strategy";
 import { Crumbs, Section, DealerNote, LevelPill, JsonLd, SeeAlso } from "@/components/ui";
 import { autolink } from "@/lib/poker/autolink";
+import { seeAlsoForLesson } from "@/lib/poker/related";
 
 type Params = { lesson: string };
 
@@ -657,13 +658,7 @@ export default async function LessonPage({
 
       {l.dealerNote && <div style={{ marginTop: 24 }}><DealerNote>{l.dealerNote}</DealerNote></div>}
 
-      <SeeAlso
-        links={[
-          { label: "Le glossaire poker", href: "/glossaire", desc: "Tous les termes de la leçon, définis simplement." },
-          { label: "Les calculateurs", href: "/calculateurs", desc: "Cotes, bankroll, ICM, ROI tournoi." },
-          { label: "Les formats de poker", href: "/formats", desc: "Où appliquer cette stratégie : cash, MTT, Spin..." },
-        ]}
-      />
+      <SeeAlso links={l.related ?? seeAlsoForLesson(l.slug)} />
 
       <nav
         style={{

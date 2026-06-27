@@ -9,6 +9,24 @@ export type Term = {
   example?: string;
 };
 
+/**
+ * Slug d'URL d'un terme, pour sa page dédiée /glossaire/<slug>.
+ * « Expected value (EV) » -> « expected-value-ev », « All-in » -> « all-in ».
+ * Les slugs sont garantis uniques (vérifié sur le lot actuel, 0 collision).
+ */
+export function termSlug(term: string): string {
+  return term
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[̀-ͯ]/g, "")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+}
+
+export function getTermBySlug(slug: string): Term | undefined {
+  return GLOSSARY.find((t) => termSlug(t.term) === slug);
+}
+
 export const GLOSSARY: Term[] = [
   { term: "Action", def: "Le fait de miser, relancer ou suivre. Désigne aussi l'animation d'une table : « il y a de l'action »." },
   { term: "Add-on", def: "Achat de jetons supplémentaires proposé une seule fois dans certains tournois, généralement à la fin de la période de recave.", example: "À la pause, tous les joueurs prennent l'add-on de 3000 jetons." },

@@ -1,7 +1,8 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useMemo, useState, type CSSProperties } from "react";
-import type { Term } from "@/lib/poker/glossary";
+import { termSlug, type Term } from "@/lib/poker/glossary";
 
 function normalize(s: string) {
   return s
@@ -88,8 +89,10 @@ export function GlossaryBrowser({ terms }: { terms: Term[] }) {
         <dl style={{ display: "grid", gap: 12, marginTop: 22 }}>
           {filtered.map((t) => (
             <div key={t.term} className="card">
-              <dt className="display" style={{ fontSize: 17, color: "var(--fg)" }}>
-                {t.term}
+              <dt className="display" style={{ fontSize: 17 }}>
+                <Link href={`/glossaire/${termSlug(t.term)}`} className="link" style={{ color: "var(--fg)" }}>
+                  {t.term}
+                </Link>
               </dt>
               <dd style={{ margin: "8px 0 0", color: "var(--muted)", fontSize: 15 }}>
                 {t.def}

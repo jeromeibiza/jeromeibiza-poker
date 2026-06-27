@@ -1,6 +1,6 @@
 import Link from "next/link";
 import type { Metadata } from "next";
-import { Crumbs, PageHero, Section, DealerNote, JsonLd } from "@/components/ui";
+import { Crumbs, PageHero, Section, DealerNote, JsonLd, SeeAlso } from "@/components/ui";
 import { ARTICLES } from "@/lib/poker/online";
 
 export const metadata: Metadata = {
@@ -60,6 +60,14 @@ export default function PokerEnLignePage() {
           <Link href="/strategie" className="link">la stratégie</Link>.
         </p>
       </div>
+
+      <SeeAlso
+        links={[
+          { label: "La stratégie poker", href: "/strategie", desc: "Mieux jouer en ligne, du débutant au niveau avancé." },
+          { label: "Les formats de poker", href: "/formats", desc: "Cash game, MTT, Spin : quel format jouer en ligne." },
+          { label: "Le glossaire poker", href: "/glossaire", desc: "Tous les termes du poker en ligne, définis simplement." },
+        ]}
+      />
     </div>
   );
 }

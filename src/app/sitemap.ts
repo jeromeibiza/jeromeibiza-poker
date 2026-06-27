@@ -6,6 +6,7 @@ import { FORMATS } from "@/lib/poker/formats";
 import { ARTICLES } from "@/lib/poker/online";
 import { MODULES } from "@/lib/poker/academy";
 import { CROUPIER_GUIDES } from "@/lib/poker/croupierGuides";
+import { GLOSSARY, termSlug } from "@/lib/poker/glossary";
 
 // Sections encore vides : on les sort du sitemap (et elles sont en noindex sur
 // la page) tant qu'elles ne sont pas remplies, à réintégrer une par une.
@@ -32,6 +33,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const onlinePaths = ARTICLES.map((a) => `/poker-en-ligne/${a.slug}`);
   const modulePaths = MODULES.map((m) => `/academie-croupier/${m.slug}`);
   const croupierPaths = CROUPIER_GUIDES.map((g) => `/croupier/${g.slug}`);
+  // Une fiche crawlable par terme du glossaire (longue traîne « définition de X »).
+  const glossaryPaths = GLOSSARY.map((t) => `/glossaire/${termSlug(t.term)}`);
 
   const all = Array.from(
     new Set([
@@ -42,6 +45,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       ...onlinePaths,
       ...modulePaths,
       ...croupierPaths,
+      ...glossaryPaths,
     ]),
   );
 

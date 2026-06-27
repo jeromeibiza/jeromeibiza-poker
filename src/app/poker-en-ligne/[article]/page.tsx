@@ -6,6 +6,7 @@ import { PokerTable, TABLE_6MAX } from "@/components/PokerTable";
 import { ARTICLES, getArticle } from "@/lib/poker/online";
 import { Crumbs, Section, DealerNote, JsonLd, SeeAlso } from "@/components/ui";
 import { autolink } from "@/lib/poker/autolink";
+import { seeAlsoForArticle } from "@/lib/poker/related";
 
 type Params = { article: string };
 
@@ -104,13 +105,7 @@ export default async function ArticlePage({
         </p>
       </div>
 
-      <SeeAlso
-        links={[
-          { label: "Apprendre le poker", href: "/apprendre", desc: "Les règles et les bases avant de jouer en ligne." },
-          { label: "La stratégie poker", href: "/strategie", desc: "Mieux jouer, du débutant au niveau avancé." },
-          { label: "Le glossaire poker", href: "/glossaire", desc: "Tous les termes définis simplement." },
-        ]}
-      />
+      <SeeAlso links={a.related ?? seeAlsoForArticle(a.slug)} />
 
       <nav
         style={{

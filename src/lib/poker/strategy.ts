@@ -24,6 +24,8 @@ export type Lesson = {
   dealerNote?: string;
   /** Partenaire de confiance (lien externe, futur lien d'affiliation). */
   partner?: { name: string; url: string; hook: string; kind: string; blurb: string };
+  /** Liens « voir aussi » forcés à la main. Si absent, calculés (voir related.ts). */
+  related?: { label: string; href: string; desc?: string }[];
 };
 
 export const LEVEL_LABEL: Record<Level, string> = {

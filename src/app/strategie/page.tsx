@@ -1,6 +1,6 @@
 import Link from "next/link";
 import type { Metadata } from "next";
-import { Crumbs, PageHero, Section, JsonLd } from "@/components/ui";
+import { Crumbs, PageHero, Section, JsonLd, SeeAlso } from "@/components/ui";
 import { LESSONS, lessonsByLevel, LEVEL_LABEL, LEVEL_ORDER } from "@/lib/poker/strategy";
 
 export const metadata: Metadata = {
@@ -81,6 +81,14 @@ export default function StrategiePage() {
           <Link href="/calculateurs/cotes" className="link">calculateur de cotes</Link>.
         </p>
       </div>
+
+      <SeeAlso
+        links={[
+          { label: "Les formats de poker", href: "/formats", desc: "Où appliquer cette stratégie : cash game, MTT, Spin, Omaha." },
+          { label: "Le glossaire poker", href: "/glossaire", desc: "Tous les termes croisés dans les cours, définis simplement." },
+          { label: "Les calculateurs", href: "/calculateurs", desc: "Cotes, bankroll, ICM, ROI tournoi." },
+        ]}
+      />
     </div>
   );
 }

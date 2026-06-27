@@ -4,9 +4,33 @@
 > Aucun lien croise pour l'instant. Repo dedie, futur Vercel dedie
 > (futur `poker.jeromeibiza.com`). On ne touche JAMAIS au site live.
 
-Derniere mise a jour : 2026-06-20 — gros lot contenu (nuit) + audit multi-experts.
+Derniere mise a jour : 2026-06-27 (maillage interne SEO, branche `seo`).
 
 ---
+
+## ✅ Fait (2026-06-27 — refonte du maillage interne, branche `seo`)
+
+Tout est DERIVE des donnees : quand on ajoute une lecon / un format / un article /
+un terme, ses liens internes (et ceux qui pointent vers lui) se recalculent seuls,
+sans rien re-editer a la main. Aucun fichier du jeu touche (branche `seo` only).
+
+- [x] **Liens « voir aussi » contextuels** (`src/lib/poker/related.ts`) : fini les 3 liens
+  codes en dur identiques partout. Chaque lecon / format / article reçoit des liens
+  connexes calcules (pages du meme silo + cross-silo curé : lecon de tournoi → format MTT,
+  lecon de cotes → calculateurs...). Champ `related?` optionnel pour forcer un lien a la main.
+- [x] **Pages glossaire crawlables** `/glossaire/[terme]` : **299 fiches** statiques (une URL
+  propre par terme, avant tout pointait vers `/glossaire?q=` = une seule page). Definition +
+  exemple + termes lies + lien vers le cours dedie. JSON-LD `DefinedTerm` par fiche.
+  Termes cliquables dans le glossaire + ajoutees au `sitemap.xml`.
+- [x] **Autolink ameliore** (`autolink.tsx`) : pointe vers la fiche `/glossaire/<slug>` (vraie
+  page) ; et les termes forts (GTO, MDF, MTT, c-bet, ICM, range, bankroll...) pointent
+  direct vers leur cours/format dedie (lien de contenu a contenu, top pour le SEO).
+- [x] **Maillage inter-hubs** : bloc « voir aussi » ajoute sur les hubs strategie / formats /
+  poker-en-ligne / calculateurs (apprendre + glossaire en avaient deja).
+- [x] Build prod OK : 0 erreur, toutes les routes en statique (dont les 299 fiches glossaire).
+
+> Reste possible (non bloquant) : remplir des `related` editoriaux sur-mesure au cas par cas,
+> et nettoyer le `useEffect ?q=` devenu vestigial dans `GlossaryBrowser` (lint pre-existant).
 
 ## ✅ Fait (nuit du 2026-06-20 — contenu + audit)
 

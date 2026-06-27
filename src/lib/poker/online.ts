@@ -19,6 +19,8 @@ export type OnlineArticle = {
   sections: ArticleSection[];
   takeaways: string[];
   dealerNote?: string;
+  /** Liens « voir aussi » forcés à la main. Si absent, calculés (voir related.ts). */
+  related?: { label: string; href: string; desc?: string }[];
 };
 
 export const ARTICLES: OnlineArticle[] = [

@@ -1,6 +1,6 @@
 import Link from "next/link";
 import type { Metadata } from "next";
-import { Crumbs, PageHero, Section, JsonLd } from "@/components/ui";
+import { Crumbs, PageHero, Section, JsonLd, SeeAlso } from "@/components/ui";
 import { FORMATS } from "@/lib/poker/formats";
 
 export const metadata: Metadata = {
@@ -83,6 +83,14 @@ export default function FormatsPage() {
           <Link href="/apprendre/regles-du-poker" className="link">les règles</Link> avant de choisir un format.
         </p>
       </div>
+
+      <SeeAlso
+        links={[
+          { label: "La stratégie poker", href: "/strategie", desc: "Du débutant au GTO : comment bien jouer chaque format." },
+          { label: "Le poker en ligne", href: "/poker-en-ligne", desc: "Choisir une room, bonus, sécurité, retraits." },
+          { label: "Le glossaire poker", href: "/glossaire", desc: "Tous les termes des formats, expliqués simplement." },
+        ]}
+      />
     </div>
   );
 }
